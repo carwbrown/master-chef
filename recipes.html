@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Chef - My Recipes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="recipe.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f2ed;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #faf8f5;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e8e4df;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.5rem;
+      color: #2c1810;
+    }
+
+    nav { display: flex; gap: 1rem; align-items: center; }
+
+    nav a {
+      color: #5c4a3d;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #2c1810;
+      background: rgba(139, 115, 85, 0.1);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #8b7355;
+      color: #8b7355;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      border-color: #c0392b;
+      color: #c0392b;
+    }
+
+    main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-family: 'Crimson Text', Georgia, serif;
+      color: #2c1810;
+      font-size: 2rem;
+    }
+
+    .btn-add {
+      background: #2c1810;
+      border: none;
+      color: #faf8f5;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .btn-add:hover { background: #3d2518; }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #5c4a3d;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state p { margin-bottom: 1rem; }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #5c4a3d;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">👨‍🍳 Master Chef</div>
+    <nav>
+      <a href="/recipes.html" class="active">Recipes</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <button class="btn-logout" id="logout-btn">Sign Out</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="actions">
+      <h1>My Recipes</h1>
+      <button class="btn-add" id="add-btn">+ Add Recipe</button>
+    </div>
+
+    <div class="recipe-grid" id="recipes-grid">
+      <div class="loading">Loading your recipes...</div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { requireAuth, logout, getCurrentUser, pb } from './scripts/auth.js';
+    import './components/recipe-card.js';
+
+    // Check auth
+    if (!requireAuth()) {
+      // Will redirect to login
+    }
+
+    const user = getCurrentUser();
+
+    // Logout handler
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    // Add recipe button
+    document.getElementById('add-btn').addEventListener('click', () => {
+      window.location.href = '/recipe-upload.html';
+    });
+
+    // Load recipes
+    async function loadRecipes() {
+      const grid = document.getElementById('recipes-grid');
+
+      try {
+        const records = await pb.collection('recipes').getList(1, 50, {
+          filter: `user = "${user.id}"`,
+          sort: '-created'
+        });
+
+        if (records.items.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-state">
+              <p>You haven't saved any recipes yet.</p>
+              <p>Click "+ Add Recipe" to get started!</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = '';
+        records.items.forEach(recipe => {
+          const card = document.createElement('recipe-card');
+          card.recipe = recipe;
+          grid.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error loading recipes:', error);
+        grid.innerHTML = `
+          <div class="empty-state">
+            <p>Could not load recipes. Is PocketBase running?</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">${error.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    loadRecipes();
+  </script>
+</body>
+</html>

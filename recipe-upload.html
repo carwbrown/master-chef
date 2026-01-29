@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Chef - Add Recipe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f2ed;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #faf8f5;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e8e4df;
+    }
+
+    .logo {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.5rem;
+      color: #2c1810;
+    }
+
+    nav { display: flex; gap: 1rem; align-items: center; }
+
+    nav a {
+      color: #5c4a3d;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover { background: rgba(139, 115, 85, 0.1); }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Crimson Text', Georgia, serif;
+      color: #2c1810;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-section {
+      background: #faf8f5;
+      border: 1px solid #e8e4df;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-section h2 {
+      font-family: 'Crimson Text', Georgia, serif;
+      color: #2c1810;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      color: #5c4a3d;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d4cfc8;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #fff;
+      color: #2c1810;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #8b7355;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .url-input-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .url-input-group input { flex: 1; }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #2c1810;
+      border: none;
+      color: #faf8f5;
+    }
+
+    .btn-primary:hover { background: #3d2518; }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #8b7355;
+      color: #8b7355;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(139, 115, 85, 0.1);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .inline-fields {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .ingredients-list, .instructions-list {
+      list-style: none;
+    }
+
+    .ingredients-list li, .instructions-list li {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ingredients-list input, .instructions-list input {
+      flex: 1;
+    }
+
+    .btn-remove {
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      color: #c0392b;
+      cursor: pointer;
+      font-size: 1.25rem;
+    }
+
+    .btn-add {
+      background: none;
+      border: 1px dashed #8b7355;
+      color: #8b7355;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .btn-add:hover {
+      background: rgba(139, 115, 85, 0.1);
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+
+    .error {
+      color: #c0392b;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .success {
+      color: #27ae60;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .parsing-status {
+      padding: 1rem;
+      background: rgba(139, 115, 85, 0.1);
+      border-radius: 4px;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .parsing-status.show { display: block; }
+
+    @media (max-width: 600px) {
+      .inline-fields {
+        grid-template-columns: 1fr;
+      }
+      .url-input-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">👨‍🍳 Master Chef</div>
+    <nav>
+      <a href="/recipes.html">← Back to Recipes</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Add New Recipe</h1>
+
+    <!-- Option 1: Import from URL -->
+    <div class="form-section">
+      <h2>Import from URL</h2>
+      <p style="color: #5c4a3d; margin-bottom: 1rem;">Paste a recipe URL and we'll try to extract the details.</p>
+      <div class="url-input-group">
+        <input type="url" id="recipe-url" placeholder="https://example.com/recipe/...">
+        <button class="btn btn-secondary" id="parse-btn">Import</button>
+      </div>
+      <div class="parsing-status" id="parsing-status"></div>
+    </div>
+
+    <!-- Manual Entry Form -->
+    <form id="recipe-form">
+      <div class="form-section">
+        <h2>Recipe Details</h2>
+
+        <div class="form-group">
+          <label for="title">Recipe Title *</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="source_url">Source URL</label>
+          <input type="url" id="source_url" name="source_url" placeholder="https://...">
+        </div>
+
+        <div class="inline-fields">
+          <div class="form-group">
+            <label for="prep_time">Prep Time</label>
+            <input type="text" id="prep_time" name="prep_time" placeholder="15 mins">
+          </div>
+          <div class="form-group">
+            <label for="cook_time">Cook Time</label>
+            <input type="text" id="cook_time" name="cook_time" placeholder="30 mins">
+          </div>
+          <div class="form-group">
+            <label for="servings">Servings</label>
+            <input type="text" id="servings" name="servings" placeholder="4">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tags">Tags (comma-separated)</label>
+          <input type="text" id="tags" name="tags" placeholder="dinner, chicken, quick">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Ingredients</h2>
+        <ul class="ingredients-list" id="ingredients-list">
+          <li>
+            <input type="text" name="ingredient" placeholder="1 cup flour">
+            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+          </li>
+        </ul>
+        <button type="button" class="btn-add" id="add-ingredient">+ Add Ingredient</button>
+      </div>
+
+      <div class="form-section">
+        <h2>Instructions</h2>
+        <ul class="instructions-list" id="instructions-list">
+          <li>
+            <input type="text" name="instruction" placeholder="Step 1...">
+            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+          </li>
+        </ul>
+        <button type="button" class="btn-add" id="add-instruction">+ Add Step</button>
+      </div>
+
+      <div class="actions">
+        <a href="/recipes.html" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary" id="save-btn">Save Recipe</button>
+      </div>
+
+      <div id="form-message"></div>
+    </form>
+  </main>
+
+  <script type="module">
+    import { requireAuth, getCurrentUser, pb } from './scripts/auth.js';
+
+    // Check auth
+    if (!requireAuth()) return;
+
+    const user = getCurrentUser();
+
+    // Add ingredient row
+    document.getElementById('add-ingredient').addEventListener('click', () => {
+      const list = document.getElementById('ingredients-list');
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <input type="text" name="ingredient" placeholder="1 cup flour">
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+      `;
+      list.appendChild(li);
+      li.querySelector('input').focus();
+    });
+
+    // Add instruction row
+    document.getElementById('add-instruction').addEventListener('click', () => {
+      const list = document.getElementById('instructions-list');
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <input type="text" name="instruction" placeholder="Step ${list.children.length + 1}...">
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+      `;
+      list.appendChild(li);
+      li.querySelector('input').focus();
+    });
+
+    // Parse URL button
+    document.getElementById('parse-btn').addEventListener('click', async () => {
+      const url = document.getElementById('recipe-url').value.trim();
+      if (!url) return;
+
+      const status = document.getElementById('parsing-status');
+      status.classList.add('show');
+      status.textContent = 'Parsing recipe...';
+
+      // For now, just populate the source URL
+      // Full parsing would require a backend or CORS proxy
+      document.getElementById('source_url').value = url;
+
+      try {
+        // Try to extract domain for a helpful message
+        const domain = new URL(url).hostname;
+        status.innerHTML = `
+          <p>URL saved. Auto-parsing from <strong>${domain}</strong> coming soon!</p>
+          <p style="margin-top: 0.5rem; font-size: 0.875rem;">For now, please enter the recipe details manually below.</p>
+        `;
+      } catch (e) {
+        status.textContent = 'Invalid URL. Please enter details manually.';
+      }
+    });
+
+    // Form submission
+    document.getElementById('recipe-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const saveBtn = document.getElementById('save-btn');
+      const message = document.getElementById('form-message');
+
+      // Gather ingredients
+      const ingredients = [];
+      document.querySelectorAll('#ingredients-list input').forEach(input => {
+        if (input.value.trim()) {
+          ingredients.push(input.value.trim());
+        }
+      });
+
+      // Gather instructions
+      const instructions = [];
+      document.querySelectorAll('#instructions-list input').forEach(input => {
+        if (input.value.trim()) {
+          instructions.push(input.value.trim());
+        }
+      });
+
+      const recipeData = {
+        user: user.id,
+        title: form.title.value.trim(),
+        source_url: form.source_url.value.trim() || null,
+        prep_time: form.prep_time.value.trim() || null,
+        cook_time: form.cook_time.value.trim() || null,
+        servings: form.servings.value.trim() || null,
+        tags: form.tags.value.trim() || null,
+        ingredients: ingredients,
+        instructions: instructions
+      };
+
+      if (!recipeData.title) {
+        message.innerHTML = '<p class="error">Please enter a recipe title.</p>';
+        return;
+      }
+
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+      message.innerHTML = '';
+
+      try {
+        await pb.collection('recipes').create(recipeData);
+        message.innerHTML = '<p class="success">Recipe saved!</p>';
+
+        // Redirect after short delay
+        setTimeout(() => {
+          window.location.href = '/recipes.html';
+        }, 1000);
+      } catch (error) {
+        console.error('Error saving recipe:', error);
+        message.innerHTML = `<p class="error">Failed to save: ${error.message}</p>`;
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Recipe';
+      }
+    });
+  </script>
+</body>
+</html>

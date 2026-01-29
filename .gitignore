@@ -13,6 +13,9 @@ yarn-error.log*
 .env.local
 .env.production
 
+# Config with API keys
+scripts/config.js
+
 # OS files
 .DS_Store
 .DS_Store?

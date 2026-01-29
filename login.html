@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Chef - Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f2ed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo h1 {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 2.5rem;
+      color: #2c1810;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo p {
+      color: #5c4a3d;
+    }
+
+    .nav-links {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .nav-links a {
+      color: #8b7355;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2c1810;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <h1>👨‍🍳 Master Chef</h1>
+    <p>Recipes & Game Stats</p>
+  </div>
+
+  <login-form></login-form>
+
+  <div class="nav-links">
+    <a href="/leaderboard.html">View Leaderboard</a>
+  </div>
+
+  <script type="module">
+    import './components/login-form.js';
+    import { isAuthenticated } from './scripts/auth.js';
+
+    // Redirect if already logged in
+    if (isAuthenticated()) {
+      window.location.href = '/recipes.html';
+    }
+  </script>
+</body>
+</html>
