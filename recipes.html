@@ -51,6 +51,11 @@
     .skel-row { height: 66px; margin-bottom: var(--sp-3); }
     @media (prefers-reduced-motion: reduce) { .skel { animation: none; } }
   </style>
+  <!-- TEMP DEBUG: on-screen console for diagnosing the mobile recipe-list hang.
+       Tap the floating button (bottom-right) on the phone to view errors.
+       REMOVE these two lines once the hang is diagnosed. -->
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>window.eruda && eruda.init();</script>
 </head>
 <body>
   <header class="rhead">
@@ -80,14 +85,30 @@
     const sourceLabel = (r) => r.author || domain(r.source_url) || 'Cookbook';
 
     async function init() {
-      document.getElementById('list').innerHTML = Array.from({ length: 6 }, () => '<div class="skel skel-row"></div>').join('');
-      // Only fetch what the list shows — skips the big ingredients/instructions JSON so mobile loads fast.
-      try { all = await pb.collection('recipes').getFullList({ sort: 'title', fields: 'id,title,tags,prep_time,cook_time,author,source_url' }); }
-      catch (e) { all = []; }
+      mountMenu(document.getElementById('navMount'), 'recipes');   // header works even if the list fails
+      const listEl = document.getElementById('list');
+      listEl.innerHTML = Array.from({ length: 6 }, () => '<div class="skel skel-row"></div>').join('');
+
+      const showError = (msg) => {
+        listEl.innerHTML = `<p class="empty">${msg}<br><button class="btn" id="retry" style="margin-top:12px">Retry</button></p>`;
+        document.getElementById('retry').onclick = () => location.reload();
+      };
+
+      try {
+        // Only fetch what the list shows — skips the big ingredients/instructions JSON so mobile loads fast.
+        // 12s watchdog: a hung request surfaces as an error instead of spinning on the skeleton forever.
+        all = await Promise.race([
+          pb.collection('recipes').getFullList({ sort: 'title', fields: 'id,title,tags,prep_time,cook_time,author,source_url' }),
+          new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 12000)),
+        ]);
+      } catch (e) {
+        showError(e.message === 'timeout' ? 'Recipes took too long to load — tap retry.' : "Couldn't load recipes.");
+        return;
+      }
+
       renderTags();
       render();
       document.getElementById('search').addEventListener('input', render);
-      mountMenu(document.getElementById('navMount'), 'recipes');
       const toggle = document.getElementById('tagToggle');
       toggle.addEventListener('click', () => {
         const bar = document.getElementById('tagbar');

@@ -124,7 +124,11 @@
       else sessionStorage.removeItem(key);
       const save = () => sessionStorage.setItem(key, JSON.stringify(state));
 
-      const backHref = document.referrer.includes('hub.html') ? 'hub.html' : 'recipes.html';
+      // Prefer an explicit ?from= (reliable on mobile, where document.referrer is
+      // often stripped to origin-only); then referrer; then the recipe list.
+      const BACK = { hub: 'hub.html', planner: 'planner.html', recipes: 'recipes.html' };
+      const from = new URLSearchParams(location.search).get('from');
+      const backHref = BACK[from] || (document.referrer.includes('hub.html') ? 'hub.html' : 'recipes.html');
       el.innerHTML = `
         <div class="cook-top">
           <a class="iconbtn" href="${backHref}" aria-label="Back">‹</a>

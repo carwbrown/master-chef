@@ -595,7 +595,7 @@
       document.querySelectorAll('#meals .meal-card').forEach(el =>
         el.addEventListener('click', (e) => {
           if (e.target.closest('.meal-edit')) { openMeal(el.dataset.slot, el.dataset.id || ''); return; }
-          if (el.dataset.recipe) location.href = `recipe-view.html?id=${el.dataset.recipe}`;
+          if (el.dataset.recipe) location.href = `recipe-view.html?id=${el.dataset.recipe}&from=hub`;
           else openMeal(el.dataset.slot, el.dataset.id || '');
         }));
     }

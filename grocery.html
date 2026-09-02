@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.5rem; margin: 0; flex: 1; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
+
+    .gsection { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+                box-shadow: var(--shadow); padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-5); }
+    .ghead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-3); }
+    .ghead h2 { margin: 0; font-size: 1.15rem; flex: 1; }
+    .gsub { color: var(--text-faint); font-size: .82rem; margin: -4px 0 var(--sp-3); }
+    .gactions { display: flex; gap: var(--sp-2); }
+    .gactions .btn { padding: .4rem .7rem; font-size: .82rem; }
+
+    .glist { list-style: none; margin: 0; padding: 0; }
+    .gitem { display: flex; align-items: center; gap: var(--sp-3); padding: 8px 0; border-top: 1px solid var(--surface-2); }
+    .gitem:first-child { border-top: none; }
+    .gname { flex: 1; min-width: 0; }
+    .gqty { color: var(--text-muted); font-size: .85rem; margin-left: 6px; }
+    .gempty { color: var(--text-faint); padding: var(--sp-4) 0; text-align: center; }
+
+    /* Staples: checked = "going to Instacart" -> highlight, not strike-through */
+    .glist.staples .gitem.on { background: var(--green-soft); border-radius: var(--radius-sm);
+                               margin: 0 calc(-1 * var(--sp-3)); padding-left: var(--sp-3); padding-right: var(--sp-3); border-top-color: transparent; }
+    .glist.staples .gitem.on .gname { font-weight: 700; color: var(--green-dark); }
+    /* Trip: checked = purchased -> strike-through */
+    .glist.trip .gitem.on .gname { text-decoration: line-through; color: var(--text-faint); }
+
+    /* Chunky checkbox (matches the chores list) */
+    .gitem input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none; flex: none; width: 26px; height: 26px;
+      border-radius: 8px; border: 2px solid var(--border); background: var(--surface);
+      cursor: pointer; position: relative; transition: background .15s, border-color .15s;
+    }
+    .gitem input[type="checkbox"]:hover { border-color: var(--green); }
+    .gitem input[type="checkbox"]:checked { background: var(--green); border-color: var(--green); }
+    .gitem input[type="checkbox"]:checked::after {
+      content: ""; position: absolute; left: 8px; top: 4px; width: 6px; height: 11px;
+      border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg);
+    }
+    .gitem input[type="checkbox"]:active { transform: scale(.88); }
+
+    .gdel { border: none; background: none; color: var(--text-faint); cursor: pointer; font-size: .9rem;
+            opacity: 0; padding: 2px 6px; line-height: 1; }
+    .gitem:hover .gdel { opacity: 1; }
+    .gdel:hover { color: var(--danger); }
+    @media (hover: none) { .gdel { opacity: .55; } }
+
+    .gadd { display: flex; gap: 6px; margin-top: var(--sp-3); }
+    .gadd-name { flex: 1; }
+    .gadd-qty { flex: none; width: 92px; }
+    .gadd .btn { flex: none; }
+    @media (prefers-reduced-motion: reduce) { * { transition-duration: .001ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>Grocery</h1>
+  </header>
+
+  <div class="wrap">
+    <!-- Weekly staples -->
+    <section class="gsection">
+      <div class="ghead">
+        <h2>Weekly staples</h2>
+        <div class="gactions">
+          <button class="btn" id="selectAll" type="button">Select all</button>
+          <button class="btn" id="clearStaples" type="button">Clear</button>
+        </div>
+      </div>
+      <div class="gsub" id="staplesCount"></div>
+      <ul class="glist staples" id="staplesList"></ul>
+      <form class="gadd" id="staplesForm">
+        <input class="input gadd-name" type="text" placeholder="Add a staple…" required>
+        <input class="input gadd-qty" type="text" placeholder="Qty">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </section>
+
+    <!-- This trip -->
+    <section class="gsection">
+      <div class="ghead">
+        <h2>This trip</h2>
+        <div class="gactions">
+          <button class="btn" id="clearPurchased" type="button" hidden></button>
+        </div>
+      </div>
+      <ul class="glist trip" id="tripList"></ul>
+      <form class="gadd" id="tripForm">
+        <input class="input gadd-name" type="text" placeholder="Add a one-off item…" required>
+        <input class="input gadd-qty" type="text" placeholder="Qty">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+
+    if (requireAuth()) init();
+    let all = [];
+
+    async function load() {
+      try { all = await pb.collection('grocery_items').getFullList({ sort: 'sort' }); }
+      catch (e) { all = []; }
+    }
+
+    function init() {
+      mountMenu(document.getElementById('navMount'), 'grocery');
+      wire();
+      refresh();
+    }
+    async function refresh() { await load(); render(); }
+
+    function itemHTML(it) {
+      const qty = it.qty ? `<span class="gqty">${escapeHTML(it.qty)}</span>` : '';
+      return `<li class="gitem ${it.checked ? 'on' : ''}">
+          <input type="checkbox" data-id="${it.id}" ${it.checked ? 'checked' : ''}>
+          <span class="gname">${escapeHTML(it.name)}${qty}</span>
+          <button class="gdel" data-id="${it.id}" title="Remove" aria-label="Remove">✕</button>
+        </li>`;
+    }
+
+    function render() {
+      const staples = all.filter(i => i.list === 'staples');
+      const trip = all.filter(i => i.list === 'adhoc');
+      document.getElementById('staplesList').innerHTML = staples.length
+        ? staples.map(itemHTML).join('')
+        : '<li class="gempty">No staples yet. Add the things you buy every week.</li>';
+      document.getElementById('tripList').innerHTML = trip.length
+        ? trip.map(itemHTML).join('')
+        : '<li class="gempty">Nothing on this trip. Add one-off items here.</li>';
+      updateCounts();
+    }
+
+    function updateCounts() {
+      const staples = all.filter(i => i.list === 'staples');
+      const sel = staples.filter(i => i.checked).length;
+      document.getElementById('staplesCount').textContent =
+        staples.length ? `${sel} of ${staples.length} going to Instacart` : '';
+      const bought = all.filter(i => i.list === 'adhoc' && i.checked).length;
+      const btn = document.getElementById('clearPurchased');
+      btn.hidden = bought === 0;
+      btn.textContent = `Clear purchased (${bought})`;
+    }
+
+    function wire() {
+      const wrap = document.querySelector('.wrap');
+      document.getElementById('staplesForm').addEventListener('submit', e => addItem(e, 'staples'));
+      document.getElementById('tripForm').addEventListener('submit', e => addItem(e, 'adhoc'));
+      document.getElementById('selectAll').addEventListener('click', () => bulkStaples(true));
+      document.getElementById('clearStaples').addEventListener('click', () => bulkStaples(false));
+      document.getElementById('clearPurchased').addEventListener('click', clearPurchased);
+
+      wrap.addEventListener('change', async (e) => {
+        const cb = e.target.closest('input[type="checkbox"][data-id]');
+        if (!cb) return;
+        const it = all.find(i => i.id === cb.dataset.id);
+        if (!it) return;
+        it.checked = cb.checked;
+        cb.closest('.gitem').classList.toggle('on', cb.checked);
+        updateCounts();
+        try { await pb.collection('grocery_items').update(it.id, { checked: cb.checked }); }
+        catch (err) { alert('Could not update: ' + (err?.message || err)); refresh(); }
+      });
+
+      wrap.addEventListener('click', async (e) => {
+        const del = e.target.closest('.gdel');
+        if (!del) return;
+        const id = del.dataset.id;
+        try { await pb.collection('grocery_items').delete(id); all = all.filter(i => i.id !== id); render(); }
+        catch (err) { alert('Could not remove: ' + (err?.message || err)); }
+      });
+    }
+
+    async function addItem(e, list) {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const nameEl = form.querySelector('.gadd-name');
+      const qtyEl = form.querySelector('.gadd-qty');
+      const name = nameEl.value.trim();
+      if (!name) return;
+      const data = { list, name, qty: qtyEl.value.trim(), checked: false, sort: Date.now() % 100000000 };
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      try {
+        const rec = await pb.collection('grocery_items').create(data);
+        all.push(rec);
+        render();
+        nameEl.value = ''; qtyEl.value = ''; nameEl.focus();
+      } catch (err) { alert('Could not add: ' + (err?.message || err)); }
+      finally { btn.disabled = false; }
+    }
+
+    async function bulkStaples(checked) {
+      const items = all.filter(i => i.list === 'staples' && i.checked !== checked);
+      if (!items.length) return;
+      for (const it of items) it.checked = checked;
+      render();
+      try { await Promise.all(items.map(it => pb.collection('grocery_items').update(it.id, { checked }))); }
+      catch (err) { alert('Could not update: ' + (err?.message || err)); refresh(); }
+    }
+
+    async function clearPurchased() {
+      const bought = all.filter(i => i.list === 'adhoc' && i.checked);
+      if (!bought.length) return;
+      if (!confirm(`Clear ${bought.length} purchased item${bought.length > 1 ? 's' : ''}?`)) return;
+      try {
+        await Promise.all(bought.map(it => pb.collection('grocery_items').delete(it.id)));
+        all = all.filter(i => !(i.list === 'adhoc' && i.checked));
+        render();
+      } catch (err) { alert('Could not clear: ' + (err?.message || err)); refresh(); }
+    }
+  </script>
+</body>
+</html>
