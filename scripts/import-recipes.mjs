@@ -13,9 +13,11 @@
  *
  * Auth is your PocketBase ADMIN (superuser) account — the same email/password you
  * use for the admin UI at /_/. Superusers can write to any collection.
- * Re-running UPSERTS: a recipe whose title already exists is UPDATED from its
- * JSON file, otherwise it's created. So to fix a recipe, edit its recipes/*.json
- * and re-run this against both local and prod to keep them identical.
+ *
+ * By default this is CREATE-ONLY: a recipe whose title already exists is SKIPPED,
+ * so recipes you've edited in the app are never overwritten. Re-running only adds
+ * brand-new recipe files. Pass --force to overwrite existing recipes from their
+ * JSON (a deliberate re-seed): `node scripts/import-recipes.mjs prod --force`.
  *
  * Requires Node 18+ (built-in fetch). No dependencies.
  */
@@ -39,7 +41,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
   }
 })();
 
-const target = (process.argv[2] || 'dev').toLowerCase();
+const args = process.argv.slice(2);
+const force = args.includes('--force');
+const target = (args.find(a => !a.startsWith('--')) || 'dev').toLowerCase();
 const PB_URL = process.env.PB_URL
   || (target === 'prod' ? process.env.PB_URL_PROD : process.env.PB_URL_DEV)
   || 'http://127.0.0.1:8090';
@@ -50,7 +54,7 @@ if (!EMAIL || !PASSWORD) {
   console.error('Missing PB_EMAIL / PB_PASSWORD (set them in .env — your PocketBase admin account).');
   process.exit(1);
 }
-console.log(`Importing to ${target.toUpperCase()}: ${PB_URL}`);
+console.log(`Importing to ${target.toUpperCase()}: ${PB_URL}${force ? '  (FORCE: overwriting existing)' : ''}`);
 
 const recipesDir = join(root, 'recipes');
 
@@ -72,24 +76,25 @@ async function main() {
   const files = (await readdir(recipesDir)).filter(f => f.endsWith('.json'));
   console.log(`Found ${files.length} recipe files in recipes/`);
 
-  let created = 0, updated = 0, failed = 0;
+  let created = 0, updated = 0, skipped = 0, failed = 0;
   for (const file of files) {
     let recipe;
     try { recipe = JSON.parse(await readFile(join(recipesDir, file), 'utf8')); }
     catch (e) { console.warn(`  ✗ ${file}: bad JSON (${e.message})`); failed++; continue; }
 
-    // Look up an existing recipe by title to decide update vs. create.
+    // Look up an existing recipe by title.
     const q = new URLSearchParams({ filter: `title="${recipe.title.replace(/"/g, '\\"')}"`, perPage: '1' });
     const existing = await fetch(`${PB_URL}/api/collections/recipes/records?${q}`, { headers: authHeaders });
     const existingData = await existing.json();
 
     let res, verb;
     if (existingData.totalItems > 0) {
+      if (!force) { console.log(`  • skip (exists — in-app edits preserved): ${recipe.title}`); skipped++; continue; }
       const id = existingData.items[0].id;
       res = await fetch(`${PB_URL}/api/collections/recipes/records/${id}`, {
         method: 'PATCH', headers: authHeaders, body: JSON.stringify(recipe),
       });
-      verb = 'updated';
+      verb = 'overwrote';
     } else {
       res = await fetch(`${PB_URL}/api/collections/recipes/records`, {
         method: 'POST', headers: authHeaders, body: JSON.stringify(recipe),
@@ -100,7 +105,7 @@ async function main() {
     else { console.warn(`  ✗ ${recipe.title}: ${res.status} ${await res.text()}`); failed++; }
   }
 
-  console.log(`\nDone. Created ${created}, updated ${updated}, failed ${failed}.`);
+  console.log(`\nDone. Created ${created}, ${force ? 'overwrote' : 'skipped-existing'} ${force ? updated : skipped}, failed ${failed}.`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

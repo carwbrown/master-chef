@@ -28,6 +28,12 @@ Turn the app from a single-family hub into a product multiple families can use.
 - Requires: per-family subscription state, a billing integration (e.g. Stripe), and gating access when unpaid.
 - Depends on multi-tenant being in place first.
 
+## Instacart "Shop the recipe" (deferred)
+Add a button on the cook view that pushes the ingredient list to an Instacart cart (like Half Baked Harvest).
+- Needs **Instacart Developer Platform** access + an API key, plus a small serverless function to turn the
+  ingredients into an Instacart shopping list / recipe link.
+- Feasible if Instacart approves developer access; the integration itself is modest.
+
 ## PWA (installable / offline) — deferred, but assessed
 **How hard: the "installable" version is easy; full offline is hard.**
 - **Easy (roughly half a day):** add a `manifest.json` (name, icons, `display: standalone`, theme color) + app icons, and a basic service worker that caches the app shell (HTML/CSS/JS + theme). Result: installs to the iPad/phone home screen, launches full-screen, loads instantly, works while online. HTTPS is already in place (Netlify + prod backend), which PWAs require.

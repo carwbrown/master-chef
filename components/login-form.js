@@ -10,6 +10,13 @@ class LoginForm extends HTMLElement {
   attach() {
     this.shadowRoot.querySelector('form')
       ?.addEventListener('submit', (e) => this.handleSubmit(e));
+    const pw = this.shadowRoot.querySelector('#password');
+    const tog = this.shadowRoot.querySelector('.pw-toggle');
+    tog?.addEventListener('click', () => {
+      const showing = pw.type === 'password';
+      pw.type = showing ? 'text' : 'password';
+      tog.textContent = showing ? 'Hide' : 'Show';
+    });
   }
 
   async handleSubmit(e) {
@@ -46,6 +53,11 @@ class LoginForm extends HTMLElement {
                 border-radius: var(--radius-sm, 8px); font: inherit; box-sizing: border-box; }
         input:focus { outline: none; border-color: var(--blue, #4a90b8);
                       box-shadow: 0 0 0 3px var(--blue-soft, #dbeaf2); }
+        .pw-wrap { position: relative; }
+        .pw-wrap input { padding-right: 3.6rem; }
+        .pw-toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+                     border: none; background: none; cursor: pointer; font: inherit; font-size: .8rem;
+                     font-weight: 600; color: var(--blue-dark, #37718f); padding: 4px; }
         button { width: 100%; padding: .85rem; margin-top: .4rem; border: none; cursor: pointer;
                  border-radius: var(--radius, 14px); font: inherit; font-weight: 700; color: #fff;
                  background: var(--green, #4f9d69); transition: background .15s ease; }
@@ -63,7 +75,10 @@ class LoginForm extends HTMLElement {
           </div>
           <div class="group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required autocomplete="current-password">
+            <div class="pw-wrap">
+              <input type="password" id="password" name="password" required autocomplete="current-password">
+              <button type="button" class="pw-toggle" aria-label="Show password">Show</button>
+            </div>
           </div>
           <button type="submit">Sign In</button>
         </form>

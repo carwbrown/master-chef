@@ -27,8 +27,10 @@
     .csec.collapsed .sec-body { display: none; }
 
     .ing-list, .step-list { list-style: none; margin: 0; padding: 0; }
+    .ing-list { columns: 2; column-gap: var(--sp-6); }
+    @media (max-width: 560px) { .ing-list { columns: 1; } }
     .ing { display: flex; align-items: flex-start; gap: var(--sp-3); padding: 11px 4px;
-           border-bottom: 1px solid var(--surface-2); cursor: pointer; font-size: 1.05rem; }
+           border-bottom: 1px solid var(--surface-2); cursor: pointer; font-size: 1.05rem; break-inside: avoid; }
     .ing .box { flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--border);
                 margin-top: 1px; position: relative; transition: all .15s; }
     .ing.checked .box { background: var(--green); border-color: var(--green); }
@@ -92,6 +94,11 @@
       return text;
     }
 
+    // Bold the leading measurement of an ingredient line ("1 cup", "3/4 cup"…).
+    const boldAmount = (escaped) => escaped.replace(
+      /^([\d½¼¾⅓⅔⅛⅜⅝⅞][\d\s/.\-½¼¾⅓⅔⅛⅜⅝⅞]*\s*(?:cups?|tablespoons?|tbsp\.?|teaspoons?|tsp\.?|ounces?|oz\.?|pounds?|lbs?\.?|grams?|g|ml|cloves?|cans?|sticks?|slices?)?\.?)\s/i,
+      '<strong>$1</strong> ');
+
     async function init() {
       const el = document.getElementById('cook');
       const id = new URLSearchParams(location.search).get('id');
@@ -117,9 +124,10 @@
       else sessionStorage.removeItem(key);
       const save = () => sessionStorage.setItem(key, JSON.stringify(state));
 
+      const backHref = document.referrer.includes('hub.html') ? 'hub.html' : 'recipes.html';
       el.innerHTML = `
         <div class="cook-top">
-          <a class="iconbtn" href="recipes.html" aria-label="Back to recipes">‹</a>
+          <a class="iconbtn" href="${backHref}" aria-label="Back">‹</a>
           <button class="btn cookmode" id="cookMode" style="margin-left:auto">☀️ Cook Mode</button>
           <a class="btn" href="recipe-edit.html?id=${r.id}">Edit</a>
         </div>
@@ -134,7 +142,7 @@
             <div class="sec-body"><ul class="ing-list">
               ${ings.length ? ings.map((i, idx) =>
                 `<li class="ing${state.ings.includes(idx) ? ' checked' : ''}" data-i="${idx}">
-                   <span class="box"></span><span class="txt">${escapeHTML(i.raw || i.name || '')}</span></li>`).join('')
+                   <span class="box"></span><span class="txt">${boldAmount(escapeHTML(i.raw || i.name || ''))}</span></li>`).join('')
                 : '<li class="empty">No ingredients listed</li>'}
             </ul></div>
           </section>

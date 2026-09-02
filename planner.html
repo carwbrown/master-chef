@@ -11,6 +11,7 @@
              position: sticky; top: 0; z-index: 5; }
     .phead .corner { position: absolute; left: var(--sp-5); display: flex; gap: var(--sp-3); font-size: 1.4rem; }
     .phead .corner a { text-decoration: none; }
+    .phead .corner .cn-btn { background: none; border: none; cursor: pointer; font-size: inherit; padding: 0; line-height: 1; }
     @media (max-width: 620px) {
       .phead { padding: var(--sp-3) var(--sp-4); }
       .phead .corner { position: static; order: -1; width: 100%; left: auto; }
@@ -38,7 +39,6 @@
     @media (max-width: 900px) { .day-head { justify-content: flex-start; } }
 
     .slots { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
-    @media (max-width: 900px) { .slots { flex-direction: row; } .slots > * { flex: 1; } }
     .slot { border-radius: 10px; border: 1px solid var(--border); padding: 8px 10px; cursor: pointer; min-height: 58px; }
     .slot.lunch { background: var(--blue-soft); }
     .slot.dinner { background: var(--green-soft); }
@@ -57,6 +57,14 @@
     .modal label > select, .modal label > textarea { margin-top: 4px; }
     .modal-actions { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-3); }
     .btn.danger { color: var(--danger); border-color: var(--danger-soft); }
+    .combo { position: relative; }
+    .combo-list { position: absolute; left: 0; right: 0; top: 100%; z-index: 10; margin-top: 4px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg); max-height: 240px; overflow-y: auto; }
+    .combo-list[hidden] { display: none; }
+    .combo-opt { padding: 8px 12px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; font-weight: 500; }
+    .combo-opt:hover { background: var(--surface-2); }
+    .combo-src { color: var(--text-faint); font-size: .8rem; font-weight: 400; }
   </style>
 </head>
 <body>
@@ -64,6 +72,7 @@
     <div class="corner">
       <a href="hub.html" title="Hub">🏠</a>
       <a href="recipes.html" title="Recipes">📖</a>
+      <button class="cn-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">🚪</button>
     </div>
     <div class="pnav">
       <button class="navarrow" id="prev" aria-label="Previous week">‹</button>
@@ -83,7 +92,11 @@
       <input type="hidden" name="date">
       <input type="hidden" name="slot">
       <label>Recipe
-        <select name="recipe" id="recipeSelect"><option value="">— none —</option></select>
+        <div class="combo" id="recipeCombo">
+          <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
+          <input type="hidden" name="recipe">
+          <div class="combo-list" hidden></div>
+        </div>
       </label>
       <label>Sides / notes <textarea name="notes" rows="2" placeholder="e.g. rice, salad, garlic bread"></textarea></label>
       <div class="modal-actions">
@@ -96,9 +109,10 @@
   </dialog>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, logout } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { ymd } from './scripts/recurrence.js';
+    import { initRecipeCombo } from './scripts/recipe-combo.js';
 
     if (!requireAuth()) { /* redirected */ }
 
@@ -110,15 +124,15 @@
 
     function weekStart(d) { const x = new Date(d); x.setDate(x.getDate() - x.getDay()); x.setHours(0, 0, 0, 0); return x; }
     let start = weekStart(new Date());
-    let recipes = [], mealsByKey = {}, mealsById = {};
+    let recipes = [], mealsByKey = {}, mealsById = {}, recipeCombo;
 
     (async function init() {
-      try { recipes = await pb.collection('recipes').getFullList({ sort: 'title' }); } catch (e) { recipes = []; }
-      document.getElementById('recipeSelect').innerHTML =
-        `<option value="">— none —</option>` + recipes.map(r => `<option value="${r.id}">${escapeHTML(r.title)}</option>`).join('');
+      try { recipes = await pb.collection('recipes').getFullList({ sort: 'title', fields: 'id,title,author,source_url,tags' }); } catch (e) { recipes = []; }
+      recipeCombo = initRecipeCombo(document.getElementById('recipeCombo'), recipes);
       document.getElementById('prev').onclick = () => { start.setDate(start.getDate() - 7); render(); };
       document.getElementById('next').onclick = () => { start.setDate(start.getDate() + 7); render(); };
       document.getElementById('thisWeek').onclick = () => { start = weekStart(new Date()); render(); };
+      document.getElementById('logoutBtn').onclick = logout;
       document.getElementById('mealCancel').onclick = () => dlg.close();
       document.getElementById('mealDelete').onclick = onDelete;
       document.getElementById('mealForm').addEventListener('submit', onSave);
@@ -177,7 +191,8 @@
       document.getElementById('mealDlgTitle').textContent = `${slot[0].toUpperCase() + slot.slice(1)} · ${date}`;
       form.date.value = date; form.slot.value = slot; form.id.value = id || '';
       const m = id ? mealsById[id] : null;
-      if (m) { form.recipe.value = m.recipe || ''; form.notes.value = m.notes || ''; }
+      recipeCombo.set(m ? m.recipe : '');
+      if (m) form.notes.value = m.notes || '';
       document.getElementById('mealDelete').hidden = !id;
       dlg.showModal();
     }

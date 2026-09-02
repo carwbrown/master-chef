@@ -22,6 +22,13 @@
     .jsonbox summary { cursor: pointer; font-weight: 600; color: var(--text-muted); font-size: .9rem; }
     .actions { display: flex; align-items: center; gap: var(--sp-2); }
     .btn.danger { color: var(--danger); border-color: var(--danger-soft); }
+    .ing-row { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--sp-2); margin-bottom: 6px; }
+    .ing-meta { display: flex; gap: 6px; margin-top: 6px; }
+    .ing-meta .ing-amt { width: 62px; flex: none; }
+    .ing-meta .ing-unit { width: 92px; flex: none; }
+    .ing-meta .ing-name { flex: 1; min-width: 0; }
+    .ing-del { flex: none; border: none; background: none; color: var(--text-faint); cursor: pointer; font-size: 1rem; padding: 0 8px; }
+    .ing-del:hover { color: var(--danger); }
   </style>
 </head>
 <body>
@@ -48,8 +55,11 @@
       <div><label>Source URL</label><input type="url" name="source_url" placeholder="https://…"></div>
       <div><label>Author / source <span class="hint">(person, site, or cookbook)</span></label><input type="text" name="author" placeholder="e.g. Half Baked Harvest"></div>
       <div><label>Tags <span class="hint">(comma-separated)</span></label><input type="text" name="tags" placeholder="italian, dinner, quick"></div>
-      <div><label>Ingredients <span class="hint">(one per line)</span></label>
-        <textarea name="ingredients" rows="8" placeholder="1 lb spaghetti&#10;4 large eggs&#10;…"></textarea></div>
+      <div>
+        <label>Ingredients <span class="hint">(amount &amp; name drive the amounts shown in the steps)</span></label>
+        <div id="ingRows"></div>
+        <button type="button" class="btn" id="addIng" style="margin-top:6px">＋ Add ingredient</button>
+      </div>
       <div><label>Steps <span class="hint">(one per line)</span></label>
         <textarea name="instructions" rows="8" placeholder="Bring a pot of salted water to a boil.&#10;…"></textarea></div>
 
@@ -64,12 +74,36 @@
 
   <script type="module">
     import { pb, requireAuth } from './scripts/auth.js';
+    import { parseIngredient } from './scripts/ingredient-parser.js';
     if (!requireAuth()) { /* redirected */ }
 
     const form = document.getElementById('form');
+    const ingRows = document.getElementById('ingRows');
     const id = new URLSearchParams(location.search).get('id');
 
-    if (id) init();
+    const mk = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+    function addIngRow(ing = {}) {
+      const row = mk('div', 'ing-row');
+      const raw = mk('input', 'ing-raw'); raw.type = 'text'; raw.placeholder = '1 cup low-sodium soy sauce'; raw.value = ing.raw || '';
+      const meta = mk('div', 'ing-meta');
+      const amt = mk('input', 'ing-amt'); amt.type = 'text'; amt.inputMode = 'decimal'; amt.placeholder = 'amt'; amt.value = ing.amount != null ? ing.amount : '';
+      const unit = mk('input', 'ing-unit'); unit.type = 'text'; unit.placeholder = 'unit'; unit.value = ing.unit || '';
+      const name = mk('input', 'ing-name'); name.type = 'text'; name.placeholder = 'name'; name.value = ing.name || '';
+      const del = mk('button', 'ing-del'); del.type = 'button'; del.title = 'Remove'; del.textContent = '✕';
+      del.onclick = () => row.remove();
+      raw.addEventListener('blur', () => {           // auto-fill structured fields from the raw line
+        if (raw.value && !amt.value && !unit.value && !name.value) {
+          const p = parseIngredient(raw.value);
+          amt.value = p.amount != null ? p.amount : ''; unit.value = p.unit || ''; name.value = p.name || '';
+        }
+      });
+      meta.append(amt, unit, name, del);
+      row.append(raw, meta);
+      ingRows.appendChild(row);
+    }
+    document.getElementById('addIng').addEventListener('click', () => addIngRow());
+
+    if (id) init(); else addIngRow();
 
     async function init() {
       let r;
@@ -84,7 +118,8 @@
       form.source_url.value = r.source_url || '';
       form.author.value = r.author || '';
       form.tags.value = (Array.isArray(r.tags) ? r.tags : []).join(', ');
-      form.ingredients.value = (Array.isArray(r.ingredients) ? r.ingredients : []).map(i => i.raw || i.name || '').join('\n');
+      const ings = Array.isArray(r.ingredients) ? r.ingredients : [];
+      ings.length ? ings.forEach(addIngRow) : addIngRow();
       form.instructions.value = (Array.isArray(r.instructions) ? r.instructions : []).map(s => s.text || '').join('\n');
     }
 
@@ -100,7 +135,10 @@
       form.source_url.value = data.source_url || '';
       form.author.value = data.author || '';
       form.tags.value = (Array.isArray(data.tags) ? data.tags : []).join(', ');
-      form.ingredients.value = (Array.isArray(data.ingredients) ? data.ingredients : []).map(i => i.raw || i.name || i).join('\n');
+      ingRows.innerHTML = '';
+      (Array.isArray(data.ingredients) ? data.ingredients : []).forEach(i =>
+        typeof i === 'string' ? addIngRow({ raw: i, ...parseIngredient(i) }) : addIngRow(i));
+      if (!ingRows.children.length) addIngRow();
       form.instructions.value = (Array.isArray(data.instructions) ? data.instructions : []).map(s => s.text || s).join('\n');
     });
 
@@ -115,7 +153,13 @@
         source_url: form.source_url.value.trim(),
         author: form.author.value.trim(),
         tags: form.tags.value.split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
-        ingredients: lines(form.ingredients.value).map(raw => ({ raw, amount: null, unit: null, name: raw })),
+        ingredients: [...ingRows.querySelectorAll('.ing-row')].map(row => {
+          const raw = row.querySelector('.ing-raw').value.trim();
+          const amtV = row.querySelector('.ing-amt').value.trim();
+          const unit = row.querySelector('.ing-unit').value.trim();
+          const nm = row.querySelector('.ing-name').value.trim();
+          return { raw, amount: amtV !== '' ? Number(amtV) : null, unit: unit || null, name: nm || raw.toLowerCase() };
+        }).filter(i => i.raw),
         instructions: lines(form.instructions.value).map((text, i) => ({ step: i + 1, text })),
       };
       const btn = form.querySelector('button[type="submit"]');

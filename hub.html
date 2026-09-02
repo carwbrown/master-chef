@@ -15,6 +15,7 @@
     .corner-nav { position: absolute; left: var(--sp-5); top: 50%; transform: translateY(-50%);
                   display: flex; gap: var(--sp-3); font-size: 1.5rem; line-height: 1; }
     .corner-nav a { text-decoration: none; }
+    .corner-nav .cn-btn { background: none; border: none; cursor: pointer; font-size: inherit; padding: 0; line-height: 1; }
     .hdr-left { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
     .today-btn { border-radius: 999px; padding: .5rem 1.25rem; font-weight: 600; }
     .datenav { display: flex; align-items: center; gap: 2px; }
@@ -24,12 +25,15 @@
     .navarrow:hover { background: var(--surface-2); color: var(--text); }
     .today { font-family: var(--font-heading); font-weight: 600; font-size: 1.5rem; }
     .weather { color: var(--text-muted); font-weight: 600; }
-    /* Portrait: corner nav on its own top row so it never overlaps the date nav */
+    /* Portrait: keep the whole top nav on one line (compact, gcal-style) */
     @media (max-width: 620px) {
-      .hub-header { flex-wrap: wrap; padding: var(--sp-3) var(--sp-4); }
-      .corner-nav { position: static; order: -1; width: 100%; top: auto; left: auto; transform: none; }
-      .hdr-left { justify-content: center; }
-      .today { font-size: 1.2rem; }
+      .hub-header { flex-wrap: nowrap; gap: var(--sp-2); padding: var(--sp-2) var(--sp-3); }
+      .corner-nav { position: static; top: auto; left: auto; transform: none; flex: none; gap: var(--sp-2); font-size: 1.2rem; }
+      .hdr-left { flex: 1; min-width: 0; flex-wrap: nowrap; justify-content: center; gap: var(--sp-1); }
+      .today { font-size: 1rem; white-space: nowrap; }
+      .today-btn { padding: .35rem .7rem; }
+      .navarrow { width: 32px; height: 32px; font-size: 1.25rem; }
+      .weather { font-size: .85rem; white-space: nowrap; }
     }
 
     .hub-grid {
@@ -60,24 +64,31 @@
     .allday-chip { border-radius: 10px; padding: 7px 11px; color: #1a1a1a; box-shadow: var(--shadow);
                    border-left: 4px solid rgba(0,0,0,.18); font-weight: 700; font-size: .88rem; cursor: pointer; }
 
-    /* Agenda timeline (compressed) */
+    /* Agenda — full-width event cards */
     .timeline { border: 1px solid var(--border); border-radius: var(--radius);
-                background: var(--surface); padding: var(--sp-4) var(--sp-3); }
-    .ag-row { display: flex; gap: var(--sp-3); align-items: stretch; margin-bottom: 4px; }
-    .ag-time { width: 56px; flex: none; text-align: right; color: var(--text-faint);
-               font-size: .72rem; font-weight: 600; padding-top: 7px; }
-    .ag-block { flex: 1; min-width: 0; border-radius: 10px; padding: 7px 11px; color: #1a1a1a;
-                box-shadow: var(--shadow); border-left: 4px solid rgba(0,0,0,.18); cursor: pointer;
-                display: flex; flex-direction: column; justify-content: center; }
-    .ag-title { font-weight: 700; font-size: .88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ag-sub { font-size: .72rem; opacity: .8; }
-    .ag-spacer { flex: none; }
-    .ag-gap { position: relative; text-align: center; margin: 6px 0; }
+                background: var(--surface); padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+    .ag-card { border-radius: 10px; padding: 9px 12px; color: #1a1a1a; box-shadow: var(--shadow);
+               border-left: 4px solid rgba(0,0,0,.18); cursor: pointer; }
+    .ag-title { font-weight: 700; font-size: .92rem; }
+    .ag-who { font-weight: 600; color: rgba(0,0,0,.5); }
+    .ag-time2 { font-size: .74rem; opacity: .8; }
+    .ag-details { font-size: .74rem; opacity: .9; margin-top: 3px; }
+    .ag-gap { position: relative; text-align: center; margin: 2px 0; }
     .ag-gap span { position: relative; z-index: 1; background: var(--surface); color: var(--text-faint);
                    font-size: .7rem; padding: 0 10px; }
-    .ag-gap::before { content: ""; position: absolute; left: 56px; right: 6px; top: 50%;
-                      border-top: 1px dashed var(--border); }
+    .ag-gap::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed var(--border); }
     .ag-empty { text-align: center; color: var(--text-faint); padding: var(--sp-5) 0; font-size: .9rem; }
+    .pd-row { display: flex; gap: var(--sp-3); }
+    .pd-row label { flex: 1; }
+    /* Searchable recipe combobox */
+    .combo { position: relative; }
+    .combo-list { position: absolute; left: 0; right: 0; top: 100%; z-index: 10; margin-top: 4px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg); max-height: 240px; overflow-y: auto; }
+    .combo-list[hidden] { display: none; }
+    .combo-opt { padding: 8px 12px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; font-weight: 500; }
+    .combo-opt:hover { background: var(--surface-2); }
+    .combo-src { color: var(--text-faint); font-size: .8rem; font-weight: 400; }
 
     /* Task lists (live) — gamified */
     .tasklists { display: flex; flex-direction: column; gap: var(--sp-4); }
@@ -210,6 +221,7 @@
     <div class="corner-nav">
       <a href="recipes.html" title="Recipes">📖</a>
       <a href="planner.html" title="Meal planner">📅</a>
+      <button class="cn-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">🚪</button>
     </div>
     <div class="hdr-left">
       <button class="btn today-btn" id="todayBtn">Today</button>
@@ -244,6 +256,10 @@
       <label>Who
         <select name="member" id="memberSelect"><option value="">Everyone</option></select>
       </label>
+      <div class="pd-row">
+        <label>Pickup <select name="pickup" id="pickupSelect"><option value="">—</option></select></label>
+        <label>Drop-off <select name="dropoff" id="dropoffSelect"><option value="">—</option></select></label>
+      </div>
       <label>Date <input type="date" name="date" id="dateField" required></label>
       <label class="row"><input type="checkbox" name="all_day" id="allDayField"> All day</label>
       <div class="times" id="timeFields">
@@ -281,7 +297,11 @@
       <input type="hidden" name="id">
       <input type="hidden" name="slot">
       <label>Recipe
-        <select name="recipe" id="recipeSelect"><option value="">— none —</option></select>
+        <div class="combo" id="recipeCombo">
+          <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
+          <input type="hidden" name="recipe">
+          <div class="combo-list" hidden></div>
+        </div>
       </label>
       <label>Sides / notes <textarea name="notes" rows="2" placeholder="e.g. rice, salad, garlic bread"></textarea></label>
       <div class="modal-actions">
@@ -294,9 +314,10 @@
   </dialog>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, logout } from './scripts/auth.js';
     import { occursOn, WD, ymd } from './scripts/recurrence.js';
     import { escapeHTML } from './scripts/utils.js';
+    import { initRecipeCombo } from './scripts/recipe-combo.js';
 
     if (!requireAuth()) { /* redirected to login */ }
 
@@ -325,7 +346,7 @@
     // ---------- init ----------
     (async function init() {
       try { members = await pb.collection('members').getFullList({ sort: 'sort' }); } catch (e) { members = []; }
-      try { recipes = await pb.collection('recipes').getFullList({ sort: 'title' }); } catch (e) { recipes = []; }
+      try { recipes = await pb.collection('recipes').getFullList({ sort: 'title', fields: 'id,title,author,source_url,tags' }); } catch (e) { recipes = []; }
       membersById = Object.fromEntries(members.map(m => [m.id, m]));
       buildForm();
       buildMealForm();
@@ -340,11 +361,12 @@
 
     // ---------- day rendering (EVENTS = live PocketBase) ----------
     async function renderDay() {
-      document.getElementById('today').textContent =
-        currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      const narrow = window.matchMedia('(max-width: 620px)').matches;
+      document.getElementById('today').textContent = currentDate.toLocaleDateString('en-US',
+        narrow ? { month: 'short', day: 'numeric' } : { month: 'long', day: 'numeric', year: 'numeric' });
 
       let all = [];
-      try { all = await pb.collection('events').getFullList({ expand: 'member' }); }
+      try { all = await pb.collection('events').getFullList({ expand: 'member,pickup,dropoff' }); }
       catch (e) { all = []; }
 
       const todays = all.filter(ev => occursOn(ev, currentDate));
@@ -352,37 +374,41 @@
       const timed  = todays.filter(ev => !ev.all_day && ev.start_time)
                            .sort((a, b) => toMin(a.start_time) - toMin(b.start_time));
 
+      const expName = (ev, key) => (ev.expand && ev.expand[key]) ? ev.expand[key].name : '';
+      const detailsHTML = (ev) => {
+        const d = [];
+        if (ev.notes) d.push(escapeHTML(ev.notes));
+        const p = expName(ev, 'pickup'), o = expName(ev, 'dropoff');
+        if (p) d.push(`🚗 Pickup: ${escapeHTML(p)}`);
+        if (o) d.push(`🏁 Drop-off: ${escapeHTML(o)}`);
+        return d.length ? `<div class="ag-details">${d.join(' · ')}</div>` : '';
+      };
+      const whoHTML = (ev) => { const w = expName(ev, 'member'); return w ? ` <span class="ag-who">· ${escapeHTML(w)}</span>` : ''; };
+
       // All-day chips
       document.getElementById('allday').innerHTML = allDay.map(ev =>
-        `<div class="allday-chip" data-id="${ev.id}" style="background:${memberColor(ev)}">${ev.title}</div>`).join('');
+        `<div class="allday-chip" data-id="${ev.id}" style="background:${memberColor(ev)}">
+           ${escapeHTML(ev.title)}${whoHTML(ev)}${detailsHTML(ev)}</div>`).join('');
 
-      // Compressed agenda
+      // Agenda — full-width event cards; big gaps collapse to a "free" divider
       const tl = document.getElementById('timeline');
       if (!timed.length) {
         tl.innerHTML = allDay.length ? '' : `<div class="ag-empty">Nothing scheduled today</div>`;
       } else {
-        const PX = 0.9, MIN_H = 40, BIG = 60;
+        const BIG = 60;
         let html = '', prevEnd = null;
         for (const ev of timed) {
-          const s = toMin(ev.start_time), e = ev.end_time ? toMin(ev.end_time) : s + 30;
-          if (prevEnd !== null) {
-            const gap = s - prevEnd;
-            if (gap > BIG) {
-              const h = Math.floor(gap / 60), m = gap % 60;
-              html += `<div class="ag-gap"><span>${(h ? h + 'h ' : '') + (m ? m + 'm ' : '')}free</span></div>`;
-            } else if (gap > 0) {
-              html += `<div class="ag-spacer" style="height:${Math.round(gap * PX)}px"></div>`;
-            }
+          const s = toMin(ev.start_time);
+          if (prevEnd !== null && s - prevEnd > BIG) {
+            const gap = s - prevEnd, h = Math.floor(gap / 60), m = gap % 60;
+            html += `<div class="ag-gap"><span>${(h ? h + 'h ' : '') + (m ? m + 'm ' : '')}free</span></div>`;
           }
-          const bh = Math.max(MIN_H, Math.round((e - s) * PX));
-          html += `<div class="ag-row">
-              <div class="ag-time">${fmt(ev.start_time)}</div>
-              <div class="ag-block" data-id="${ev.id}" style="min-height:${bh}px;background:${memberColor(ev)}">
-                <div class="ag-title">${ev.title}</div>
-                <div class="ag-sub">${fmt(ev.start_time)}${ev.end_time ? '–' + fmt(ev.end_time) : ''}</div>
-              </div>
+          html += `<div class="ag-card" data-id="${ev.id}" style="background:${memberColor(ev)}">
+              <div class="ag-title">${escapeHTML(ev.title)}${whoHTML(ev)}</div>
+              <div class="ag-time2">${fmt(ev.start_time)}${ev.end_time ? '–' + fmt(ev.end_time) : ''}</div>
+              ${detailsHTML(ev)}
             </div>`;
-          prevEnd = e;
+          prevEnd = ev.end_time ? toMin(ev.end_time) : s + 30;
         }
         tl.innerHTML = html;
       }
@@ -401,6 +427,19 @@
       document.getElementById('next').onclick   = () => go(1);
       document.getElementById('todayBtn').onclick = () => { currentDate = new Date(); refresh(); };
       document.getElementById('addEvent').onclick = () => openNew();
+      document.getElementById('logoutBtn').onclick = logout;
+
+      // Swipe left/right to change the day (touch)
+      const grid = document.querySelector('.hub-grid');
+      let tx = null, ty = null;
+      grid.addEventListener('touchstart', (e) => { tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive: true });
+      grid.addEventListener('touchend', (e) => {
+        if (tx == null) return;
+        const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; tx = null;
+        if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.5) return; // ignore taps & vertical scrolls
+        currentDate.setDate(currentDate.getDate() + (dx < 0 ? 1 : -1));
+        refresh();
+      }, { passive: true });
     }
 
     // ---------- event modal ----------
@@ -408,8 +447,10 @@
     const form = document.getElementById('eventForm');
 
     function buildForm() {
-      document.getElementById('memberSelect').innerHTML =
-        `<option value="">Everyone</option>` + members.map(m => `<option value="${m.id}">${m.name}</option>`).join('');
+      const memberOpts = members.map(m => `<option value="${m.id}">${escapeHTML(m.name)}</option>`).join('');
+      document.getElementById('memberSelect').innerHTML = `<option value="">Everyone</option>` + memberOpts;
+      document.getElementById('pickupSelect').innerHTML = `<option value="">—</option>` + memberOpts;
+      document.getElementById('dropoffSelect').innerHTML = `<option value="">—</option>` + memberOpts;
       document.getElementById('weeklyDays').innerHTML = WD.map(d =>
         `<label><input type="checkbox" name="wd" value="${d}"><span>${WD_LABEL[d]}</span></label>`).join('');
 
@@ -458,6 +499,8 @@
       document.getElementById('deleteBtn').hidden = false;
       form.title.value = ev.title || '';
       form.member.value = ev.member || '';
+      form.pickup.value = ev.pickup || '';
+      form.dropoff.value = ev.dropoff || '';
       form.notes.value = ev.notes || '';
       document.getElementById('dateField').value = ev.date ? ev.date.slice(0, 10) : dateInput(currentDate);
       document.getElementById('allDayField').checked = !!ev.all_day;
@@ -495,6 +538,8 @@
       const data = {
         title: form.title.value.trim(),
         member: form.member.value || null,
+        pickup: form.pickup.value || null,
+        dropoff: form.dropoff.value || null,
         notes: form.notes.value.trim(),
         date: toPBDate(document.getElementById('dateField').value),
         all_day: allDay,
@@ -561,10 +606,10 @@
     // meal modal
     const mealDlg = document.getElementById('mealDialog');
     const mealForm = document.getElementById('mealForm');
+    let recipeCombo;
 
     function buildMealForm() {
-      document.getElementById('recipeSelect').innerHTML =
-        `<option value="">— none —</option>` + recipes.map(r => `<option value="${r.id}">${escapeHTML(r.title)}</option>`).join('');
+      recipeCombo = initRecipeCombo(document.getElementById('recipeCombo'), recipes);
       document.getElementById('mealCancel').onclick = () => mealDlg.close();
       document.getElementById('mealDelete').onclick = onMealDelete;
       mealForm.addEventListener('submit', onMealSave);
@@ -576,7 +621,8 @@
       mealForm.slot.value = slot;
       mealForm.id.value = id || '';
       const m = id ? mealsById[id] : null;
-      if (m) { mealForm.recipe.value = m.recipe || ''; mealForm.notes.value = m.notes || ''; }
+      recipeCombo.set(m ? m.recipe : '');
+      if (m) mealForm.notes.value = m.notes || '';
       document.getElementById('mealDelete').hidden = !id;
       mealDlg.showModal();
     }
