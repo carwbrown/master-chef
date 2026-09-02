@@ -98,5 +98,21 @@ a { color: var(--blue-dark); }
 .progress { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
 .progress > span { display: block; height: 100%; background: var(--green); border-radius: 999px; transition: width .3s ease; }
 
+/* Shared hamburger menu (used in every page header) */
+.navmenu { position: relative; }
+.navmenu-btn { list-style: none; width: 42px; height: 42px; border-radius: 999px; display: grid;
+  place-items: center; cursor: pointer; color: var(--text-muted); }
+.navmenu-btn::-webkit-details-marker { display: none; }
+.navmenu-btn:hover { background: var(--surface-2); color: var(--text); }
+.navmenu-list { position: absolute; left: 0; top: 100%; margin-top: 6px; z-index: 30; min-width: 200px;
+  list-style: none; padding: 6px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.navmenu-list li { list-style: none; }
+.navmenu-list a, .navmenu-list button { display: block; width: 100%; text-align: left; padding: 10px 12px;
+  border-radius: var(--radius-sm); color: var(--text); text-decoration: none; background: none; border: none;
+  font: inherit; cursor: pointer; }
+.navmenu-list a:hover, .navmenu-list button:hover { background: var(--surface-2); }
+.navmenu-list a[aria-current="page"] { background: var(--green-soft); color: var(--green-dark); font-weight: 700; }
+
 .muted { color: var(--text-muted); }
 .center { text-align: center; }

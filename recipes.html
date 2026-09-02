@@ -54,7 +54,7 @@
 </head>
 <body>
   <header class="rhead">
-    <div class="rnav"><a href="hub.html" title="Hub">🏠</a><a href="planner.html" title="Meal planner">📅</a><button class="cn-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">🚪</button></div>
+    <div class="rnav" id="navMount"></div>
     <h1>Recipes</h1>
     <input class="input search" id="search" type="search" placeholder="Search recipes…">
     <button class="btn" id="tagToggle" aria-expanded="false">🏷 Tags</button>
@@ -68,8 +68,9 @@
   </div>
 
   <script type="module">
-    import { pb, requireAuth, logout } from './scripts/auth.js';
+    import { pb, requireAuth } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
 
     if (requireAuth()) init();
     let all = [];
@@ -86,7 +87,7 @@
       renderTags();
       render();
       document.getElementById('search').addEventListener('input', render);
-      document.getElementById('logoutBtn').onclick = logout;
+      mountMenu(document.getElementById('navMount'), 'recipes');
       const toggle = document.getElementById('tagToggle');
       toggle.addEventListener('click', () => {
         const bar = document.getElementById('tagbar');

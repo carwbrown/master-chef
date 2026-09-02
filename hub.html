@@ -218,11 +218,7 @@
 </head>
 <body>
   <header class="hub-header">
-    <div class="corner-nav">
-      <a href="recipes.html" title="Recipes">📖</a>
-      <a href="planner.html" title="Meal planner">📅</a>
-      <button class="cn-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">🚪</button>
-    </div>
+    <div class="corner-nav" id="navMount"></div>
     <div class="hdr-left">
       <button class="btn today-btn" id="todayBtn">Today</button>
       <div class="datenav">
@@ -314,10 +310,11 @@
   </dialog>
 
   <script type="module">
-    import { pb, requireAuth, logout } from './scripts/auth.js';
+    import { pb, requireAuth } from './scripts/auth.js';
     import { occursOn, WD, ymd } from './scripts/recurrence.js';
     import { escapeHTML } from './scripts/utils.js';
     import { initRecipeCombo } from './scripts/recipe-combo.js';
+    import { mountMenu } from './scripts/nav.js';
 
     if (!requireAuth()) { /* redirected to login */ }
 
@@ -427,7 +424,7 @@
       document.getElementById('next').onclick   = () => go(1);
       document.getElementById('todayBtn').onclick = () => { currentDate = new Date(); refresh(); };
       document.getElementById('addEvent').onclick = () => openNew();
-      document.getElementById('logoutBtn').onclick = logout;
+      mountMenu(document.getElementById('navMount'), 'hub');
 
       // Swipe left/right to change the day (touch)
       const grid = document.querySelector('.hub-grid');

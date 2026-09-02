@@ -26,7 +26,7 @@ class LoginForm extends HTMLElement {
     const err = this.shadowRoot.querySelector('.error');
     btn.disabled = true; btn.textContent = 'Signing in…'; err.textContent = '';
 
-    const result = await login(form.identity.value, form.password.value);
+    const result = await login(form.identity.value.trim(), form.password.value);
     if (result.success) {
       window.location.href = '/hub.html';
     } else {
@@ -58,11 +58,11 @@ class LoginForm extends HTMLElement {
         .pw-toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
                      border: none; background: none; cursor: pointer; font: inherit; font-size: .8rem;
                      font-weight: 600; color: var(--blue-dark, #37718f); padding: 4px; }
-        button { width: 100%; padding: .85rem; margin-top: .4rem; border: none; cursor: pointer;
+        button[type="submit"] { width: 100%; padding: .85rem; margin-top: .4rem; border: none; cursor: pointer;
                  border-radius: var(--radius, 14px); font: inherit; font-weight: 700; color: #fff;
                  background: var(--green, #4f9d69); transition: background .15s ease; }
-        button:hover:not(:disabled) { background: var(--green-dark, #3d7a52); }
-        button:disabled { opacity: .6; cursor: not-allowed; }
+        button[type="submit"]:hover:not(:disabled) { background: var(--green-dark, #3d7a52); }
+        button[type="submit"]:disabled { opacity: .6; cursor: not-allowed; }
         .error { color: var(--danger, #c0563f); font-size: .85rem; margin-top: 1rem;
                  text-align: center; min-height: 1.25rem; }
       </style>
@@ -71,7 +71,8 @@ class LoginForm extends HTMLElement {
         <form>
           <div class="group">
             <label for="identity">Email</label>
-            <input type="email" id="identity" name="identity" required autocomplete="username">
+            <input type="email" id="identity" name="identity" required
+                   inputmode="email" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
           </div>
           <div class="group">
             <label for="password">Password</label>

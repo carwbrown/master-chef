@@ -69,11 +69,7 @@
 </head>
 <body>
   <header class="phead">
-    <div class="corner">
-      <a href="hub.html" title="Hub">🏠</a>
-      <a href="recipes.html" title="Recipes">📖</a>
-      <button class="cn-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">🚪</button>
-    </div>
+    <div class="corner" id="navMount"></div>
     <div class="pnav">
       <button class="navarrow" id="prev" aria-label="Previous week">‹</button>
       <button class="btn today-btn" id="thisWeek">This week</button>
@@ -109,10 +105,11 @@
   </dialog>
 
   <script type="module">
-    import { pb, requireAuth, logout } from './scripts/auth.js';
+    import { pb, requireAuth } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { ymd } from './scripts/recurrence.js';
     import { initRecipeCombo } from './scripts/recipe-combo.js';
+    import { mountMenu } from './scripts/nav.js';
 
     if (!requireAuth()) { /* redirected */ }
 
@@ -132,7 +129,7 @@
       document.getElementById('prev').onclick = () => { start.setDate(start.getDate() - 7); render(); };
       document.getElementById('next').onclick = () => { start.setDate(start.getDate() + 7); render(); };
       document.getElementById('thisWeek').onclick = () => { start = weekStart(new Date()); render(); };
-      document.getElementById('logoutBtn').onclick = logout;
+      mountMenu(document.getElementById('navMount'), 'planner');
       document.getElementById('mealCancel').onclick = () => dlg.close();
       document.getElementById('mealDelete').onclick = onDelete;
       document.getElementById('mealForm').addEventListener('submit', onSave);
