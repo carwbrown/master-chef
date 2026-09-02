@@ -1,0 +1,26 @@
+{
+  "title": "Chicken Lettuce Wraps",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": "10 min",
+  "cook_time": "10 min",
+  "tags": ["asian", "dinner", "quick", "chicken"],
+  "ingredients": [
+    { "raw": "1 pound ground chicken", "amount": 1, "unit": "pound", "name": "ground chicken" },
+    { "raw": "1 cup yellow onion, chopped", "amount": 1, "unit": "cup", "name": "yellow onion" },
+    { "raw": "3 cloves garlic, minced", "amount": 3, "unit": null, "name": "garlic" },
+    { "raw": "2 tablespoons reduced-sodium soy sauce", "amount": 2, "unit": "tablespoons", "name": "reduced-sodium soy sauce" },
+    { "raw": "1/2 cup duck sauce", "amount": 0.5, "unit": "cup", "name": "duck sauce" },
+    { "raw": "1 tablespoon fresh ginger, crushed (or bottled)", "amount": 1, "unit": "tablespoon", "name": "fresh ginger" },
+    { "raw": "2 tablespoons Asian hot chile pepper sauce (such as Sriracha sauce)", "amount": 2, "unit": "tablespoons", "name": "sriracha" },
+    { "raw": "1 (8-ounce) can diced water chestnuts, drained", "amount": 8, "unit": "ounces", "name": "diced water chestnuts" },
+    { "raw": "3/4 cup scallions (green onions), sliced", "amount": 0.75, "unit": "cup", "name": "scallions" },
+    { "raw": "2 teaspoons toasted (dark) sesame oil", "amount": 2, "unit": "teaspoons", "name": "toasted sesame oil" },
+    { "raw": "16 Boston, bibb, or butter lettuce leaves, rinsed and dried", "amount": 16, "unit": null, "name": "butter lettuce leaves" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "In a large nonstick skillet over medium heat, begin cooking the ground chicken. Add the onion, garlic, soy sauce, duck sauce, ginger, and Sriracha. Stir and cook until the chicken is finely crumbled and cooked through, about 6 minutes." },
+    { "step": 2, "text": "Add the water chestnuts and scallions, then the sesame oil. Stir and cook just until the scallions begin to wilt, about 2 minutes. Remove the skillet from the heat." },
+    { "step": 3, "text": "Arrange the lettuce leaves around the outer edge of a large serving platter and pour the chicken mixture into the middle. To serve, spoon about 1/4 cup of the chicken mixture into each lettuce leaf and wrap taco-style." }
+  ]
+}

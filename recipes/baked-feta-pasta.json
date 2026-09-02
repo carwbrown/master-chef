@@ -1,0 +1,30 @@
+{
+  "title": "Baked Feta Pasta",
+  "source_url": "https://www.gimmesomeoven.com/baked-feta-pasta/",
+  "servings": null,
+  "prep_time": "10 min",
+  "cook_time": "35 min",
+  "tags": ["pasta", "vegetarian", "baked", "italian"],
+  "ingredients": [
+    { "raw": "7 or 8-ounce block of feta cheese", "amount": 7, "unit": "ounce", "name": "feta cheese" },
+    { "raw": "1 1/2 pounds cherry or grape tomatoes", "amount": 1.5, "unit": "pounds", "name": "cherry or grape tomatoes" },
+    { "raw": "1/4 cup olive oil", "amount": 0.25, "unit": "cup", "name": "olive oil" },
+    { "raw": "1/4 cup white wine (optional)", "amount": 0.25, "unit": "cup", "name": "white wine" },
+    { "raw": "1/2 teaspoon crushed red pepper flakes", "amount": 0.5, "unit": "teaspoon", "name": "crushed red pepper flakes" },
+    { "raw": "Fine sea salt and freshly-cracked black pepper", "amount": null, "unit": null, "name": "sea salt and black pepper" },
+    { "raw": "8 ounces uncooked pasta of your choice", "amount": 8, "unit": "ounces", "name": "pasta" },
+    { "raw": "3 large cloves garlic, pressed or minced", "amount": 3, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 large handful fresh baby spinach", "amount": null, "unit": null, "name": "baby spinach" },
+    { "raw": "1 cup loosely-packed chopped fresh basil", "amount": 1, "unit": "cup", "name": "fresh basil" },
+    { "raw": "Shaved or grated Parmesan cheese, for topping", "amount": null, "unit": null, "name": "parmesan cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Heat oven to 400°F (205°C)." },
+    { "step": 2, "text": "Place feta block in center of 9 x 13-inch baking dish. Arrange tomatoes around feta, drizzle with olive oil and white wine. Toss ingredients to coat evenly in oil. Sprinkle crushed red pepper flakes over feta and season tomatoes with salt and pepper." },
+    { "step": 3, "text": "Bake for 30 to 35 minutes until tomatoes burst and become juicy." },
+    { "step": 4, "text": "Meanwhile, heat large pot of salted water until boiling. About 10 minutes before feta and tomatoes finish, add pasta and cook until 1 minute shy of al dente. Reserve 1 cup starchy pasta water, then drain pasta." },
+    { "step": 5, "text": "Remove baking dish from oven. Add garlic and basil, stirring until feta melts into creamy sauce. Add cooked pasta and spinach, tossing gently until evenly coated. Add reserved pasta water in 1/4 cup increments if sauce seems dry." },
+    { "step": 6, "text": "Taste and season with additional salt and pepper as needed." },
+    { "step": 7, "text": "Serve warm, garnished with Parmesan cheese." }
+  ]
+}

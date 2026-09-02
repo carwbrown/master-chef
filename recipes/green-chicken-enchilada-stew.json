@@ -1,0 +1,36 @@
+{
+  "title": "Creamy Green Chicken Enchilada Stew",
+  "source_url": "https://whattocook.substack.com/p/a-back-to-school-meal-plan-with-5",
+  "servings": 6,
+  "prep_time": "10 min",
+  "cook_time": "40 min",
+  "tags": ["stew", "chicken", "soup", "mexican"],
+  "ingredients": [
+    { "raw": "4 cups low-sodium chicken broth", "amount": 4, "unit": "cups", "name": "low-sodium chicken broth" },
+    { "raw": "1 (12 to 16 ounce) jar green enchilada sauce (or salsa verde)", "amount": 1, "unit": "jar", "name": "green enchilada sauce" },
+    { "raw": "1.5 to 2 pounds boneless, skinless chicken thighs", "amount": 1.5, "unit": "pounds", "name": "chicken thighs" },
+    { "raw": "2 (15 ounce) cans cannellini beans, drained and rinsed", "amount": 2, "unit": "cans", "name": "cannellini beans" },
+    { "raw": "1 (4 ounce) can diced green chiles", "amount": 1, "unit": "can", "name": "diced green chiles" },
+    { "raw": "1 (16 ounce) bag frozen corn", "amount": 1, "unit": "bag", "name": "frozen corn" },
+    { "raw": "2 cups kale, ribs removed and finely chopped", "amount": 2, "unit": "cups", "name": "kale" },
+    { "raw": "1 teaspoon garlic powder", "amount": 1, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1 teaspoon ground cumin", "amount": 1, "unit": "teaspoon", "name": "ground cumin" },
+    { "raw": "1 teaspoon dried oregano", "amount": 1, "unit": "teaspoon", "name": "dried oregano" },
+    { "raw": "4 ounces cream cheese, room temperature, cubed", "amount": 4, "unit": "ounces", "name": "cream cheese" },
+    { "raw": "1 cup shredded sharp Cheddar cheese", "amount": 1, "unit": "cup", "name": "sharp cheddar cheese" },
+    { "raw": "2 tablespoons fresh lime juice", "amount": 2, "unit": "tablespoons", "name": "lime juice" },
+    { "raw": "Kosher salt to taste", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Freshly ground black pepper to taste", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "Optional garnishes: diced avocado, chopped cilantro, sour cream, extra cheese, crushed tortilla chips, lime wedges", "amount": null, "unit": null, "name": "garnishes" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Remove cream cheese from refrigerator to reach room temperature." },
+    { "step": 2, "text": "Add broth, enchilada sauce, chicken thighs, cannellini beans, green chiles, corn, kale, garlic powder, cumin, and oregano to a large pot." },
+    { "step": 3, "text": "Bring to a boil over high heat; reduce to medium and simmer 30 minutes." },
+    { "step": 4, "text": "Transfer chicken to a cutting board and shred using two forks (or chop if preferred)." },
+    { "step": 5, "text": "Return shredded chicken to the pot; add cream cheese and Cheddar, stirring until melted and creamy." },
+    { "step": 6, "text": "Remove from heat and stir in lime juice." },
+    { "step": 7, "text": "Taste and season with salt and pepper as needed." },
+    { "step": 8, "text": "Serve hot in bowls; top with desired garnishes." }
+  ]
+}

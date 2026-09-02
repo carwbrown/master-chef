@@ -3,381 +3,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Master Chef - Recipe</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Recipe — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .cook { max-width: 920px; margin: 0 auto; padding: var(--sp-5); }
+    .cook-top { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); flex-wrap: wrap; }
+    .iconbtn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--border);
+               background: var(--surface); display: grid; place-items: center; font-size: 1.5rem;
+               color: var(--text-muted); cursor: pointer; text-decoration: none; }
+    .iconbtn:hover { background: var(--surface-2); color: var(--text); }
+    .cook h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: var(--sp-3); }
+    .meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-5); }
+    /* Stacked so sections can collapse cleanly at any width */
+    .cook-grid { display: flex; flex-direction: column; gap: var(--sp-5); }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f2ed;
-      min-height: 100vh;
-    }
+    .sec { font-family: var(--font-heading); font-size: 1.25rem; margin: 0 0 var(--sp-3);
+           padding-bottom: var(--sp-2); border-bottom: 2px solid var(--green-soft);
+           display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+           cursor: pointer; user-select: none; transition: color .15s; }
+    .sec:hover { color: var(--green-dark); }
+    .sec .chev { font-size: .85rem; color: var(--text-faint); transition: transform .2s; }
+    .csec.collapsed .sec .chev { transform: rotate(-90deg); }
+    .csec.collapsed .sec-body { display: none; }
 
-    header {
-      background: #faf8f5;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e8e4df;
-    }
+    .ing-list, .step-list { list-style: none; margin: 0; padding: 0; }
+    .ing { display: flex; align-items: flex-start; gap: var(--sp-3); padding: 11px 4px;
+           border-bottom: 1px solid var(--surface-2); cursor: pointer; font-size: 1.05rem; }
+    .ing .box { flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--border);
+                margin-top: 1px; position: relative; transition: all .15s; }
+    .ing.checked .box { background: var(--green); border-color: var(--green); }
+    .ing.checked .box::after { content: ""; position: absolute; left: 7px; top: 3px; width: 5px; height: 10px;
+                               border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+    .ing.checked .txt { color: var(--text-faint); text-decoration: line-through; }
 
-    .logo {
-      font-family: 'Crimson Text', Georgia, serif;
-      font-size: 1.5rem;
-      color: #2c1810;
-    }
-
-    nav { display: flex; gap: 1rem; align-items: center; }
-
-    nav a {
-      color: #5c4a3d;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-    }
-
-    nav a:hover { background: rgba(139, 115, 85, 0.1); }
-
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .recipe-header {
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-family: 'Crimson Text', Georgia, serif;
-      color: #2c1810;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .recipe-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      color: #5c4a3d;
-      font-size: 0.95rem;
-    }
-
-    .recipe-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      background: rgba(139, 115, 85, 0.15);
-      color: #5c4a3d;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      font-size: 0.875rem;
-    }
-
-    .recipe-section {
-      background: #faf8f5;
-      border: 1px solid #e8e4df;
-      border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .recipe-section h2 {
-      font-family: 'Crimson Text', Georgia, serif;
-      color: #2c1810;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #e8e4df;
-    }
-
-    .ingredients-list {
-      list-style: none;
-    }
-
-    .ingredients-list li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #e8e4df;
-      color: #2c1810;
-    }
-
-    .ingredients-list li:last-child {
-      border-bottom: none;
-    }
-
-    .ingredients-list li::before {
-      content: "•";
-      color: #8b7355;
-      margin-right: 0.75rem;
-    }
-
-    .instructions-list {
-      list-style: none;
-      counter-reset: step;
-    }
-
-    .instructions-list li {
-      padding: 1rem 0;
-      padding-left: 3rem;
-      position: relative;
-      border-bottom: 1px solid #e8e4df;
-      color: #2c1810;
-      line-height: 1.6;
-    }
-
-    .instructions-list li:last-child {
-      border-bottom: none;
-    }
-
-    .instructions-list li::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 1rem;
-      width: 2rem;
-      height: 2rem;
-      background: #2c1810;
-      color: #faf8f5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.875rem;
-    }
-
-    .source-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #8b7355;
-      text-decoration: none;
-      font-size: 0.95rem;
-      margin-top: 1rem;
-    }
-
-    .source-link:hover {
-      text-decoration: underline;
-    }
-
-    .actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: #2c1810;
-      border: none;
-      color: #faf8f5;
-    }
-
-    .btn-primary:hover { background: #3d2518; }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid #8b7355;
-      color: #8b7355;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(139, 115, 85, 0.1);
-    }
-
-    .btn-danger {
-      background: transparent;
-      border: 1px solid #c0392b;
-      color: #c0392b;
-    }
-
-    .btn-danger:hover {
-      background: rgba(192, 57, 43, 0.1);
-    }
-
-    .loading {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: #5c4a3d;
-    }
-
-    .error {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: #c0392b;
-    }
-
-    @media (max-width: 600px) {
-      main { padding: 1rem; }
-      h1 { font-size: 2rem; }
-      .recipe-meta { gap: 1rem; }
-    }
+    .step { display: flex; gap: var(--sp-4); padding: 14px 0; font-size: 1.1rem; line-height: 1.55; cursor: pointer; }
+    .step .num { flex: none; width: 34px; height: 34px; border-radius: 999px; background: var(--green-soft);
+                 color: var(--green-dark); font-weight: 800; display: grid; place-items: center; font-size: 1rem;
+                 position: relative; transition: background .15s; }
+    .step.done .num { background: var(--green); color: transparent; }
+    .step.done .num::after { content: ""; position: absolute; left: 12px; top: 8px; width: 7px; height: 13px;
+                             border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+    .step .txt { min-width: 0; }  /* let the flex text shrink/truncate instead of overflowing */
+    .step.done .txt { opacity: .5; text-decoration: line-through; white-space: nowrap;
+                      overflow: hidden; text-overflow: ellipsis; }  /* collapse completed */
+    .amt { font-style: italic; color: var(--text-muted); }
+    .cookmode.on { background: var(--green); border-color: var(--green); color: #fff; }
+    .empty { color: var(--text-faint); text-align: center; padding: 3rem 0; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Master Chef</div>
-    <nav>
-      <a href="/recipes.html">Back to Recipes</a>
-    </nav>
-  </header>
-
-  <main>
-    <div id="content">
-      <div class="loading">Loading recipe...</div>
-    </div>
-  </main>
+  <div class="cook" id="cook"><p class="empty">Loading…</p></div>
 
   <script type="module">
-    import { requireAuth, getCurrentUser, pb } from './scripts/auth.js';
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
 
-    // Check auth
-    if (!requireAuth()) return;
+    if (requireAuth()) init();
 
-    const user = getCurrentUser();
-    const content = document.getElementById('content');
-
-    // Get recipe ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const recipeId = params.get('id');
-
-    if (!recipeId) {
-      content.innerHTML = `
-        <div class="error">
-          <p>No recipe specified.</p>
-          <a href="/recipes.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Back to Recipes</a>
-        </div>
-      `;
-    } else {
-      loadRecipe(recipeId);
+    // ---- amount formatting / injection ----
+    const UNIT_ABBR = { tablespoons: 'tbsp', tablespoon: 'tbsp', teaspoons: 'tsp', teaspoon: 'tsp',
+                        ounces: 'oz', ounce: 'oz', pounds: 'lb', pound: 'lb' };
+    const FRAC = { 0.25: '1/4', 0.33: '1/3', 0.34: '1/3', 0.5: '1/2', 0.66: '2/3', 0.67: '2/3',
+                   0.75: '3/4', 0.2: '1/5', 0.13: '1/8', 0.38: '3/8', 0.63: '5/8', 0.88: '7/8' };
+    function decToFrac(n) {
+      if (n == null) return '';
+      const whole = Math.floor(n), frac = +(n - whole).toFixed(2), f = FRAC[frac];
+      if (frac === 0) return String(whole);
+      if (f) return whole === 0 ? f : `${whole} ${f}`;
+      return String(n);
     }
-
-    async function loadRecipe(id) {
-      try {
-        const recipe = await pb.collection('recipes').getOne(id);
-
-        // Check if user owns this recipe
-        const isOwner = recipe.user === user.id;
-
-        // Parse arrays if stored as JSON strings
-        let ingredients = recipe.ingredients || [];
-        let instructions = recipe.instructions || [];
-
-        if (typeof ingredients === 'string') {
-          try { ingredients = JSON.parse(ingredients); } catch (e) { ingredients = []; }
-        }
-        if (typeof instructions === 'string') {
-          try { instructions = JSON.parse(instructions); } catch (e) { instructions = []; }
-        }
-
-        // Parse tags
-        let tags = [];
-        if (recipe.tags) {
-          tags = recipe.tags.split(',').map(t => t.trim()).filter(Boolean);
-        }
-
-        document.title = `${recipe.title} - Master Chef`;
-
-        content.innerHTML = `
-          <div class="recipe-header">
-            <h1>${escapeHtml(recipe.title)}</h1>
-            <div class="recipe-meta">
-              ${recipe.prep_time ? `<span>Prep: ${escapeHtml(recipe.prep_time)}</span>` : ''}
-              ${recipe.cook_time ? `<span>Cook: ${escapeHtml(recipe.cook_time)}</span>` : ''}
-              ${recipe.servings ? `<span>Servings: ${escapeHtml(recipe.servings)}</span>` : ''}
-            </div>
-            ${tags.length > 0 ? `
-              <div class="tags">
-                ${tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
-              </div>
-            ` : ''}
-          </div>
-
-          ${ingredients.length > 0 ? `
-            <div class="recipe-section">
-              <h2>Ingredients</h2>
-              <ul class="ingredients-list">
-                ${ingredients.map(ing => `<li>${escapeHtml(ing)}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
-
-          ${instructions.length > 0 ? `
-            <div class="recipe-section">
-              <h2>Instructions</h2>
-              <ol class="instructions-list">
-                ${instructions.map(step => `<li>${escapeHtml(step)}</li>`).join('')}
-              </ol>
-            </div>
-          ` : ''}
-
-          ${recipe.source_url ? `
-            <a href="${escapeHtml(recipe.source_url)}" target="_blank" rel="noopener" class="source-link">
-              View Original Recipe
-            </a>
-          ` : ''}
-
-          ${isOwner ? `
-            <div class="actions">
-              <a href="/recipe-edit.html?id=${recipe.id}" class="btn btn-secondary">Edit Recipe</a>
-              <button class="btn btn-danger" id="delete-btn">Delete Recipe</button>
-            </div>
-          ` : ''}
-        `;
-
-        // Delete handler
-        if (isOwner) {
-          document.getElementById('delete-btn')?.addEventListener('click', async () => {
-            if (confirm('Are you sure you want to delete this recipe?')) {
-              try {
-                await pb.collection('recipes').delete(id);
-                window.location.href = '/recipes.html';
-              } catch (error) {
-                alert('Failed to delete recipe: ' + error.message);
-              }
-            }
-          });
-        }
-
-      } catch (error) {
-        console.error('Error loading recipe:', error);
-        content.innerHTML = `
-          <div class="error">
-            <p>Could not load recipe.</p>
-            <p style="font-size: 0.875rem; margin-top: 0.5rem;">${error.message}</p>
-            <a href="/recipes.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Back to Recipes</a>
-          </div>
-        `;
+    function fmtAmt(ing) {
+      return [decToFrac(ing.amount), ing.unit ? (UNIT_ABBR[ing.unit.toLowerCase()] || ing.unit) : '']
+        .filter(Boolean).join(' ').trim();
+    }
+    // Insert "(amount)" in italics after the first mention of each ingredient in a step.
+    function injectAmounts(stepText, ings) {
+      let text = escapeHTML(stepText);
+      const withAmt = ings.filter(i => i.name && (i.amount != null || i.unit))
+        .sort((a, b) => b.name.length - a.name.length);
+      const used = new Set();
+      for (const ing of withAmt) {
+        const amt = fmtAmt(ing);
+        if (!amt || used.has(ing.name)) continue;
+        const esc = ing.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const re = new RegExp(`\\b(${esc})\\b`, 'i');
+        if (re.test(text)) { text = text.replace(re, `$1 <span class="amt">(${amt})</span>`); used.add(ing.name); }
       }
+      return text;
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+    async function init() {
+      const el = document.getElementById('cook');
+      const id = new URLSearchParams(location.search).get('id');
+      if (!id) { el.innerHTML = '<p class="empty">No recipe specified.</p>'; return; }
+
+      let r;
+      try { r = await pb.collection('recipes').getOne(id); }
+      catch (e) { el.innerHTML = '<p class="empty">Recipe not found.</p>'; return; }
+
+      const ings = Array.isArray(r.ingredients) ? r.ingredients : [];
+      const steps = Array.isArray(r.instructions) ? r.instructions : [];
+      const tags = Array.isArray(r.tags) ? r.tags : [];
+      const meta = [];
+      if (r.servings) meta.push(`🍽 Serves ${r.servings}`);
+      if (r.prep_time) meta.push(`⏱ Prep ${escapeHTML(r.prep_time)}`);
+      if (r.cook_time) meta.push(`🔥 Cook ${escapeHTML(r.cook_time)}`);
+
+      // Per-visit check state: kept on refresh, fresh on a new navigation to the page.
+      const key = `cook:${id}`;
+      const isReload = (performance.getEntriesByType('navigation')[0] || {}).type === 'reload';
+      let state = { ings: [], steps: [] };
+      if (isReload) { try { state = { ...state, ...JSON.parse(sessionStorage.getItem(key) || '{}') }; } catch {} }
+      else sessionStorage.removeItem(key);
+      const save = () => sessionStorage.setItem(key, JSON.stringify(state));
+
+      el.innerHTML = `
+        <div class="cook-top">
+          <a class="iconbtn" href="recipes.html" aria-label="Back to recipes">‹</a>
+          <button class="btn cookmode" id="cookMode" style="margin-left:auto">☀️ Cook Mode</button>
+          <a class="btn" href="recipe-edit.html?id=${r.id}">Edit</a>
+        </div>
+        <h1>${escapeHTML(r.title)}</h1>
+        <div class="meta">
+          ${meta.map(m => `<span class="chip">${m}</span>`).join('')}
+          ${tags.map(t => `<span class="chip">${escapeHTML(t)}</span>`).join('')}
+        </div>
+        <div class="cook-grid">
+          <section class="csec" id="ingSec">
+            <h2 class="sec">Ingredients <span class="chev">▾</span></h2>
+            <div class="sec-body"><ul class="ing-list">
+              ${ings.length ? ings.map((i, idx) =>
+                `<li class="ing${state.ings.includes(idx) ? ' checked' : ''}" data-i="${idx}">
+                   <span class="box"></span><span class="txt">${escapeHTML(i.raw || i.name || '')}</span></li>`).join('')
+                : '<li class="empty">No ingredients listed</li>'}
+            </ul></div>
+          </section>
+          <section class="csec" id="stepSec">
+            <h2 class="sec">Steps <span class="chev">▾</span></h2>
+            <div class="sec-body"><ol class="step-list">
+              ${steps.length ? steps.map((s, idx) =>
+                `<li class="step${state.steps.includes(idx) ? ' done' : ''}" data-i="${idx}">
+                   <span class="num">${s.step || idx + 1}</span>
+                   <div class="txt">${injectAmounts(s.text || '', ings)}</div></li>`).join('')
+                : '<li class="empty">No steps listed</li>'}
+            </ol></div>
+          </section>
+        </div>`;
+
+      // toggle ingredient checked
+      el.querySelectorAll('.ing').forEach(li => li.addEventListener('click', () => {
+        const i = +li.dataset.i;
+        li.classList.toggle('checked');
+        state.ings = li.classList.contains('checked') ? [...state.ings, i] : state.ings.filter(x => x !== i);
+        save();
+      }));
+      // toggle step done (collapses)
+      el.querySelectorAll('.step').forEach(li => li.addEventListener('click', () => {
+        const i = +li.dataset.i;
+        li.classList.toggle('done');
+        state.steps = li.classList.contains('done') ? [...state.steps, i] : state.steps.filter(x => x !== i);
+        save();
+      }));
+      // collapse sections (single-column only; header is only clickable there)
+      el.querySelectorAll('.sec').forEach(h =>
+        h.addEventListener('click', () => h.closest('.csec').classList.toggle('collapsed')));
+
+      // Cook Mode — keep the screen awake while cooking (Wake Lock API)
+      const cmBtn = document.getElementById('cookMode');
+      if (!('wakeLock' in navigator)) {
+        cmBtn.style.display = 'none';  // not supported (older browsers)
+      } else {
+        let wakeLock = null, cookWanted = false;
+        const acquire = async () => { try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {} };
+        cmBtn.addEventListener('click', async () => {
+          cookWanted = !cookWanted;
+          if (cookWanted) { await acquire(); cmBtn.classList.add('on'); cmBtn.textContent = '☀️ Cook Mode on'; }
+          else { if (wakeLock) { try { await wakeLock.release(); } catch {} } wakeLock = null;
+                 cmBtn.classList.remove('on'); cmBtn.textContent = '☀️ Cook Mode'; }
+        });
+        // the lock auto-releases when the tab is hidden; re-acquire when it returns
+        document.addEventListener('visibilitychange', async () => {
+          if (cookWanted && document.visibilityState === 'visible') await acquire();
+        });
+      }
     }
   </script>
 </body>

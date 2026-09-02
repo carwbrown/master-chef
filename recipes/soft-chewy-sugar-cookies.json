@@ -1,0 +1,31 @@
+{
+  "title": "Best Soft and Chewy Sugar Cookies",
+  "source_url": "https://www.lifeloveandsugar.com/best-soft-and-chewy-sugar-cookies/",
+  "servings": 30,
+  "prep_time": "30 min",
+  "cook_time": "7 min",
+  "tags": ["dessert", "cookies", "baking"],
+  "ingredients": [
+    { "raw": "2 ¾ cups (358g) all-purpose flour", "amount": 2.75, "unit": "cups", "name": "all-purpose flour" },
+    { "raw": "1 teaspoon baking soda", "amount": 1, "unit": "teaspoon", "name": "baking soda" },
+    { "raw": "½ teaspoon baking powder", "amount": 0.5, "unit": "teaspoon", "name": "baking powder" },
+    { "raw": "½ teaspoon salt", "amount": 0.5, "unit": "teaspoon", "name": "salt" },
+    { "raw": "1 cup (224g) unsalted butter (room temperature)", "amount": 1, "unit": "cup", "name": "unsalted butter" },
+    { "raw": "1 cup + 2 tbsp (233g) sugar", "amount": 1, "unit": "cup", "name": "sugar" },
+    { "raw": "2 tablespoons (28g) packed light brown sugar", "amount": 2, "unit": "tablespoons", "name": "light brown sugar" },
+    { "raw": "1 large egg", "amount": 1, "unit": null, "name": "egg" },
+    { "raw": "2 teaspoons vanilla extract", "amount": 2, "unit": "teaspoons", "name": "vanilla extract" },
+    { "raw": "¼ cup (52g) sugar (additional for rolling)", "amount": 0.25, "unit": "cup", "name": "sugar" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 350°F (180°C). Line baking sheets with parchment paper or silicone baking mats." },
+    { "step": 2, "text": "Combine the flour, baking soda, baking powder and salt in a medium bowl and set aside." },
+    { "step": 3, "text": "Cream the butter and sugars together in a large mixer bowl on medium speed until light in color and fluffy, 2-3 minutes." },
+    { "step": 4, "text": "Add the egg and mix until well combined." },
+    { "step": 5, "text": "Add the vanilla extract and mix until well combined." },
+    { "step": 6, "text": "Add the dry ingredients and mix until the dough is well combined. Do not over mix. Use a rubber spatula to help form a cohesive ball." },
+    { "step": 7, "text": "Create 1 ½ tablespoon sized balls of cookie dough. Roll gently into a ball, then coat each in additional sugar. Set on the baking sheet." },
+    { "step": 8, "text": "Bake cookies for 7-8 minutes. Remove just before the edges begin to turn golden." },
+    { "step": 9, "text": "Allow to cool on baking sheets for 4-5 minutes before transferring to a wire rack to cool completely." }
+  ]
+}

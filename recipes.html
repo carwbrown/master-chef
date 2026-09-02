@@ -3,195 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Master Chef - My Recipes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="recipe.css">
+  <title>Recipes — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.5rem; margin: 0; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .rnav a { text-decoration: none; }
+    .search { flex: 1; min-width: 150px; max-width: 320px; }
+    #tagToggle.on { background: var(--green); border-color: var(--green); color: #fff; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f2ed;
-      min-height: 100vh;
-    }
+    /* Tag filter (collapsible) */
+    .tagbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--sp-4);
+              padding: var(--sp-3); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .tagbar[hidden] { display: none; }
+    .tagchip { font-size: .8rem; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--border);
+               background: var(--surface); color: var(--text-muted); cursor: pointer; }
+    .tagchip.active { background: var(--green); border-color: var(--green); color: #fff; }
+    .tagclear { font-size: .8rem; color: var(--blue-dark); background: none; border: none; cursor: pointer; padding: 4px 6px; }
+    .count { color: var(--text-faint); font-size: .82rem; margin-bottom: var(--sp-3); }
 
-    header {
-      background: #faf8f5;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e8e4df;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo {
-      font-family: 'Crimson Text', Georgia, serif;
-      font-size: 1.5rem;
-      color: #2c1810;
-    }
-
-    nav { display: flex; gap: 1rem; align-items: center; }
-
-    nav a {
-      color: #5c4a3d;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-
-    nav a:hover, nav a.active {
-      color: #2c1810;
-      background: rgba(139, 115, 85, 0.1);
-    }
-
-    .btn-logout {
-      background: transparent;
-      border: 1px solid #8b7355;
-      color: #8b7355;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-logout:hover {
-      border-color: #c0392b;
-      color: #c0392b;
-    }
-
-    main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-family: 'Crimson Text', Georgia, serif;
-      color: #2c1810;
-      font-size: 2rem;
-    }
-
-    .btn-add {
-      background: #2c1810;
-      border: none;
-      color: #faf8f5;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.2s;
-    }
-
-    .btn-add:hover { background: #3d2518; }
-
-    .recipe-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: #5c4a3d;
-      grid-column: 1 / -1;
-    }
-
-    .empty-state p { margin-bottom: 1rem; }
-
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #5c4a3d;
-      grid-column: 1 / -1;
-    }
+    /* Rows as separated buttons */
+    .rlist { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .rrow { display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-4);
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); color: var(--text); cursor: pointer; transition: transform .1s, box-shadow .1s; }
+    @media (hover: hover) { .rrow:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); } }
+    .rmain { flex: 1; min-width: 0; }
+    .rtitle { font-weight: 700; }
+    .rtags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+    .rtag { font-size: .7rem; background: var(--surface-2); color: var(--text-muted); padding: 1px 8px; border-radius: 999px; }
+    .rmeta { text-align: right; flex: none; }
+    .rtimes { color: var(--text-muted); font-size: .85rem; white-space: nowrap; }
+    .rsource { color: var(--text-faint); font-size: .8rem; white-space: nowrap; }
+    /* Edit only makes sense on touch (no hover to reveal, and desktop uses the row → edit page) */
+    .redit { flex: none; color: var(--text-faint); text-decoration: none; font-size: 1.1rem; padding: 6px; display: none; }
+    @media (hover: none) { .redit { display: inline-block; } }
+    @media (max-width: 560px) { .rsource { display: none; } }
+    .empty { text-align: center; color: var(--text-faint); padding: 3rem 0; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">👨‍🍳 Master Chef</div>
-    <nav>
-      <a href="/recipes.html" class="active">Recipes</a>
-      <a href="/leaderboard.html">Leaderboard</a>
-      <button class="btn-logout" id="logout-btn">Sign Out</button>
-    </nav>
+  <header class="rhead">
+    <div class="rnav"><a href="hub.html" title="Hub">🏠</a><a href="planner.html" title="Meal planner">📅</a></div>
+    <h1>Recipes</h1>
+    <input class="input search" id="search" type="search" placeholder="Search recipes…">
+    <button class="btn" id="tagToggle" aria-expanded="false">🏷 Tags</button>
+    <a class="btn btn-primary" href="recipe-edit.html">＋ New recipe</a>
   </header>
 
-  <main>
-    <div class="actions">
-      <h1>My Recipes</h1>
-      <button class="btn-add" id="add-btn">+ Add Recipe</button>
-    </div>
-
-    <div class="recipe-grid" id="recipes-grid">
-      <div class="loading">Loading your recipes...</div>
-    </div>
-  </main>
+  <div class="wrap">
+    <div class="tagbar" id="tagbar" hidden></div>
+    <div class="count" id="count"></div>
+    <div class="rlist" id="list"><p class="empty">Loading…</p></div>
+  </div>
 
   <script type="module">
-    import { requireAuth, logout, getCurrentUser, pb } from './scripts/auth.js';
-    import './components/recipe-card.js';
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
 
-    // Check auth
-    if (!requireAuth()) {
-      // Will redirect to login
+    if (requireAuth()) init();
+    let all = [];
+    const activeTags = new Set();
+
+    const domain = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; } };
+    const sourceLabel = (r) => r.author || domain(r.source_url) || 'Cookbook';
+
+    async function init() {
+      try { all = await pb.collection('recipes').getFullList({ sort: 'title' }); }
+      catch (e) { all = []; }
+      renderTags();
+      render();
+      document.getElementById('search').addEventListener('input', render);
+      const toggle = document.getElementById('tagToggle');
+      toggle.addEventListener('click', () => {
+        const bar = document.getElementById('tagbar');
+        bar.hidden = !bar.hidden;
+        toggle.setAttribute('aria-expanded', String(!bar.hidden));
+      });
+      document.getElementById('list').addEventListener('click', (e) => {
+        if (e.target.closest('.redit')) return;
+        const row = e.target.closest('.rrow');
+        if (row) location.href = `recipe-view.html?id=${row.dataset.id}`;
+      });
     }
 
-    const user = getCurrentUser();
+    function updateTagButton() {
+      const btn = document.getElementById('tagToggle');
+      btn.textContent = activeTags.size ? `🏷 Tags (${activeTags.size})` : '🏷 Tags';
+      btn.classList.toggle('on', activeTags.size > 0);
+    }
 
-    // Logout handler
-    document.getElementById('logout-btn').addEventListener('click', logout);
+    function renderTags() {
+      const counts = {};
+      for (const r of all) for (const t of (Array.isArray(r.tags) ? r.tags : [])) counts[t] = (counts[t] || 0) + 1;
+      const tags = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+      const bar = document.getElementById('tagbar');
+      bar.innerHTML = tags.map(t =>
+        `<button class="tagchip" data-tag="${escapeHTML(t)}">${escapeHTML(t)}</button>`).join('') +
+        `<button class="tagclear" id="clearTags" hidden>Clear</button>`;
+      bar.querySelectorAll('.tagchip').forEach(chip => chip.addEventListener('click', () => {
+        const t = chip.dataset.tag;
+        if (activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
+        chip.classList.toggle('active', activeTags.has(t));
+        document.getElementById('clearTags').hidden = activeTags.size === 0;
+        updateTagButton();
+        render();
+      }));
+      document.getElementById('clearTags').addEventListener('click', () => {
+        activeTags.clear();
+        bar.querySelectorAll('.tagchip').forEach(c => c.classList.remove('active'));
+        document.getElementById('clearTags').hidden = true;
+        updateTagButton();
+        render();
+      });
+    }
 
-    // Add recipe button
-    document.getElementById('add-btn').addEventListener('click', () => {
-      window.location.href = '/recipe-upload.html';
-    });
+    function render() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const list = all.filter(r => {
+        const tags = Array.isArray(r.tags) ? r.tags : [];
+        if (q && !(r.title || '').toLowerCase().includes(q)) return false;
+        for (const t of activeTags) if (!tags.includes(t)) return false;
+        return true;
+      });
 
-    // Load recipes
-    async function loadRecipes() {
-      const grid = document.getElementById('recipes-grid');
+      document.getElementById('count').textContent =
+        list.length === all.length ? `${all.length} recipes` : `Showing ${list.length} of ${all.length}`;
 
-      try {
-        const records = await pb.collection('recipes').getList(1, 50, {
-          filter: `user = "${user.id}"`,
-          sort: '-created'
-        });
-
-        if (records.items.length === 0) {
-          grid.innerHTML = `
-            <div class="empty-state">
-              <p>You haven't saved any recipes yet.</p>
-              <p>Click "+ Add Recipe" to get started!</p>
+      const el = document.getElementById('list');
+      if (!list.length) { el.innerHTML = '<p class="empty">No matching recipes.</p>'; return; }
+      el.innerHTML = list.map(r => {
+        const tags = (Array.isArray(r.tags) ? r.tags : []).slice(0, 5);
+        const times = [r.prep_time && `Prep ${r.prep_time}`, r.cook_time && `Cook ${r.cook_time}`].filter(Boolean).join(' · ');
+        return `<div class="rrow" data-id="${r.id}">
+            <div class="rmain">
+              <div class="rtitle">${escapeHTML(r.title)}</div>
+              ${tags.length ? `<div class="rtags">${tags.map(t => `<span class="rtag">${escapeHTML(t)}</span>`).join('')}</div>` : ''}
             </div>
-          `;
-          return;
-        }
-
-        grid.innerHTML = '';
-        records.items.forEach(recipe => {
-          const card = document.createElement('recipe-card');
-          card.recipe = recipe;
-          grid.appendChild(card);
-        });
-      } catch (error) {
-        console.error('Error loading recipes:', error);
-        grid.innerHTML = `
-          <div class="empty-state">
-            <p>Could not load recipes. Is PocketBase running?</p>
-            <p style="font-size: 0.875rem; margin-top: 0.5rem;">${error.message}</p>
-          </div>
-        `;
-      }
+            <div class="rmeta">
+              ${times ? `<div class="rtimes">${escapeHTML(times)}</div>` : ''}
+              <div class="rsource">${escapeHTML(sourceLabel(r))}</div>
+            </div>
+            <a class="redit" href="recipe-edit.html?id=${r.id}" title="Edit">✎</a>
+          </div>`;
+      }).join('');
     }
-
-    loadRecipes();
   </script>
 </body>
 </html>

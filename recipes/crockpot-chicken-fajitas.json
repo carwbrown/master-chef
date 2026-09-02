@@ -1,0 +1,29 @@
+{
+  "title": "Easy Crockpot Chicken Fajitas (Meal Prep Burrito Bowls)",
+  "source_url": "https://www.nourishmovelove.com/crockpot-chicken-fajitas-burrito-bowl/",
+  "servings": 4,
+  "prep_time": "15 min",
+  "cook_time": "4 hr",
+  "tags": ["mexican", "dinner", "chicken", "slow-cooker"],
+  "ingredients": [
+    { "raw": "2 Chicken Breasts or 1 lb Chicken Tenders", "amount": 2, "unit": null, "name": "chicken breasts" },
+    { "raw": "12 oz Pico de Gallo or salsa of choice", "amount": 12, "unit": "oz", "name": "pico de gallo" },
+    { "raw": "3 Bell Peppers", "amount": 3, "unit": null, "name": "bell peppers" },
+    { "raw": "1/2 Red Onion", "amount": 0.5, "unit": null, "name": "red onion" },
+    { "raw": "1 can Black Beans, 15 oz", "amount": 1, "unit": "can", "name": "black beans" },
+    { "raw": "1 can Corn, 15 oz", "amount": 1, "unit": "can", "name": "corn" },
+    { "raw": "1 c Brown Rice, cooked or steam in a bag", "amount": 1, "unit": "cup", "name": "brown rice" },
+    { "raw": "Taco Seasoning of choice", "amount": null, "unit": null, "name": "taco seasoning" },
+    { "raw": "Juice of 2 limes", "amount": 2, "unit": null, "name": "lime juice" },
+    { "raw": "Cilantro and minced garlic to taste", "amount": null, "unit": null, "name": "cilantro and garlic" },
+    { "raw": "Optional: Corn/flour tortillas, fresh greens, avocado, tortilla chips", "amount": null, "unit": null, "name": "tortillas" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Place chicken breasts or tenders in a crockpot with the juice of 1 lime, pico de gallo or salsa and taco seasoning to taste. Cook on high, 4-6 hours or on low, 6-8 hours." },
+    { "step": 2, "text": "Wash and slice the peppers and chop the onion." },
+    { "step": 3, "text": "Before the last 2 hours of cooking, shred chicken in the crockpot." },
+    { "step": 4, "text": "Then, add peppers, onion, black beans, corn, cooked brown rice, juice of another lime, and additional taco seasoning (to taste)." },
+    { "step": 5, "text": "Prior to serving, add fresh cilantro to taste." },
+    { "step": 6, "text": "Stir and enjoy served on tortillas or over fresh greens for a fajita taco salad or burrito bowl." }
+  ]
+}

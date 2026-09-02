@@ -1,0 +1,24 @@
+{
+  "title": "Mexican Chopped Salad (Dairy-Free)",
+  "source_url": "https://www.northcarolinacharm.com/mexican-chopped-salad-dairy-free/",
+  "servings": null,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["mexican", "salad", "dairy-free", "side"],
+  "ingredients": [
+    { "raw": "4 cups romaine, chopped", "amount": 4, "unit": "cups", "name": "romaine" },
+    { "raw": "2 cups kale, stems removed & chopped", "amount": 2, "unit": "cups", "name": "kale" },
+    { "raw": "½ red onion, diced", "amount": 0.5, "unit": null, "name": "red onion" },
+    { "raw": "1 16 oz can black beans, drained and rinsed", "amount": 1, "unit": "can", "name": "black beans" },
+    { "raw": "1 cup fresh corn, boiled for 5 minutes", "amount": 1, "unit": "cup", "name": "corn" },
+    { "raw": "12 oz. cherry tomatoes, quartered", "amount": 12, "unit": "oz", "name": "cherry tomatoes" },
+    { "raw": "1 avocado, diced", "amount": 1, "unit": null, "name": "avocado" },
+    { "raw": "1/2 cup tortilla strips", "amount": 0.5, "unit": "cup", "name": "tortilla strips" },
+    { "raw": "1/2 cup cotija cheese", "amount": 0.5, "unit": "cup", "name": "cotija cheese" },
+    { "raw": "Primal Kitchen Cilantro Lime Dressing", "amount": null, "unit": null, "name": "cilantro lime dressing" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Add salad ingredients to bowl and toss to combine." },
+    { "step": 2, "text": "Drizzle with Primal Kitchen Cilantro Lime Dressing." }
+  ]
+}

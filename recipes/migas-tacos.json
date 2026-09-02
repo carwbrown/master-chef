@@ -1,0 +1,30 @@
+{
+  "title": "Migas Tacos",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": "10 min",
+  "cook_time": "15 min",
+  "tags": ["mexican", "breakfast", "tacos", "vegetarian"],
+  "ingredients": [
+    { "raw": "8 (6-inch) corn tortillas", "amount": 8, "unit": null, "name": "corn tortillas" },
+    { "raw": "2 tablespoons unsalted butter", "amount": 2, "unit": "tablespoons", "name": "unsalted butter" },
+    { "raw": "1/2 small yellow onion, finely chopped", "amount": 0.5, "unit": null, "name": "yellow onion" },
+    { "raw": "1 large jalapeño pepper, stemmed, seeded, and ribs removed, minced (about 3 tablespoons)", "amount": 1, "unit": null, "name": "jalapeño pepper" },
+    { "raw": "Kosher salt and freshly ground black pepper to taste", "amount": null, "unit": null, "name": "kosher salt and black pepper" },
+    { "raw": "10 large eggs", "amount": 10, "unit": null, "name": "large eggs" },
+    { "raw": "1 cup crumbled tortilla chips", "amount": 1, "unit": "cup", "name": "crumbled tortilla chips" },
+    { "raw": "2/3 cup shredded Monterey Jack cheese", "amount": 0.67, "unit": "cup", "name": "monterey jack cheese" },
+    { "raw": "Salsa Fresca or store-bought salsa, for serving", "amount": null, "unit": null, "name": "salsa" },
+    { "raw": "1 avocado, halved, pitted, peeled, and sliced", "amount": 1, "unit": null, "name": "avocado" },
+    { "raw": "1/2 cup chopped fresh cilantro", "amount": 0.5, "unit": "cup", "name": "fresh cilantro" },
+    { "raw": "Hot sauce or Tomatillo Sauce, for serving", "amount": null, "unit": null, "name": "hot sauce" },
+    { "raw": "Lime wedges, for serving", "amount": null, "unit": null, "name": "lime wedges" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 300°F." },
+    { "step": 2, "text": "Wrap the tortillas in foil and place them in the oven for at least 5 minutes and up to 15 minutes." },
+    { "step": 3, "text": "Set a large nonstick or cast-iron skillet over medium-low heat. Add the butter and, once it melts, stir in the onion, jalapeño, and some salt and pepper. When the vegetables are soft, after 2 minutes, spread them out evenly across the surface of the pan. Reduce the heat to low." },
+    { "step": 4, "text": "In a medium mixing bowl, whisk together the eggs, tortilla chips, cheese, salt, and pepper. Pour the egg mixture over the onion mixture and stir gently until the eggs are cooked but still tender (or until scrambled to your liking)." },
+    { "step": 5, "text": "Remove the tortillas from the oven and unwrap them. Distribute the eggs evenly among the tortillas and top with Salsa Fresca, avocado slices, and cilantro. Serve with hot sauce and lime." }
+  ]
+}

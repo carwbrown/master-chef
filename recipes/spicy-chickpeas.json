@@ -1,0 +1,33 @@
+{
+  "title": "Spicy Chickpeas with Tomatoes & Greens",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["indian", "vegan", "vegetarian", "skillet"],
+  "ingredients": [
+    { "raw": "2 tablespoons grapeseed or vegetable oil", "amount": 2, "unit": "tablespoons", "name": "grapeseed oil" },
+    { "raw": "1/2 small yellow onion, finely chopped", "amount": 0.5, "unit": null, "name": "yellow onion" },
+    { "raw": "1 medium garlic clove, minced", "amount": 1, "unit": null, "name": "garlic clove" },
+    { "raw": "1 (1-inch) piece fresh ginger, peeled and minced", "amount": 1, "unit": null, "name": "fresh ginger" },
+    { "raw": "Dried red pepper flakes to taste", "amount": null, "unit": null, "name": "red pepper flakes" },
+    { "raw": "Kosher salt and freshly ground black pepper to taste", "amount": null, "unit": null, "name": "kosher salt and black pepper" },
+    { "raw": "3 tablespoons curry powder", "amount": 3, "unit": "tablespoons", "name": "curry powder" },
+    { "raw": "1 tablespoon tomato paste", "amount": 1, "unit": "tablespoon", "name": "tomato paste" },
+    { "raw": "3 cups cooked chickpeas, or 2 (15-ounce) cans, rinsed, drained, and dried as much as possible", "amount": 3, "unit": "cups", "name": "chickpeas" },
+    { "raw": "1 (14.5-ounce) can diced tomatoes", "amount": 1, "unit": null, "name": "diced tomatoes" },
+    { "raw": "1/2 to 1 cup vegetable stock, store-bought or homemade (page 232)", "amount": 0.5, "unit": "cup", "name": "vegetable stock" },
+    { "raw": "2 cups stemmed and chopped fresh kale, or 1/2 cup thawed frozen kale, squeezed dry", "amount": 2, "unit": "cups", "name": "kale" },
+    { "raw": "1 teaspoon white miso", "amount": 1, "unit": "teaspoon", "name": "white miso" },
+    { "raw": "1/4 cup light coconut milk", "amount": 0.25, "unit": "cup", "name": "light coconut milk" },
+    { "raw": "Steamed rice or store-bought naan, or Yogurt Flatbread (page 222), for serving", "amount": null, "unit": null, "name": "steamed rice or naan" },
+    { "raw": "Lime wedges, for serving", "amount": null, "unit": null, "name": "lime wedges" },
+    { "raw": "Chopped fresh cilantro, for serving", "amount": null, "unit": null, "name": "fresh cilantro" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "In a large skillet set over medium-low heat, combine the oil, onion, garlic, ginger, red pepper flakes, salt, and black pepper and cook until slightly softened, 4 to 5 minutes. Increase the heat to medium, stir in the curry powder, and cook to allow it to toast a bit, 4 or 5 minutes. Add the tomato paste, smushing it into the onion with a wooden spoon. Cook another minute until the red color darkens and it smells toasty." },
+    { "step": 2, "text": "Add the chickpeas and stir to coat them with the curry mixture. Cook until they look like they are slightly crispy, about 5 minutes. Taste a chickpea and, if you think the dish needs more seasoning, adjust accordingly." },
+    { "step": 3, "text": "Stir in the tomatoes and 1/2 cup of the stock and simmer on the stovetop for another 10 minutes or so, until everything is warmed through. (If it looks too thick, add up to the remaining 1/2 cup vegetable broth to loosen it.) Add the kale and cook until wilted." },
+    { "step": 4, "text": "Stir the miso into 1/4 cup warm water and add it to the skillet along with the coconut milk. Cook about 2 minutes more, until warmed through, then serve with rice or bread, a lime wedge, and a sprinkle of cilantro." }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Tuscan Baked Spaghetti",
+  "source_url": "https://www.thekitchn.com/tuscan-baked-spaghetti-recipe-23769287",
+  "servings": 6,
+  "prep_time": "10 min",
+  "cook_time": "40 min",
+  "tags": ["italian", "pasta", "baked", "dinner"],
+  "ingredients": [
+    { "raw": "1 pound dried spaghetti noodles", "amount": 1, "unit": "pound", "name": "spaghetti noodles" },
+    { "raw": "2 tablespoons unsalted butter", "amount": 2, "unit": "tablespoons", "name": "unsalted butter" },
+    { "raw": "1 pound raw mild or spicy Italian sausage, casings removed if needed", "amount": 1, "unit": "pound", "name": "italian sausage" },
+    { "raw": "1 medium yellow onion, diced (about 1 1/2 cups)", "amount": 1, "unit": null, "name": "yellow onion" },
+    { "raw": "1 cup julienne cut sun-dried tomatoes (about 3 ounces)", "amount": 1, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "3 cloves garlic, minced", "amount": 3, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 1/2 teaspoons kosher salt, plus more for the pasta water", "amount": 1.5, "unit": "teaspoons", "name": "kosher salt" },
+    { "raw": "1 teaspoon dried Italian seasoning", "amount": 1, "unit": "teaspoon", "name": "dried italian seasoning" },
+    { "raw": "1/4 teaspoon freshly ground black pepper", "amount": 0.25, "unit": "teaspoon", "name": "black pepper" },
+    { "raw": "3 tablespoons all-purpose flour", "amount": 3, "unit": "tablespoons", "name": "all-purpose flour" },
+    { "raw": "4 cups whole or 2% milk", "amount": 4, "unit": "cups", "name": "milk" },
+    { "raw": "5 ounces baby spinach (about 5 packed cups)", "amount": 5, "unit": "ounces", "name": "baby spinach" },
+    { "raw": "3 ounces shredded low-moisture mozzarella cheese (about 3/4 cup)", "amount": 3, "unit": "ounces", "name": "mozzarella cheese" },
+    { "raw": "Finely chopped fresh parsley leaves, for garnish (optional)", "amount": null, "unit": null, "name": "fresh parsley" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Heat the oven to 375°F. Bring a large pot of heavily salted water to a boil over medium-high heat." },
+    { "step": 2, "text": "Add 1 pound dried spaghetti to the boiling water and cook according to package directions for 1 minute less than al dente. Meanwhile, make the sauce." },
+    { "step": 3, "text": "Melt 2 tablespoons unsalted butter in a Dutch oven or high-sided skillet over medium-high heat. Add 1 pound raw Italian sausage and cook, breaking it up into small pieces with a wooden spoon, until cooked through and no longer pink, 5 to 7 minutes." },
+    { "step": 4, "text": "Stir in 1 diced medium yellow onion, 1 cup julienne cut sun-dried tomatoes, 3 minced garlic cloves, 1 1/2 teaspoons kosher salt, 1 teaspoon dried Italian seasoning, and 1/4 teaspoon black pepper. Cook, stirring occasionally, until the onion is softened, about 4 minutes." },
+    { "step": 5, "text": "Sprinkle 3 tablespoons all-purpose flour over the sausage mixture. Cook, stirring constantly, for 1 minute to cook the floury taste out. Slowly whisk in 4 cups whole milk. Bring to a boil, whisking occasionally. Reduce the heat to maintain a simmer and cook, whisking occasionally, until the sauce is slightly thickened, about 5 minutes. Stir in 5 ounces baby spinach, a handful at a time, until just wilted." },
+    { "step": 6, "text": "When the spaghetti is ready, drain, then return to the pot. Add the sauce and toss until combined. Taste and season with more kosher salt if needed. Transfer to a 9x9-inch square (at least 2 inches high) or 9x13-inch baking dish and arrange into an even layer. Sprinkle evenly with 3 ounces shredded mozzarella cheese." },
+    { "step": 7, "text": "Bake until the edges are bubbling and the cheese is melted, 18 to 20 minutes. Let cool for 5 minutes. Garnish with fresh parsley leaves if using before cutting into pieces like a lasagna and serving." }
+  ]
+}

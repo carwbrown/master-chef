@@ -1,0 +1,27 @@
+{
+  "title": "Quick Filipino Adobo",
+  "source_url": null,
+  "servings": 6,
+  "prep_time": "10 minutes",
+  "cook_time": "50 minutes",
+  "tags": ["filipino", "pork", "main", "braise"],
+  "ingredients": [
+    { "raw": "2 pounds pork shoulder or butt, cut into 1 1/2- to 2-inch cubes", "amount": 2, "unit": "pounds", "name": "pork shoulder" },
+    { "raw": "Freshly ground pepper", "amount": null, "unit": null, "name": "ground pepper" },
+    { "raw": "3/4 cup low-sodium soy sauce", "amount": 0.75, "unit": "cup", "name": "low-sodium soy sauce" },
+    { "raw": "1/3 cup white vinegar", "amount": 0.33, "unit": "cup", "name": "white vinegar" },
+    { "raw": "1/4 cup honey", "amount": 0.25, "unit": "cup", "name": "honey" },
+    { "raw": "2 tablespoons extra-virgin olive oil", "amount": 2, "unit": "tablespoons", "name": "extra-virgin olive oil" },
+    { "raw": "6 garlic cloves, minced or grated", "amount": 6, "unit": null, "name": "garlic cloves" },
+    { "raw": "4 dried bay leaves", "amount": 4, "unit": null, "name": "dried bay leaves" },
+    { "raw": "1 cup fresh pineapple chunks", "amount": 1, "unit": "cup", "name": "fresh pineapple" },
+    { "raw": "Coconut Rice (recipe follows), for serving", "amount": null, "unit": null, "name": "coconut rice" },
+    { "raw": "1 to 2 jalapeño peppers, seeded and sliced, for serving (optional)", "amount": 1, "unit": null, "name": "jalapeño peppers" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Season the pork all over with pepper. In a large glass measuring cup, combine the soy sauce, vinegar, honey, and 1 cup of water." },
+    { "step": 2, "text": "Heat the olive oil in a large, high-sided skillet over high heat. When the oil shimmers, add the pork, working in batches, and sear on all sides, about 2 minutes per side." },
+    { "step": 3, "text": "Return all the pork back to the skillet and add the garlic. Cook until fragrant, 1 to 2 minutes. Reduce the heat to low and pour in the soy sauce mixture. Add the bay leaves. Cover and simmer over low heat until the pork is cooked through and the sauce is thickening, 30 to 40 minutes. If the sauce is thickening too fast, add up to 1/4 cup of water. Remove the lid and stir in the pineapple, tossing to coat. Remove from heat." },
+    { "step": 4, "text": "Remove and discard the bay leaves. Serve the adobo over coconut rice and top with jalapeños, if desired." }
+  ]
+}

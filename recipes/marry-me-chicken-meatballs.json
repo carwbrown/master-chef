@@ -1,0 +1,32 @@
+{
+  "title": "Marry Me Chicken Meatballs",
+  "source_url": "https://www.halfbakedharvest.com/marry-me-chicken-meatballs/",
+  "servings": 6,
+  "prep_time": "20 min",
+  "cook_time": "25 min",
+  "tags": ["chicken", "italian", "dinner", "meatballs"],
+  "ingredients": [
+    { "raw": "1/2 cup oil-packed sun-dried tomatoes, oil drained", "amount": 0.5, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "1 1/2 pounds ground chicken", "amount": 1.5, "unit": "pounds", "name": "ground chicken" },
+    { "raw": "2 tablespoons basil pesto", "amount": 2, "unit": "tablespoons", "name": "basil pesto" },
+    { "raw": "2 tablespoons Italian seasoning", "amount": 2, "unit": "tablespoons", "name": "italian seasoning" },
+    { "raw": "Chili flakes", "amount": null, "unit": null, "name": "chili flakes" },
+    { "raw": "Salt and black pepper", "amount": null, "unit": null, "name": "salt and black pepper" },
+    { "raw": "1 cup grated parmesan cheese", "amount": 1, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "3 ounces prosciutto, torn", "amount": 3, "unit": "ounces", "name": "prosciutto" },
+    { "raw": "2 tablespoons salted butter", "amount": 2, "unit": "tablespoons", "name": "salted butter" },
+    { "raw": "1 shallot, chopped", "amount": 1, "unit": null, "name": "shallot" },
+    { "raw": "2 cloves garlic, chopped", "amount": 2, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 tablespoon tomato paste", "amount": 1, "unit": "tablespoon", "name": "tomato paste" },
+    { "raw": "1 cup dry white wine", "amount": 1, "unit": "cup", "name": "dry white wine" },
+    { "raw": "1 cup heavy cream or canned full fat coconut milk", "amount": 1, "unit": "cup", "name": "heavy cream" },
+    { "raw": "Fresh basil, for serving", "amount": null, "unit": null, "name": "fresh basil" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Drain 3 tablespoons of oil from the sun-dried tomato jar into a large skillet with sides. Chop the sun-dried tomatoes and set aside." },
+    { "step": 2, "text": "Add the chicken, pesto, 1 tablespoon Italian seasoning, chili flakes, salt, pepper, and 1/2 cup parmesan to a bowl. Mix to combine. Roll the meat into tablespoon-size balls (will make 15-16 meatballs)." },
+    { "step": 3, "text": "Cook the prosciutto in the skillet with the reserved oil until crispy, 5 minutes. Remove the prosciutto and set aside. To the skillet, add the meatballs. Sear until crisp, about 5 minutes, turning them 2-3 times." },
+    { "step": 4, "text": "Add the butter, 1 tablespoon Italian seasoning, the shallots, and garlic. Mix in the tomato paste. Then season with chili flakes. Add the wine. Bring to a boil, cook for 3-5 minutes, then add the cream and sun-dried tomatoes. Simmer for 10 minutes until the sauce thickens. Sprinkle over 1/2 cup parmesan." },
+    { "step": 5, "text": "Serve the meatballs topped with prosciutto and crusty bread for dipping." }
+  ]
+}

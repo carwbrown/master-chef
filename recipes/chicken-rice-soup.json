@@ -1,0 +1,32 @@
+{
+  "title": "Crockpot Hearty Chicken and Rice Soup",
+  "source_url": "https://www.halfbakedharvest.com/chicken-and-rice-soup/",
+  "servings": 6,
+  "prep_time": "15 min",
+  "cook_time": "4 hours",
+  "tags": ["soup", "chicken", "slow-cooker", "dinner"],
+  "ingredients": [
+    { "raw": "6 tablespoons salted butter", "amount": 6, "unit": "tablespoons", "name": "salted butter" },
+    { "raw": "1 pound boneless chicken breasts or thighs", "amount": 1, "unit": "pound", "name": "boneless chicken breasts or thighs" },
+    { "raw": "1 yellow onion, chopped", "amount": 1, "unit": null, "name": "yellow onion" },
+    { "raw": "2 shallots, sliced", "amount": 2, "unit": null, "name": "shallots" },
+    { "raw": "4 cloves garlic, chopped", "amount": 4, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 cup chopped celery", "amount": 1, "unit": "cup", "name": "celery" },
+    { "raw": "1 cup chopped carrots", "amount": 1, "unit": "cup", "name": "carrots" },
+    { "raw": "2 tablespoons fresh thyme leaves", "amount": 2, "unit": "tablespoons", "name": "fresh thyme leaves" },
+    { "raw": "2 tablespoons chopped sage", "amount": 2, "unit": "tablespoons", "name": "sage" },
+    { "raw": "2 teaspoons chopped fresh rosemary", "amount": 2, "unit": "teaspoons", "name": "fresh rosemary" },
+    { "raw": "1 bay leaf", "amount": 1, "unit": null, "name": "bay leaf" },
+    { "raw": "8 cups low sodium chicken broth", "amount": 8, "unit": "cups", "name": "chicken broth" },
+    { "raw": "1 1/2 cups dry basmati rice", "amount": 1.5, "unit": "cups", "name": "basmati rice" },
+    { "raw": "3 cups chopped fresh baby spinach", "amount": 3, "unit": "cups", "name": "baby spinach" },
+    { "raw": "1/4 cup chopped parsley", "amount": 0.25, "unit": "cup", "name": "parsley" },
+    { "raw": "2 tablespoons fresh lemon juice", "amount": 2, "unit": "tablespoons", "name": "lemon juice" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "In the crockpot bowl, combine butter, chicken, onions, shallots, celery, and carrots. Pour over broth. Add thyme, sage, rosemary, bay leaf; season with salt and pepper. Optionally add parmesan rind." },
+    { "step": 2, "text": "Cover and cook on low for 4–6 hours or on high for 2–4 hours. Shred the chicken." },
+    { "step": 3, "text": "Twenty minutes before serving, stir in rice, spinach, parsley, and lemon juice. Cook 15–20 minutes until rice is fluffy. (Alternatively, cook rice separately and add before serving.)" },
+    { "step": 4, "text": "Ladle soup and rice into bowls; top with fresh parsley and enjoy." }
+  ]
+}

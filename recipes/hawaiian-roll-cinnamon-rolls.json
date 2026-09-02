@@ -1,0 +1,24 @@
+{
+  "title": "Ooey Gooey Hawaiian Roll Cinnamon Rolls",
+  "source_url": "https://www.allrecipes.com/ooey-gooey-hawaiian-roll-cinnamon-rolls-recipe-11738749",
+  "servings": 12,
+  "prep_time": "10 min",
+  "cook_time": "20 min",
+  "tags": ["breakfast", "dessert", "baking"],
+  "ingredients": [
+    { "raw": "2/3 cup brown sugar", "amount": 0.67, "unit": "cup", "name": "brown sugar" },
+    { "raw": "2 teaspoons cinnamon", "amount": 2, "unit": "teaspoons", "name": "cinnamon" },
+    { "raw": "10 tablespoons butter, softened, divided", "amount": 10, "unit": "tablespoons", "name": "butter" },
+    { "raw": "1/4 teaspoon salt, divided", "amount": 0.25, "unit": "teaspoon", "name": "salt" },
+    { "raw": "1 12-count package hawaiian rolls", "amount": 1, "unit": "package", "name": "hawaiian rolls" },
+    { "raw": "4 ounces cream cheese, softened", "amount": 4, "unit": "ounces", "name": "cream cheese" },
+    { "raw": "1 teaspoon vanilla extract", "amount": 1, "unit": "teaspoon", "name": "vanilla extract" },
+    { "raw": "1 cup confectioner’s sugar", "amount": 1, "unit": "cup", "name": "confectioners sugar" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 350 degrees F (180 degrees C). Lightly grease a 9x13-inch baking dish. Slice rolls in half horizontally, keeping tops and bottoms connected." },
+    { "step": 2, "text": "Stir together brown sugar, cinnamon, 8 tablespoons butter, and 1/8 teaspoon salt in a small bowl until well combined and set aside. Spread bottom half of buns with 3/4 of butter mixture and place top halves on top. Place rolls in the prepared baking dish; spread remaining butter mixture on top." },
+    { "step": 3, "text": "Bake in the preheated oven for 20 minutes. Let stand for 5 minutes before icing." },
+    { "step": 4, "text": "Meanwhile, beat remaining 1 tablespoon butter with cream cheese, remaining salt, vanilla, and confectioner’s sugar with an electric mixer until smooth. Spread icing over warm rolls." }
+  ]
+}

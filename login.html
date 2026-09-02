@@ -3,81 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Master Chef - Sign In</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Sign in — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .auth-wrap {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 2rem;
+      background: linear-gradient(165deg, var(--blue-soft) 0%, var(--bg) 50%, var(--green-soft) 100%);
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f2ed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    .brand {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem;
+      color: var(--text); margin-bottom: 1.5rem;
     }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .logo h1 {
-      font-family: 'Crimson Text', Georgia, serif;
-      font-size: 2.5rem;
-      color: #2c1810;
-      margin-bottom: 0.5rem;
-    }
-
-    .logo p {
-      color: #5c4a3d;
-    }
-
-    .nav-links {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    .nav-links a {
-      color: #8b7355;
-      text-decoration: none;
-      margin: 0 1rem;
-    }
-
-    .nav-links a:hover {
-      color: #2c1810;
-      text-decoration: underline;
-    }
+    .back { margin-top: 1.5rem; font-size: .9rem; text-decoration: none; }
   </style>
 </head>
 <body>
-  <div class="logo">
-    <h1>👨‍🍳 Master Chef</h1>
-    <p>Recipes & Game Stats</p>
+  <div class="auth-wrap">
+    <div class="brand">Master Chef</div>
+    <login-form></login-form>
+    <a class="back muted" href="index.html">← Back</a>
   </div>
 
-  <login-form></login-form>
-
-  <div class="nav-links">
-    <a href="/leaderboard.html">View Leaderboard</a>
-  </div>
-
+  <script type="module" src="components/login-form.js"></script>
   <script type="module">
-    import './components/login-form.js';
     import { isAuthenticated } from './scripts/auth.js';
-
-    // Redirect if already logged in
-    if (isAuthenticated()) {
-      window.location.href = '/recipes.html';
-    }
+    if (isAuthenticated()) window.location.replace('hub.html');
   </script>
 </body>
 </html>

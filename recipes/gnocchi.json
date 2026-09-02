@@ -1,0 +1,31 @@
+{
+  "title": "Sheet-Pan Gnocchi with Asparagus & Pancetta",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": "10 min",
+  "cook_time": "25 min",
+  "tags": ["sheet-pan", "italian", "dinner", "gnocchi"],
+  "ingredients": [
+    { "raw": "1 pound asparagus (the thickest stalks you can find), bottom 2 inches trimmed off, stalks cut into 1 1/2-inch pieces", "amount": 1, "unit": "pound", "name": "asparagus" },
+    { "raw": "1 large shallot, thinly sliced", "amount": 1, "unit": null, "name": "shallot" },
+    { "raw": "1 pound gnocchi", "amount": 1, "unit": "pound", "name": "gnocchi" },
+    { "raw": "4 ounces diced pancetta", "amount": 4, "unit": "ounces", "name": "pancetta" },
+    { "raw": "1/4 cup extra-virgin olive oil", "amount": 0.25, "unit": "cup", "name": "extra-virgin olive oil" },
+    { "raw": "1 tablespoon fresh minced oregano leaves or 1 teaspoon dried oregano", "amount": 1, "unit": "tablespoon", "name": "fresh oregano" },
+    { "raw": "Kosher salt and freshly ground black pepper", "amount": null, "unit": null, "name": "kosher salt and black pepper" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "2 garlic cloves, grated", "amount": 2, "unit": null, "name": "garlic cloves" },
+    { "raw": "1 organic lemon, zested", "amount": 1, "unit": null, "name": "lemon" },
+    { "raw": "1/2 cup freshly grated Parmesan cheese (ideally Parmigiano Reggiano), divided", "amount": 0.5, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "Optional: store-bought pesto or burrata, to serve", "amount": null, "unit": null, "name": "pesto or burrata (optional)" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 425°F." },
+    { "step": 2, "text": "Trim two inches off the bottom of the asparagus, then cut into 1 1/2-inch pieces. Thinly slice the shallot." },
+    { "step": 3, "text": "Add the asparagus and shallot to your largest rimmed sheet pan along with the gnocchi (no need to cook it first), pancetta, olive oil, oregano, 1 teaspoon kosher salt, 1/4 teaspoon black pepper, and garlic powder. Use a microplane to grate the garlic cloves and lemon zest on top." },
+    { "step": 4, "text": "Use your hands to toss and evenly coat everything. If any gnocchi feels dry, add a little more olive oil." },
+    { "step": 5, "text": "Place on the center rack and roast for 25 minutes, stirring once at the 15-minute mark." },
+    { "step": 6, "text": "Taste and add more salt as needed (pancettas vary in saltiness)." },
+    { "step": 7, "text": "Add 1/4 cup grated Parmesan to the sheet pan and stir until incorporated. Serve with the rest of the Parmesan sprinkled on top." }
+  ]
+}

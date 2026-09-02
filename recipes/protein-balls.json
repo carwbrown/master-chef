@@ -1,0 +1,21 @@
+{
+  "title": "Protein Balls",
+  "source_url": "https://northcarolinacharm.com",
+  "servings": 12,
+  "prep_time": "10 min",
+  "cook_time": null,
+  "tags": ["snack", "no-bake", "protein"],
+  "ingredients": [
+    { "raw": "1 cup rolled oats (gluten-free)", "amount": 1, "unit": "cup", "name": "rolled oats" },
+    { "raw": "1/4 cup protein powder (Orgain Sport Protein Powder — Vanilla)", "amount": 0.25, "unit": "cup", "name": "vanilla protein powder" },
+    { "raw": "1/2 cup almond butter", "amount": 0.5, "unit": "cup", "name": "almond butter" },
+    { "raw": "1/4 cup maple syrup", "amount": 0.25, "unit": "cup", "name": "maple syrup" },
+    { "raw": "1/4 cup flax seed", "amount": 0.25, "unit": "cup", "name": "flax seed" },
+    { "raw": "pinch of salt", "amount": null, "unit": null, "name": "salt" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "In a bowl, combine the rolled oats, protein powder, almond butter, maple syrup, flax seed, and a pinch of salt. Stir until well combined." },
+    { "step": 2, "text": "Roll the mixture into 1-inch balls." },
+    { "step": 3, "text": "Refrigerate at least 30 minutes before serving. Store in the fridge." }
+  ]
+}

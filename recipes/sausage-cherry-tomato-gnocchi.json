@@ -1,0 +1,30 @@
+{
+  "title": "Sheet-Pan Italian Sausage & Cherry Tomato Gnocchi",
+  "source_url": "https://whattocook.substack.com/p/a-back-to-school-meal-plan-with-5",
+  "servings": 4,
+  "prep_time": "10 min",
+  "cook_time": "30 min",
+  "tags": ["sheet-pan", "sausage", "dinner", "italian"],
+  "ingredients": [
+    { "raw": "1 pound Italian sausage, casings removed", "amount": 1, "unit": "pound", "name": "italian sausage" },
+    { "raw": "1 large shallot, thinly sliced", "amount": 1, "unit": null, "name": "shallot" },
+    { "raw": "2 pints cherry tomatoes", "amount": 2, "unit": "pints", "name": "cherry tomatoes" },
+    { "raw": "1 pound potato gnocchi", "amount": 1, "unit": "pound", "name": "potato gnocchi" },
+    { "raw": "1/4 cup extra-virgin olive oil", "amount": 0.25, "unit": "cup", "name": "extra-virgin olive oil" },
+    { "raw": "1 tablespoon fresh minced oregano leaves or 1 teaspoon dried oregano", "amount": 1, "unit": "tablespoon", "name": "oregano" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Freshly ground black pepper", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "3 tablespoons unsalted butter", "amount": 3, "unit": "tablespoons", "name": "unsalted butter" },
+    { "raw": "1/2 cup freshly grated Parmesan cheese (ideally Parmigiano Reggiano, divided", "amount": 0.5, "unit": "cup", "name": "parmesan cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 425°F. Set your largest sheet pan out on the counter." },
+    { "step": 2, "text": "Squeeze the meat out of the casings of 1 pound Italian sausage a little at a time right into your hand and roll into rough meatballs, about 1 inch in diameter. As you make the meatballs, add them to your sheet pan." },
+    { "step": 3, "text": "Thinly slice 1 large shallot and add it to the sheet pan too, along with 2 pints cherry tomatoes, 1 pound potato gnocchi (nope, you don't have to cook it first!), 1/4 cup extra-virgin olive oil, 1 tablespoon fresh minced oregano leaves (or 1 teaspoon dried oregano), 1 teaspoon kosher salt, 1/4 teaspoon freshly ground black pepper, and 1/2 teaspoon garlic powder." },
+    { "step": 4, "text": "Use your hands to get in there and toss to evenly coat everything. If any of the gnocchi feels dry, add a little more EVOO and mix some more." },
+    { "step": 5, "text": "Place on the center rack of the oven and roast for 25 to 30 minutes." },
+    { "step": 6, "text": "Taste, and add more salt as needed. Different sausages can be more or less salty, so we only added a base amount to start." },
+    { "step": 7, "text": "Add 3 tablespoons unsalted butter and 1/4 cup grated Parmesan to the sheet pan and stir until incorporated. Serve with the rest of the Parm sprinkled on top." }
+  ]
+}

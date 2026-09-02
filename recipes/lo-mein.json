@@ -1,0 +1,28 @@
+{
+  "title": "15 Minute Sesame Garlic Chicken Lo Mein",
+  "source_url": "https://www.halfbakedharvest.com/sesame-garlic-chicken-lo-mein/",
+  "servings": 6,
+  "prep_time": "5 min",
+  "cook_time": "10 min",
+  "tags": ["asian", "chicken", "noodles", "dinner"],
+  "ingredients": [
+    { "raw": "1 pound dry lo mein or spaghetti", "amount": 1, "unit": "pound", "name": "lo mein or spaghetti" },
+    { "raw": "1/2 cup tamari/soy sauce", "amount": 0.5, "unit": "cup", "name": "tamari/soy sauce" },
+    { "raw": "1/4 cup hoisin sauce", "amount": 0.25, "unit": "cup", "name": "hoisin sauce" },
+    { "raw": "2 tablespoons toasted sesame oil", "amount": 2, "unit": "tablespoons", "name": "toasted sesame oil" },
+    { "raw": "2 tablespoons salted butter", "amount": 2, "unit": "tablespoons", "name": "salted butter" },
+    { "raw": "1 pound ground chicken", "amount": 1, "unit": "pound", "name": "ground chicken" },
+    { "raw": "6 cloves garlic, sliced or chopped", "amount": 6, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 teaspoon chili flakes", "amount": 1, "unit": "teaspoon", "name": "chili flakes" },
+    { "raw": "black pepper", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "3 cups mixed stir fry veggies (carrots/zucchini/bell peppers/broccoli)", "amount": 3, "unit": "cups", "name": "mixed stir fry veggies" },
+    { "raw": "1/4 cup fresh basil baby leaves and chopped green onions", "amount": 0.25, "unit": "cup", "name": "fresh basil and green onions" },
+    { "raw": "2 tablespoons toasted sesame seeds", "amount": 2, "unit": "tablespoons", "name": "toasted sesame seeds" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Cook the noodles according to package directions." },
+    { "step": 2, "text": "Combine the tamari/soy sauce, hoisin sauce, toasted sesame oil, and 1/4 cup water in a bowl." },
+    { "step": 3, "text": "Cook the chicken, garlic, and chili flakes with butter in a large skillet over medium heat. Season with black pepper. Add the mixed stir fry veggies and cook another 2-3 minutes. Pour in the sauce. Bring to a low simmer. Add the noodles and cook until the sauce coats the chicken and noodles." },
+    { "step": 4, "text": "Serve the noodles warm, topped with sesame seeds, baby basil leaves, and chopped green onions." }
+  ]
+}

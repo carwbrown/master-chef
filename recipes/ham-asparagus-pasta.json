@@ -1,0 +1,25 @@
+{
+  "title": "Penne with Asparagus and Cherry Tomatoes (Spring)",
+  "source_url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/penne-with-asparagus-and-cherry-tomatoes-spring-recipe-1939598",
+  "servings": 4,
+  "prep_time": "5 min",
+  "cook_time": "10 min",
+  "tags": ["italian", "pasta", "vegetarian", "spring"],
+  "ingredients": [
+    { "raw": "8 ounces penne pasta", "amount": 8, "unit": "ounces", "name": "penne pasta" },
+    { "raw": "3 tablespoons olive oil", "amount": 3, "unit": "tablespoons", "name": "olive oil" },
+    { "raw": "2 garlic cloves, minced", "amount": 2, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 1/2 pounds thin asparagus, trimmed and cut into 1-inch pieces", "amount": 1.5, "unit": "pounds", "name": "asparagus" },
+    { "raw": "Salt and freshly ground black pepper", "amount": null, "unit": null, "name": "salt and black pepper" },
+    { "raw": "2 cups (about 9 ounces) cherry tomatoes", "amount": 2, "unit": "cups", "name": "cherry tomatoes" },
+    { "raw": "1 cup shelled fresh peas", "amount": 1, "unit": "cup", "name": "fresh peas" },
+    { "raw": "1/2 cup low-sodium chicken stock", "amount": 0.5, "unit": "cup", "name": "chicken stock" },
+    { "raw": "1 cup grated Parmesan", "amount": 1, "unit": "cup", "name": "parmesan" },
+    { "raw": "2 tablespoons chopped fresh basil leaves", "amount": 2, "unit": "tablespoons", "name": "fresh basil" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Bring a large pot of salted water to a boil over high heat. Add the pasta and cook until tender but still firm to the bite, stirring occasionally, about 8 to 10 minutes. Drain the pasta, reserving about 1/2 cup of the pasta water." },
+    { "step": 2, "text": "In a large saute pan, heat the oil over medium-high heat. Add the garlic and cook until fragrant, about 1 minute. Add the asparagus, season with the salt and pepper, and cook for 3 minutes until slightly soft. Add the cherry tomatoes and peas. Cook for 2 minutes. Pour the chicken stock into the pan and bring the mixture to a simmer. Cook until the tomatoes start to burst and the stock is reduced by half, about 3 minutes." },
+    { "step": 3, "text": "Transfer the asparagus mixture to a large serving bowl. Add the cooked pasta and 1/2 of the Parmesan. Toss well, adding reserved pasta water, if needed, to loosen the pasta. Garnish with the remaining Parmesan and chopped basil." }
+  ]
+}

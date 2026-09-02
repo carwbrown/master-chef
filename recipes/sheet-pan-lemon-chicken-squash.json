@@ -1,0 +1,31 @@
+{
+  "title": "Sheet Pan Summery Lemon Oregano Chicken and Squash",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["greek", "chicken", "sheet pan", "main"],
+  "ingredients": [
+    { "raw": "2 pounds boneless, skinless chicken thighs", "amount": 2, "unit": "pounds", "name": "chicken thighs" },
+    { "raw": "2 medium zucchini", "amount": 2, "unit": null, "name": "zucchini" },
+    { "raw": "2 medium yellow squash", "amount": 2, "unit": null, "name": "yellow squash" },
+    { "raw": "1 large lemon", "amount": 1, "unit": null, "name": "lemon" },
+    { "raw": "1 (5- to 6-ounce) jar pitted green olives, such as Castelvetrano, drained (about 1 cup)", "amount": 1, "unit": null, "name": "green olives" },
+    { "raw": "4 tablespoons extra-virgin olive oil, plus more for serving", "amount": 4, "unit": "tablespoons", "name": "extra-virgin olive oil" },
+    { "raw": "1 tablespoon Greek seasoning, store-bought or homemade (see page 20)", "amount": 1, "unit": "tablespoon", "name": "greek seasoning" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "6 oregano sprigs", "amount": 6, "unit": null, "name": "oregano sprigs" },
+    { "raw": "1 large loaf focaccia or other chewy bread", "amount": 1, "unit": null, "name": "focaccia" },
+    { "raw": "Big pinch of flaky sea salt", "amount": null, "unit": null, "name": "flaky sea salt" },
+    { "raw": "4 ounces goat, brine-packed feta, or ricotta salata cheese", "amount": 4, "unit": "ounces", "name": "goat cheese" },
+    { "raw": "Freshly ground black pepper, for serving", "amount": null, "unit": null, "name": "black pepper" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 450°F." },
+    { "step": 2, "text": "Trim off any white fat from the chicken thighs. Slice the zucchini and yellow squash into 1/4-inch-thick rounds. Thinly slice the lemon. Tear or slice the olives in half." },
+    { "step": 3, "text": "Place the chicken, zucchini, squash, lemon slices, and olives on a baking sheet and toss with 3 tablespoons of the olive oil, the Greek seasoning, 1 1/4 teaspoons kosher salt, and oregano sprigs to coat well. Spread the chicken, zucchini, squash, lemon slices, and olives into an even layer, overlapping them as little as possible." },
+    { "step": 4, "text": "Roast until the chicken is cooked through and the vegetables are tender and lightly browned, about 25 minutes. If they're lacking color, broil for a few minutes at the very end to brown things up a bit." },
+    { "step": 5, "text": "Meanwhile, place the focaccia on a separate baking sheet. Drizzle with the remaining 1 tablespoon olive oil and sprinkle with the flaky salt. During the final 5 minutes of cooking the chicken thighs, place the pan in the oven to warm the focaccia through (but don't broil it)." },
+    { "step": 6, "text": "Crumble the cheese over the chicken and veggies, drizzle with olive oil, and sprinkle with some pepper. Serve your summer medley straight from the baking sheet, with big hunks of sliced or torn focaccia for sopping up all the juices." }
+  ]
+}

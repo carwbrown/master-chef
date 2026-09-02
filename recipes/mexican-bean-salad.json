@@ -1,0 +1,31 @@
+{
+  "title": "Mexican Bean Salad Bowl",
+  "source_url": "https://theplantbasedschool.com/mexican-bean-salad-bowl/",
+  "servings": 4,
+  "prep_time": "30 min",
+  "cook_time": null,
+  "tags": ["mexican", "salad", "vegetarian", "beans"],
+  "ingredients": [
+    { "raw": "1 cup cooked quinoa (or ⅓ cup uncooked to boil)", "amount": 1, "unit": "cup", "name": "cooked quinoa" },
+    { "raw": "1 can black beans (15 oz/400g) – drained and rinsed", "amount": 1, "unit": "can", "name": "black beans" },
+    { "raw": "1 can butter beans (15 oz/400g) – drained and rinsed", "amount": 1, "unit": "can", "name": "butter beans" },
+    { "raw": "1 small bell pepper, finely chopped", "amount": 1, "unit": null, "name": "bell pepper" },
+    { "raw": "1 cup corn kernels", "amount": 1, "unit": "cup", "name": "corn kernels" },
+    { "raw": "1 red onion, finely chopped", "amount": 1, "unit": null, "name": "red onion" },
+    { "raw": "½ cup feta cheese, crumbled", "amount": 0.5, "unit": "cup", "name": "feta cheese" },
+    { "raw": "4 tablespoons fresh lime juice", "amount": 4, "unit": "tablespoons", "name": "lime juice" },
+    { "raw": "3–4 tablespoons extra virgin olive oil", "amount": 3, "unit": "tablespoons", "name": "extra virgin olive oil" },
+    { "raw": "1 tablespoon honey", "amount": 1, "unit": "tablespoon", "name": "honey" },
+    { "raw": "1 tablespoon yellow mustard", "amount": 1, "unit": "tablespoon", "name": "yellow mustard" },
+    { "raw": "1 teaspoon smoked paprika", "amount": 1, "unit": "teaspoon", "name": "smoked paprika" },
+    { "raw": "½ teaspoon ground cumin", "amount": 0.5, "unit": "teaspoon", "name": "ground cumin" },
+    { "raw": "¼ cup fresh cilantro, chopped", "amount": 0.25, "unit": "cup", "name": "fresh cilantro" },
+    { "raw": "¾ teaspoon salt plus black pepper to taste", "amount": 0.75, "unit": "teaspoon", "name": "salt and black pepper" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Whisk together olive oil, lime juice, honey, mustard, smoked paprika, cumin, salt, pepper, and cilantro in a medium bowl until smooth." },
+    { "step": 2, "text": "Add black beans and butter beans to dressing; toss well and let marinate while preparing other components." },
+    { "step": 3, "text": "Combine cooked quinoa, bell pepper, corn, red onion, and crumbled feta in a large bowl, keeping separate from beans." },
+    { "step": 4, "text": "Pour marinated beans and dressing over quinoa mixture; toss until evenly coated. Serve with Greek yogurt and hot sauce if desired." }
+  ]
+}

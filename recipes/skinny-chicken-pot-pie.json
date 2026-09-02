@@ -1,0 +1,32 @@
+{
+  "title": "Skinny Chicken Pot Pie",
+  "source_url": "https://helloadamsfamily.com/2017/11/11/skinny-chicken-pot-pie-recipe/",
+  "servings": null,
+  "prep_time": null,
+  "cook_time": "65 min",
+  "tags": ["dinner", "chicken", "comfort-food"],
+  "ingredients": [
+    { "raw": "3-4 boneless, skinless chicken breasts", "amount": 3, "unit": null, "name": "chicken breasts" },
+    { "raw": "3 carrots, chopped", "amount": 3, "unit": null, "name": "carrots" },
+    { "raw": "3 celery stalks, chopped", "amount": 3, "unit": "stalks", "name": "celery" },
+    { "raw": "1 white onion, chopped", "amount": 1, "unit": null, "name": "white onion" },
+    { "raw": "1 cup frozen peas", "amount": 1, "unit": "cup", "name": "peas" },
+    { "raw": "1 15oz can cream of mushroom soup", "amount": 1, "unit": "can", "name": "cream of mushroom soup" },
+    { "raw": "1 28oz can cream of chicken soup", "amount": 1, "unit": "can", "name": "cream of chicken soup" },
+    { "raw": "Salt and pepper to taste", "amount": null, "unit": null, "name": "salt and pepper" },
+    { "raw": "Chicken stock (optional, if needed)", "amount": null, "unit": null, "name": "chicken stock" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 375 degrees." },
+    { "step": 2, "text": "Season chicken breasts with salt and pepper; bake for 20 minutes until cooked through." },
+    { "step": 3, "text": "Cool chicken, shred, and place in a mixing bowl." },
+    { "step": 4, "text": "Heat 1-2 tablespoons olive oil in a sauté pan; cook onions for 5 minutes." },
+    { "step": 5, "text": "Add carrots and celery; cook until soft and season with salt and pepper." },
+    { "step": 6, "text": "Add vegetable mixture to bowl with chicken." },
+    { "step": 7, "text": "Add frozen peas to the bowl." },
+    { "step": 8, "text": "Add both soups and combine until evenly coated." },
+    { "step": 9, "text": "Season with salt and pepper." },
+    { "step": 10, "text": "Transfer mixture to casserole dish; bake at 375 degrees for 40-45 minutes until heated through." },
+    { "step": 11, "text": "Add chicken stock if mixture becomes too dry during baking." }
+  ]
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Planner — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .phead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; justify-content: center;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .phead .corner { position: absolute; left: var(--sp-5); display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .phead .corner a { text-decoration: none; }
+    @media (max-width: 620px) {
+      .phead { padding: var(--sp-3) var(--sp-4); }
+      .phead .corner { position: static; order: -1; width: 100%; left: auto; }
+      .phead h1 { font-size: 1.05rem; }
+      .pnav { gap: var(--sp-2); }
+      .today-btn { padding: .45rem .9rem; }
+    }
+    .phead h1 { font-size: 1.35rem; margin: 0; font-family: var(--font-heading); }
+    .pnav { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; }
+    .navarrow { width: 40px; height: 40px; border: none; background: none; border-radius: 999px;
+                display: grid; place-items: center; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+    .navarrow:hover { background: var(--surface-2); color: var(--text); }
+    .today-btn { border-radius: 999px; padding: .5rem 1.1rem; font-weight: 600; }
+
+    .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--sp-3);
+            max-width: 1400px; margin: 0 auto; padding: var(--sp-5); align-items: start; }
+    @media (max-width: 900px) { .week { grid-template-columns: 1fr; } }
+
+    .day { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .day.today { box-shadow: 0 0 0 2px var(--blue); }
+    .day-head { padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--surface-2);
+                display: flex; align-items: baseline; gap: 6px; }
+    .day-head .dow { font-family: var(--font-heading); font-weight: 800; }
+    .day-head .dnum { color: var(--text-muted); font-size: .85rem; }
+    @media (max-width: 900px) { .day-head { justify-content: flex-start; } }
+
+    .slots { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+    @media (max-width: 900px) { .slots { flex-direction: row; } .slots > * { flex: 1; } }
+    .slot { border-radius: 10px; border: 1px solid var(--border); padding: 8px 10px; cursor: pointer; min-height: 58px; }
+    .slot.lunch { background: var(--blue-soft); }
+    .slot.dinner { background: var(--green-soft); }
+    .slot .lbl { font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+    .slot .name { font-weight: 600; font-size: .88rem; margin-top: 2px; line-height: 1.25; }
+    .slot .sides { font-size: .74rem; color: var(--text-muted); margin-top: 1px; }
+    .slot .add { color: var(--text-muted); font-size: .82rem; margin-top: 2px; }
+
+    /* Modal (shared style with hub) */
+    .modal { border: none; border-radius: var(--radius-lg); padding: 0; box-shadow: var(--shadow-lg);
+             max-width: 460px; width: 92vw; color: var(--text); background: var(--surface); }
+    .modal::backdrop { background: rgba(20,40,33,.4); }
+    .modal form { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
+    .modal h3 { margin: 0 0 var(--sp-1); }
+    .modal label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-muted); }
+    .modal label > select, .modal label > textarea { margin-top: 4px; }
+    .modal-actions { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-3); }
+    .btn.danger { color: var(--danger); border-color: var(--danger-soft); }
+  </style>
+</head>
+<body>
+  <header class="phead">
+    <div class="corner">
+      <a href="hub.html" title="Hub">🏠</a>
+      <a href="recipes.html" title="Recipes">📖</a>
+    </div>
+    <div class="pnav">
+      <button class="navarrow" id="prev" aria-label="Previous week">‹</button>
+      <button class="btn today-btn" id="thisWeek">This week</button>
+      <h1 id="weekLabel">—</h1>
+      <button class="navarrow" id="next" aria-label="Next week">›</button>
+    </div>
+  </header>
+
+  <div class="week" id="week"></div>
+
+  <!-- Assign meal modal -->
+  <dialog class="modal" id="mealDialog">
+    <form id="mealForm">
+      <h3 id="mealDlgTitle">Lunch</h3>
+      <input type="hidden" name="id">
+      <input type="hidden" name="date">
+      <input type="hidden" name="slot">
+      <label>Recipe
+        <select name="recipe" id="recipeSelect"><option value="">— none —</option></select>
+      </label>
+      <label>Sides / notes <textarea name="notes" rows="2" placeholder="e.g. rice, salad, garlic bread"></textarea></label>
+      <div class="modal-actions">
+        <button type="button" class="btn danger" id="mealDelete" hidden>Remove</button>
+        <span style="flex:1"></span>
+        <button type="button" class="btn" id="mealCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { ymd } from './scripts/recurrence.js';
+
+    if (!requireAuth()) { /* redirected */ }
+
+    const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const pad = (n) => String(n).padStart(2, '0');
+    const dateKey = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const toPBDate = (v) => v ? `${v} 00:00:00.000Z` : '';
+    const sameKey = (a, b) => dateKey(a) === dateKey(b);
+
+    function weekStart(d) { const x = new Date(d); x.setDate(x.getDate() - x.getDay()); x.setHours(0, 0, 0, 0); return x; }
+    let start = weekStart(new Date());
+    let recipes = [], mealsByKey = {}, mealsById = {};
+
+    (async function init() {
+      try { recipes = await pb.collection('recipes').getFullList({ sort: 'title' }); } catch (e) { recipes = []; }
+      document.getElementById('recipeSelect').innerHTML =
+        `<option value="">— none —</option>` + recipes.map(r => `<option value="${r.id}">${escapeHTML(r.title)}</option>`).join('');
+      document.getElementById('prev').onclick = () => { start.setDate(start.getDate() - 7); render(); };
+      document.getElementById('next').onclick = () => { start.setDate(start.getDate() + 7); render(); };
+      document.getElementById('thisWeek').onclick = () => { start = weekStart(new Date()); render(); };
+      document.getElementById('mealCancel').onclick = () => dlg.close();
+      document.getElementById('mealDelete').onclick = onDelete;
+      document.getElementById('mealForm').addEventListener('submit', onSave);
+      await render();
+    })();
+
+    async function render() {
+      const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(start); d.setDate(start.getDate() + i); return d; });
+      const first = days[0], last = days[6];
+      const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      document.getElementById('weekLabel').textContent = `${fmt(first)} – ${fmt(last)}`;
+
+      let all = [];
+      try { all = await pb.collection('meals').getFullList({ expand: 'recipe' }); } catch (e) { all = []; }
+      mealsByKey = {}; mealsById = {};
+      for (const m of all) { mealsById[m.id] = m; mealsByKey[`${m.date.slice(0, 10)}|${m.slot}`] = m; }
+
+      const today = new Date();
+      document.getElementById('week').innerHTML = days.map(d => {
+        const key = dateKey(d);
+        return `<div class="day ${sameKey(d, today) ? 'today' : ''}">
+            <div class="day-head"><span class="dow">${DOW[d.getDay()]}</span><span class="dnum">${d.getMonth() + 1}/${d.getDate()}</span></div>
+            <div class="slots">
+              ${slotHTML(key, 'lunch')}
+              ${slotHTML(key, 'dinner')}
+            </div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.slot').forEach(el =>
+        el.addEventListener('click', () => openMeal(el.dataset.date, el.dataset.slot, el.dataset.id)));
+    }
+
+    function slotHTML(key, slot) {
+      const m = mealsByKey[`${key}|${slot}`];
+      const label = slot[0].toUpperCase() + slot.slice(1);
+      if (!m) {
+        return `<div class="slot ${slot}" data-date="${key}" data-slot="${slot}">
+            <div class="lbl">${label}</div><div class="add">＋ Add</div></div>`;
+      }
+      const recipe = m.expand && m.expand.recipe;
+      const name = recipe ? recipe.title : (m.notes || '—');
+      const sides = recipe ? (m.notes || '') : '';
+      return `<div class="slot ${slot}" data-date="${key}" data-slot="${slot}" data-id="${m.id}">
+          <div class="lbl">${label}</div>
+          <div class="name">${escapeHTML(name)}</div>
+          ${sides ? `<div class="sides">${escapeHTML(sides)}</div>` : ''}
+        </div>`;
+    }
+
+    const dlg = document.getElementById('mealDialog');
+    const form = document.getElementById('mealForm');
+
+    function openMeal(date, slot, id) {
+      form.reset();
+      document.getElementById('mealDlgTitle').textContent = `${slot[0].toUpperCase() + slot.slice(1)} · ${date}`;
+      form.date.value = date; form.slot.value = slot; form.id.value = id || '';
+      const m = id ? mealsById[id] : null;
+      if (m) { form.recipe.value = m.recipe || ''; form.notes.value = m.notes || ''; }
+      document.getElementById('mealDelete').hidden = !id;
+      dlg.showModal();
+    }
+
+    async function onSave(e) {
+      e.preventDefault();
+      const data = { date: toPBDate(form.date.value), slot: form.slot.value,
+                     recipe: form.recipe.value || null, notes: form.notes.value.trim() };
+      try {
+        if (form.id.value) await pb.collection('meals').update(form.id.value, data);
+        else await pb.collection('meals').create(data);
+        dlg.close(); await render();
+      } catch (err) { alert('Could not save: ' + (err?.message || err)); }
+    }
+
+    async function onDelete() {
+      if (!form.id.value || !confirm('Remove this meal?')) return;
+      try { await pb.collection('meals').delete(form.id.value); dlg.close(); await render(); }
+      catch (err) { alert('Could not remove: ' + (err?.message || err)); }
+    }
+  </script>
+</body>
+</html>

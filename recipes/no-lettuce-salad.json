@@ -1,0 +1,26 @@
+{
+  "title": "The Best No Lettuce Salad",
+  "source_url": "https://fitfoodiefinds.com/no-lettuce-salad/",
+  "servings": 4,
+  "prep_time": "15 min",
+  "cook_time": null,
+  "tags": ["salad", "vegetarian", "side", "no-cook"],
+  "ingredients": [
+    { "raw": "15 oz. garbanzo beans, drained and rinsed", "amount": 15, "unit": "oz", "name": "garbanzo beans" },
+    { "raw": "10 oz. cherry tomatoes, halved", "amount": 10, "unit": "oz", "name": "cherry tomatoes" },
+    { "raw": "½ small red onion, minced", "amount": 0.5, "unit": null, "name": "red onion" },
+    { "raw": "5-6 mini cucumbers, sliced into half moons (1 large cucumber will work, too)", "amount": 5, "unit": null, "name": "mini cucumbers" },
+    { "raw": "2 tablespoons balsamic vinegar", "amount": 2, "unit": "tablespoons", "name": "balsamic vinegar" },
+    { "raw": "2 tablespoons olive oil", "amount": 2, "unit": "tablespoons", "name": "olive oil" },
+    { "raw": "2 teaspoons fresh lemon juice", "amount": 2, "unit": "teaspoons", "name": "lemon juice" },
+    { "raw": "½ teaspoon sea salt", "amount": 0.5, "unit": "teaspoon", "name": "sea salt" },
+    { "raw": "½ teaspoon freshly ground pepper", "amount": 0.5, "unit": "teaspoon", "name": "black pepper" },
+    { "raw": "½ teaspoon everything bagel seasoning + more, to taste", "amount": 0.5, "unit": "teaspoon", "name": "everything bagel seasoning" },
+    { "raw": "2 cups 2% cottage cheese, for serving", "amount": 2, "unit": "cups", "name": "cottage cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Add the garbanzo beans, tomatoes, onion, and cucumbers to a bowl and toss to combine. Drizzle the ingredients with the balsamic vinegar, olive oil, and lemon juice. Toss again." },
+    { "step": 2, "text": "Season with salt, pepper, and everything bagel seasoning and toss." },
+    { "step": 3, "text": "Serve the salad over ⅓ cup of cottage cheese. Season with more everything bagel seasoning, to taste." }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "One-Pot Springy Shrimp Primavera Pasta",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["italian", "shrimp", "pasta", "main"],
+  "ingredients": [
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "1 pound small pasta noodles, such as rotini, farfalle, or orecchiette", "amount": 1, "unit": "pound", "name": "small pasta noodles" },
+    { "raw": "1 bunch medium-thick asparagus (see Tip)", "amount": 1, "unit": "bunch", "name": "asparagus" },
+    { "raw": "1 lemon", "amount": 1, "unit": null, "name": "lemon" },
+    { "raw": "1 pound peeled and deveined jumbo (16/20) raw shrimp (tails on or off)", "amount": 1, "unit": "pound", "name": "raw shrimp" },
+    { "raw": "2 cups frozen English peas", "amount": 2, "unit": "cups", "name": "frozen english peas" },
+    { "raw": "1 or 2 (5.3-ounce) blocks Boursin cheese (any flavor—I like Garlic and Fine Herbs; see Tip)", "amount": 1, "unit": null, "name": "boursin cheese" },
+    { "raw": "4 tablespoons (1/2 stick) unsalted butter", "amount": 4, "unit": "tablespoons", "name": "unsalted butter" },
+    { "raw": "Freshly ground black pepper", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "Toppings (optional): finely chopped fresh basil or parsley, red pepper flakes, freshly grated Parmesan cheese", "amount": null, "unit": null, "name": "toppings" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Bring a large pot of heavily salted water to a boil over high heat. Add the pasta and cook until al dente according to the package directions." },
+    { "step": 2, "text": "Meanwhile, trim the asparagus and cut the stalks into 1-inch pieces. Halve the lemon." },
+    { "step": 3, "text": "Two minutes before the pasta is finished cooking, add the asparagus to the pot. One minute before the pasta is done, add the shrimp and peas to the pot as well. Stir to make sure everything is submerged." },
+    { "step": 4, "text": "Scoop out 2 cups of the pasta cooking water, then drain the pasta, asparagus, shrimp, and peas. (It's okay if the shrimp don't look totally cooked yet; they'll continue cooking in the sauce.)" },
+    { "step": 5, "text": "Place the empty pot over medium heat. Add 3/4 cup of the reserved pasta cooking water, the juice of both lemon halves, the Boursin, butter, 2 teaspoons salt, and some black pepper. (If you're using 2 blocks of Boursin, add another 1/4 to 1/2 cup pasta cooking water.) Stir until a smooth sauce forms, 2 to 3 minutes." },
+    { "step": 6, "text": "Add the pasta, asparagus, shrimp, and peas to the pot of sauce. Use a big spoon to toss to coat everything evenly. If your sauce is too thick, add more pasta cooking water; if it's too liquidy at the bottom of the pot, keep tossing. Taste and add more salt, black pepper, and/or lemon juice until it's absolutely delicious. If you like, sprinkle with fresh herbs, red pepper flakes, and/or Parm before serving." }
+  ]
+}

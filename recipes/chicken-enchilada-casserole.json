@@ -1,0 +1,29 @@
+{
+  "title": "Chicken Enchilada Casserole",
+  "source_url": "https://www.gimmesomeoven.com/chicken-enchilada-casserole-recipe/",
+  "servings": 8,
+  "prep_time": "20 min",
+  "cook_time": "30 min",
+  "tags": ["mexican", "chicken", "casserole", "dinner"],
+  "ingredients": [
+    { "raw": "1 tablespoon olive oil", "amount": 1, "unit": "tablespoon", "name": "olive oil" },
+    { "raw": "1 medium white onion, peeled and diced", "amount": 1, "unit": null, "name": "white onion" },
+    { "raw": "1 large red bell pepper, cored and diced", "amount": 1, "unit": null, "name": "red bell pepper" },
+    { "raw": "1 (4 ounce) can diced green chiles", "amount": 1, "unit": "can", "name": "diced green chiles" },
+    { "raw": "2 (15 ounce) cans beans, rinsed and drained (one can pinto, one can black beans)", "amount": 2, "unit": "cans", "name": "beans" },
+    { "raw": "1 (8 ounce) can whole kernel corn, drained", "amount": 1, "unit": "can", "name": "whole kernel corn" },
+    { "raw": "3 cups (about 1.5 pounds) shredded or diced cooked chicken", "amount": 3, "unit": "cups", "name": "cooked chicken" },
+    { "raw": "3 cups red enchilada sauce, homemade or store-bought, divided", "amount": 3, "unit": "cups", "name": "red enchilada sauce" },
+    { "raw": "12 corn tortillas, halved", "amount": 12, "unit": null, "name": "corn tortillas" },
+    { "raw": "3 cups shredded Monterrey Jack or Mexican blend cheese", "amount": 3, "unit": "cups", "name": "monterrey jack or mexican blend cheese" },
+    { "raw": "Toppings: chopped fresh cilantro, diced red onion, thinly-sliced green onion and/or diced avocado", "amount": null, "unit": null, "name": "toppings" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Heat oven to 375°F. Mist a 9×13-inch baking dish with cooking spray; set aside." },
+    { "step": 2, "text": "Heat oil in a large sauté pan over medium-high heat. Add onion and bell pepper and sauté for 6-7 minutes, or until softened. Stir in the diced green chiles, beans, corn, chicken and 2 cups enchilada sauce, and stir to combine. Remove from heat and set aside." },
+    { "step": 3, "text": "Pour about 1/2 cup of the remaining enchilada sauce in the baking dish, and spread until the bottom of the dish is evenly coated. Top with a layer of about 8 tortilla halves, so that the entire dish is covered. Top evenly with 1/3 of the chicken mixture, followed by 1/3 of the cheese. Repeat with another layer of tortillas, chicken mixture, and cheese. Followed by a final layer of tortillas, chicken mixture, the remaining 1/2 cup of enchilada sauce, and cheese." },
+    { "step": 4, "text": "Cover the pan with aluminum foil, then bake for 20 minutes." },
+    { "step": 5, "text": "Remove pan and remove aluminum foil. Uncover and bake for 10 more minutes, until the cheese is thoroughly melted." },
+    { "step": 6, "text": "Remove from the oven and serve warm, garnished with your desired toppings." }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Skillet Un-Stuffed Peppers",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["american", "beef", "skillet", "main"],
+  "ingredients": [
+    { "raw": "3 red, yellow, or orange bell peppers", "amount": 3, "unit": null, "name": "bell peppers" },
+    { "raw": "1 small white onion", "amount": 1, "unit": null, "name": "white onion" },
+    { "raw": "1/2 bunch parsley", "amount": 0.5, "unit": "bunch", "name": "parsley" },
+    { "raw": "2 tablespoons extra-virgin olive oil", "amount": 2, "unit": "tablespoons", "name": "extra-virgin olive oil" },
+    { "raw": "1 pound 85/15 ground beef", "amount": 1, "unit": "pound", "name": "ground beef" },
+    { "raw": "2 teaspoons kosher salt", "amount": 2, "unit": "teaspoons", "name": "kosher salt" },
+    { "raw": "3/4 cup couscous", "amount": 0.75, "unit": "cup", "name": "couscous" },
+    { "raw": "1 (15-ounce) can diced fire-roasted tomatoes, with their juices", "amount": 1, "unit": null, "name": "fire-roasted tomatoes" },
+    { "raw": "1 (15-ounce) can tomato sauce", "amount": 1, "unit": null, "name": "tomato sauce" },
+    { "raw": "1 tablespoon dried oregano", "amount": 1, "unit": "tablespoon", "name": "dried oregano" },
+    { "raw": "1 tablespoon garlic powder", "amount": 1, "unit": "tablespoon", "name": "garlic powder" },
+    { "raw": "1 teaspoon smoked paprika", "amount": 1, "unit": "teaspoon", "name": "smoked paprika" },
+    { "raw": "1 teaspoon ground cumin", "amount": 1, "unit": "teaspoon", "name": "ground cumin" },
+    { "raw": "8 ounces shredded pepper Jack cheese (2 cups)", "amount": 8, "unit": "ounces", "name": "pepper jack cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Position a rack about 4 inches from the broiler heat element and turn the broiler to high." },
+    { "step": 2, "text": "Finely chop the bell peppers, onion, and the parsley leaves and tender stems. Warm the olive oil in a deep 12-inch ovenproof skillet or saucepan over medium-high heat. When it shimmers, add the ground beef, peppers, onion, and salt and cook, breaking up the meat into small crumbles with a wooden spoon, until the beef is cooked through and the vegetables have softened, 5 to 6 minutes." },
+    { "step": 3, "text": "Add the couscous, diced tomatoes with their juices, tomato sauce, oregano, garlic powder, paprika, cumin, and half the chopped parsley. Stir to combine and cook until the tomatoes are simmering, about 1 minute. Stir half the cheese into the mixture. Smooth the surface of the mixture, then sprinkle the remaining cheese over the top and transfer the skillet to the oven. Broil until the cheese is melted and golden brown, 2 to 3 minutes." },
+    { "step": 4, "text": "Garnish with more parsley, scoop into four bowls, and enjoy immediately!" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Teriyaki Salmon Bowls",
+  "source_url": "https://whattocook.substack.com/p/a-back-to-school-meal-plan-with-5",
+  "servings": 4,
+  "prep_time": "15 min",
+  "cook_time": "25 min",
+  "tags": ["salmon", "bowl", "dinner", "teriyaki"],
+  "ingredients": [
+    { "raw": "3 tablespoons unsalted butter", "amount": 3, "unit": "tablespoons", "name": "unsalted butter" },
+    { "raw": "1 1/2 cups white rice, rinsed", "amount": 1.5, "unit": "cups", "name": "white rice" },
+    { "raw": "2 1/2 cups plus 1/4 cup water, divided", "amount": 2.5, "unit": "cups", "name": "water" },
+    { "raw": "2 tablespoons sesame oil", "amount": 2, "unit": "tablespoons", "name": "sesame oil" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Freshly ground black pepper", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "1 pound skinless salmon filets, cut into 1-inch cubes", "amount": 1, "unit": "pound", "name": "salmon filets" },
+    { "raw": "2 tablespoons plus 2 teaspoons all-purpose flour, divided", "amount": 2, "unit": "tablespoons", "name": "all-purpose flour" },
+    { "raw": "Neutral oil, such as avocado or vegetable", "amount": null, "unit": null, "name": "neutral oil" },
+    { "raw": "1/4 cup low-sodium soy sauce", "amount": 0.25, "unit": "cup", "name": "low-sodium soy sauce" },
+    { "raw": "1/4 cup brown sugar or honey", "amount": 0.25, "unit": "cup", "name": "brown sugar" },
+    { "raw": "3 garlic cloves, minced", "amount": 3, "unit": "cloves", "name": "garlic" },
+    { "raw": "1-inch piece fresh ginger, minced or grated", "amount": 1, "unit": "piece", "name": "fresh ginger" },
+    { "raw": "1 large English cucumber, diced", "amount": 1, "unit": null, "name": "english cucumber" },
+    { "raw": "1 cup shelled edamame (frozen is fine, but ensure you thaw it for this recipe)", "amount": 1, "unit": "cup", "name": "shelled edamame" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Melt 3 tablespoons unsalted butter in a small pot over medium-low heat. Add 1 1/2 cups rinsed white rice, stir to coat it in butter, and toast the rice for 1 minute. Stir in 2 1/2 cups water, 2 tablespoons sesame oil, and 3/4 teaspoon kosher salt and raise the heat to high to bring to a boil. Once boiling, reduce to low heat, cover, and cook for 15 minutes. After 15 minutes, turn the heat off but leave the rice covered until ready to eat." },
+    { "step": 2, "text": "Meanwhile, make the salmon. Cut 1 pound skinless salmon filets into 1-inch cubes and season it with 1/2 teaspoon kosher salt and several grinds black pepper. Sprinkle salmon with 2 tablespoons all-purpose flour and toss it around to coat it. It's fine if it doesn't all stick, but you want each piece of salmon to be covered in flour." },
+    { "step": 3, "text": "In your largest skillet (preferably nonstick, especially if you aren't super comfortable with cooking fish), warm enough neutral oil to coat the bottom of the skillet (it was about 2 tablespoons for a 12-inch skillet) over medium-high heat." },
+    { "step": 4, "text": "While it's heating, make the sauce: In a small bowl, stir together 1/4 cup low-sodium soy sauce, 1/4 cup brown sugar or honey, 1/4 cup water, 3 minced garlic cloves, a 1-inch piece of grated/minced fresh ginger, and 2 teaspoons all-purpose flour. Set aside." },
+    { "step": 5, "text": "Carefully add the salmon cubes to the skillet in an even layer and cook until browned on the bottom, 3 to 4 minutes. Use a thin spatula to get underneath the fish without tearing it. Flip the salmon and cook for another 2 minutes, then add the sauce to the skillet and cook for an additional 1 to 3 minutes, until the sauce thickens and coats the salmon. Gently flip the salmon over a few times to coat it. Keep a close eye on things — we want the sauce to thicken to a nice saucy consistency, not evaporate to the point of burning." },
+    { "step": 6, "text": "Use a fork to gently fluff the rice." },
+    { "step": 7, "text": "Make bowls with rice, salmon, and plenty of sauce. Top with diced cucumber and thawed edamame." }
+  ]
+}

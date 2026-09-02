@@ -1,0 +1,34 @@
+{
+  "title": "Creamy Chicken Sausage & Spinach Egg Bake",
+  "source_url": "https://whattocook.substack.com/p/a-back-to-school-meal-plan-with-5",
+  "servings": 8,
+  "prep_time": "10 min",
+  "cook_time": "1 hr 15 min",
+  "tags": ["breakfast", "casserole", "chicken", "eggs"],
+  "ingredients": [
+    { "raw": "1 tablespoon extra-virgin olive oil", "amount": 1, "unit": "tablespoon", "name": "extra-virgin olive oil" },
+    { "raw": "12 ounces chicken sausages, sliced into rounds", "amount": 12, "unit": "ounces", "name": "chicken sausages" },
+    { "raw": "1 red bell pepper, diced", "amount": 1, "unit": null, "name": "red bell pepper" },
+    { "raw": "5 ounces fresh baby spinach (or 10 ounces frozen spinach, thawed and drained)", "amount": 5, "unit": "ounces", "name": "baby spinach" },
+    { "raw": "Kosher salt to taste", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Black pepper to taste", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "12 large eggs", "amount": 12, "unit": null, "name": "eggs" },
+    { "raw": "1/2 cup whole milk", "amount": 0.5, "unit": "cup", "name": "whole milk" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1/4 teaspoon red pepper flakes (optional)", "amount": 0.25, "unit": "teaspoon", "name": "red pepper flakes" },
+    { "raw": "4 ounces cream cheese, cut into tiny pieces", "amount": 4, "unit": "ounces", "name": "cream cheese" },
+    { "raw": "8 ounces white Cheddar cheese, shredded (about 2 cups), divided", "amount": 8, "unit": "ounces", "name": "white cheddar cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 275°F and grease a 9x13-inch baking dish." },
+    { "step": 2, "text": "Heat olive oil in a large skillet over medium-high heat." },
+    { "step": 3, "text": "Add sausage and bell pepper; cook until sausage is browned and pepper is softened, about 6-7 minutes." },
+    { "step": 4, "text": "Add spinach and cook until wilted or heated through; season with salt and pepper." },
+    { "step": 5, "text": "Whisk together eggs, milk, 1 teaspoon salt, 1/2 teaspoon pepper, garlic powder, and red pepper flakes." },
+    { "step": 6, "text": "Spread sausage mixture in the prepared baking dish." },
+    { "step": 7, "text": "Scatter cream cheese pieces and sprinkle 1.5 cups Cheddar over the mixture." },
+    { "step": 8, "text": "Pour egg mixture over everything; top with remaining 0.5 cup Cheddar." },
+    { "step": 9, "text": "Bake 1 hour until center is set and top is golden brown." },
+    { "step": 10, "text": "Cool 5 minutes before slicing and serving warm." }
+  ]
+}

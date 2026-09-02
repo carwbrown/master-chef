@@ -1,0 +1,28 @@
+{
+  "title": "One-Pot White Bean, Spinach & Sun-Dried Tomato Orzo",
+  "source_url": "https://www.eatingwell.com/one-pot-white-bean-spinach-sun-dried-tomato-orzo-8760401",
+  "servings": 6,
+  "prep_time": "15 min",
+  "cook_time": "30 min",
+  "tags": ["vegetarian", "orzo", "one-pot", "mediterranean"],
+  "ingredients": [
+    { "raw": "2 tablespoons oil from sun-dried tomato jar, divided", "amount": 2, "unit": "tablespoons", "name": "sun-dried tomato oil" },
+    { "raw": "1 cup thinly sliced sun-dried tomatoes in oil", "amount": 1, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "1 medium shallot, thinly sliced (about ½ cup)", "amount": 1, "unit": null, "name": "shallot" },
+    { "raw": "1 cup whole-wheat orzo", "amount": 1, "unit": "cup", "name": "whole-wheat orzo" },
+    { "raw": "3 cups unsalted vegetable broth", "amount": 3, "unit": "cups", "name": "vegetable broth" },
+    { "raw": "2 (15-ounce) cans no-salt-added cannellini beans, rinsed", "amount": 2, "unit": "cans", "name": "cannellini beans" },
+    { "raw": "1 (14.5-ounce) jar marinated quartered artichoke hearts, drained", "amount": 1, "unit": "jar", "name": "marinated artichoke hearts" },
+    { "raw": "½ teaspoon salt", "amount": 0.5, "unit": "teaspoon", "name": "salt" },
+    { "raw": "½ teaspoon ground pepper", "amount": 0.5, "unit": "teaspoon", "name": "ground pepper" },
+    { "raw": "1 (5-ounce) package baby spinach", "amount": 1, "unit": "package", "name": "baby spinach" },
+    { "raw": "1 (5.2-ounce) package garlic-and-herb spreadable cheese (such as Boursin)", "amount": 1, "unit": "package", "name": "garlic-and-herb spreadable cheese" },
+    { "raw": "1 tablespoon balsamic vinegar", "amount": 1, "unit": "tablespoon", "name": "balsamic vinegar" },
+    { "raw": "¼ cup chopped fresh basil", "amount": 0.25, "unit": "cup", "name": "fresh basil" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Heat 2 tablespoons sun-dried tomato oil in a large nonstick skillet over medium heat. Add sliced shallot; cook, stirring often, until aromatic and translucent, about 6 minutes." },
+    { "step": 2, "text": "Stir in 1 cup orzo; cook, stirring often, until toasted, about 1 minute. Add 1 cup sun-dried tomatoes, 3 cups vegetable broth, the rinsed beans, the drained artichoke hearts and ½ teaspoon each salt and pepper. Bring to a boil over medium-high heat; reduce heat to medium-low, cover and simmer until the orzo is al dente, about 15 minutes." },
+    { "step": 3, "text": "Stir in 1 (5-ounce) package baby spinach and 1 (5.2-ounce) package cheese. Cook, uncovered and stirring often, until the spinach is wilted and the cheese is melted, about 2 minutes. Remove from heat and stir in vinegar. Top with ¼ cup basil." }
+  ]
+}

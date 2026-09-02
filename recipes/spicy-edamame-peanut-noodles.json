@@ -1,0 +1,31 @@
+{
+  "title": "Spicy Edamame Peanut Noodles",
+  "source_url": "https://jenneatsgoood.com/spicy-edamame-peanut-noodles/",
+  "servings": 4,
+  "prep_time": "20 min",
+  "cook_time": "5 min",
+  "tags": ["asian", "noodles", "vegetarian", "dinner"],
+  "ingredients": [
+    { "raw": "10 ounces ramen (millet & brown rice ramen recommended)", "amount": 10, "unit": "ounces", "name": "ramen" },
+    { "raw": "1/4 cup coconut aminos", "amount": 0.25, "unit": "cup", "name": "coconut aminos" },
+    { "raw": "2 tablespoons creamy peanut butter", "amount": 2, "unit": "tablespoons", "name": "peanut butter" },
+    { "raw": "1 tablespoon rice vinegar", "amount": 1, "unit": "tablespoon", "name": "rice vinegar" },
+    { "raw": "1 tablespoon toasted sesame oil", "amount": 1, "unit": "tablespoon", "name": "sesame oil" },
+    { "raw": "1 tablespoon sriracha (optional)", "amount": 1, "unit": "tablespoon", "name": "sriracha" },
+    { "raw": "1 tablespoon warm water", "amount": 1, "unit": "tablespoon", "name": "water" },
+    { "raw": "2 teaspoons grated ginger root (or 1 teaspoon ground ginger)", "amount": 2, "unit": "teaspoons", "name": "ginger" },
+    { "raw": "12 ounces shelled edamame (thawed if frozen)", "amount": 12, "unit": "ounces", "name": "edamame" },
+    { "raw": "1 English cucumber, thinly sliced", "amount": 1, "unit": null, "name": "cucumber" },
+    { "raw": "6 green onions, thinly sliced", "amount": 6, "unit": null, "name": "green onions" },
+    { "raw": "Roughly chopped cilantro, for topping", "amount": null, "unit": null, "name": "cilantro" },
+    { "raw": "Roughly chopped mint, for topping", "amount": null, "unit": null, "name": "mint" },
+    { "raw": "Sesame seeds, for garnish (optional)", "amount": null, "unit": null, "name": "sesame seeds" },
+    { "raw": "1 lime, quartered, for serving", "amount": 1, "unit": null, "name": "lime" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Boil water and prepare ramen per package directions. Drain, rinse with cold water, and return to pot off heat. Toss with sesame oil to prevent sticking." },
+    { "step": 2, "text": "Combine coconut aminos, peanut butter, rice vinegar, sesame oil, sriracha, warm water, and ginger in a bowl or jar. Whisk or shake vigorously until smooth, about 45 seconds." },
+    { "step": 3, "text": "Add cooked noodles, edamame, cucumber, and green onion to a mixing bowl. Pour sauce over mixture and toss until evenly coated. Top with cilantro and mint." },
+    { "step": 4, "text": "Refrigerate until serving. Top each portion with sesame seeds and lime juice before eating." }
+  ]
+}

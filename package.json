@@ -1,0 +1,12 @@
+{
+  "name": "master-chef",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Family hub — calendar, chores, and recipes (vanilla HTML/CSS/JS + PocketBase).",
+  "scripts": {
+    "import:dev": "node scripts/import-recipes.mjs dev",
+    "import:prod": "node scripts/import-recipes.mjs prod",
+    "deploy:schema": "./deploy-migrations.sh"
+  }
+}

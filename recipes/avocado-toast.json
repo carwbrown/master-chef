@@ -1,0 +1,23 @@
+{
+  "title": "Avocado Toast",
+  "source_url": null,
+  "servings": 6,
+  "prep_time": "10 min",
+  "cook_time": "5 min",
+  "tags": ["breakfast", "vegetarian", "quick"],
+  "ingredients": [
+    { "raw": "6 slices sourdough or whole-wheat bread", "amount": 6, "unit": "slices", "name": "sourdough or whole-wheat bread" },
+    { "raw": "2 Tbsp. extra virgin olive oil, divided", "amount": 2, "unit": "tablespoons", "name": "extra virgin olive oil" },
+    { "raw": "1 tsp. kosher salt, divided, plus more to taste", "amount": 1, "unit": "teaspoon", "name": "kosher salt" },
+    { "raw": "3 ripe Hass avocados", "amount": 3, "unit": null, "name": "hass avocados" },
+    { "raw": "2 Tbsp. fresh lemon juice", "amount": 2, "unit": "tablespoons", "name": "lemon juice" },
+    { "raw": "1/4 tsp. ground black pepper, plus more to taste", "amount": 0.25, "unit": "teaspoon", "name": "ground black pepper" },
+    { "raw": "Red pepper flakes, to garnish (optional)", "amount": null, "unit": null, "name": "red pepper flakes (optional)" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Set the oven to broil on high. Arrange the oven racks so the top one is close to the heating element. Line a baking sheet with foil and arrange the bread on it. Broil the bread for 1-2 minutes on each side." },
+    { "step": 2, "text": "Brush one side of the toasted bread with 1 tablespoon of oil and sprinkle with 1/2 teaspoon of salt." },
+    { "step": 3, "text": "Cut the avocados in half, pit them, and scoop the flesh into a medium bowl, discarding the skin. Add the lemon juice, remaining 1 tablespoon olive oil, remaining 1/2 teaspoon salt, and pepper. Stir with a fork, gently mashing the avocado." },
+    { "step": 4, "text": "Divide the mashed avocado among the toasted bread. Sprinkle with red pepper flakes, if desired." }
+  ]
+}

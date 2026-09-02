@@ -1,0 +1,28 @@
+{
+  "title": "Peanutty Pork & Brussels",
+  "source_url": null,
+  "servings": 2,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["asian", "pork", "main", "skillet"],
+  "ingredients": [
+    { "raw": "1 tablespoon untoasted sesame oil", "amount": 1, "unit": "tablespoon", "name": "untoasted sesame oil" },
+    { "raw": "1 pound ground pork", "amount": 1, "unit": "pound", "name": "ground pork" },
+    { "raw": "1/2 teaspoon kosher salt, plus more as needed", "amount": 0.5, "unit": "teaspoon", "name": "kosher salt" },
+    { "raw": "1 pound Brussels sprouts", "amount": 1, "unit": "pound", "name": "brussels sprouts" },
+    { "raw": "4 garlic cloves", "amount": 4, "unit": null, "name": "garlic cloves" },
+    { "raw": "1 cup fresh cilantro leaves and tender stems", "amount": 1, "unit": "cup", "name": "fresh cilantro" },
+    { "raw": "1/4 cup low-sodium soy sauce", "amount": 0.25, "unit": "cup", "name": "low-sodium soy sauce" },
+    { "raw": "2 tablespoons rice vinegar", "amount": 2, "unit": "tablespoons", "name": "rice vinegar" },
+    { "raw": "2 tablespoons creamy peanut butter", "amount": 2, "unit": "tablespoons", "name": "creamy peanut butter" },
+    { "raw": "1 to 2 tablespoons sriracha", "amount": 1, "unit": "tablespoons", "name": "sriracha" },
+    { "raw": "Toasted sesame seeds", "amount": null, "unit": null, "name": "toasted sesame seeds" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Warm the sesame oil in a large skillet over medium-high heat. When it shimmers, add the ground pork and salt. Cook, using a wooden spoon or spatula to break the pork up into tiny crumbles, until the pork is cooked through and no longer pink, 5 to 7 minutes." },
+    { "step": 2, "text": "Meanwhile, trim the Brussels sprouts, then halve them through their stems, place them flat side down, and slice them as thinly as you can—or throw them all in a food processor and pulse until they are shredded!" },
+    { "step": 3, "text": "Add the sliced Brussels sprouts to the skillet and cook, stirring occasionally, until very tender, 3 to 4 minutes. Increase the heat as needed to get some nice brown color on the pork and Brussels. Use a Microplane to grate the garlic directly into the skillet and cook, stirring, until fragrant, about 30 seconds. Reduce the heat to medium. Finely chop the cilantro, stir it in, then scooch everything to one side of the skillet, leaving the other side empty." },
+    { "step": 4, "text": "Add the soy sauce, vinegar, peanut butter, and 1 tablespoon of the sriracha to the empty side of the skillet and stir to dissolve the peanut butter (see Learn). Don't worry if bits of food get mixed in there. Once you've created a somewhat smooth sauce, stir it into the pork and Brussels to mix and coat evenly." },
+    { "step": 5, "text": "Taste and add more salt or sriracha as needed. Divide between plates, sprinkle with sesame seeds, and serve." }
+  ]
+}

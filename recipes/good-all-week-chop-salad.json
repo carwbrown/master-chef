@@ -1,0 +1,41 @@
+{
+  "title": "Good-All-Week Chop Salad",
+  "source_url": "https://whattocook.substack.com/p/a-back-to-school-meal-plan-with-5",
+  "servings": 8,
+  "prep_time": "30 min",
+  "cook_time": null,
+  "tags": ["salad", "chicken", "meal-prep", "lunch"],
+  "ingredients": [
+    { "raw": "2 tablespoons extra-virgin olive oil", "amount": 2, "unit": "tablespoons", "name": "extra-virgin olive oil" },
+    { "raw": "1 tablespoon red wine vinegar", "amount": 1, "unit": "tablespoon", "name": "red wine vinegar" },
+    { "raw": "1/2 teaspoon dried oregano or Italian herbs", "amount": 0.5, "unit": "teaspoon", "name": "dried oregano" },
+    { "raw": "1/2 teaspoon kosher salt", "amount": 0.5, "unit": "teaspoon", "name": "kosher salt" },
+    { "raw": "1/4 teaspoon black pepper", "amount": 0.25, "unit": "teaspoon", "name": "black pepper" },
+    { "raw": "1 (15 ounce) can cannellini beans, drained and rinsed", "amount": 1, "unit": "can", "name": "cannellini beans" },
+    { "raw": "1/2 cup mayonnaise", "amount": 0.5, "unit": "cup", "name": "mayonnaise" },
+    { "raw": "2 tablespoons ketchup", "amount": 2, "unit": "tablespoons", "name": "ketchup" },
+    { "raw": "2 tablespoons sweet pickle relish", "amount": 2, "unit": "tablespoons", "name": "sweet pickle relish" },
+    { "raw": "1 tablespoon white wine vinegar", "amount": 1, "unit": "tablespoon", "name": "white wine vinegar" },
+    { "raw": "1/4 teaspoon garlic powder", "amount": 0.25, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1/4 teaspoon onion powder", "amount": 0.25, "unit": "teaspoon", "name": "onion powder" },
+    { "raw": "Kosher salt to taste", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Black pepper to taste", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "1 large bunch kale, ribs removed and leaves chopped", "amount": 1, "unit": "bunch", "name": "kale" },
+    { "raw": "1 rotisserie chicken, skin removed and meat shredded", "amount": 1, "unit": null, "name": "rotisserie chicken" },
+    { "raw": "1 English cucumber, diced", "amount": 1, "unit": null, "name": "english cucumber" },
+    { "raw": "6 ounces Gruyère cheese, chopped", "amount": 6, "unit": "ounces", "name": "gruyère cheese" },
+    { "raw": "Pinch of kosher salt", "amount": null, "unit": null, "name": "kosher salt" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Whisk together olive oil, red wine vinegar, oregano, salt, and pepper in a large bowl." },
+    { "step": 2, "text": "Add drained cannellini beans and toss to coat; marinate at least 30 minutes or overnight." },
+    { "step": 3, "text": "Prepare dressing by stirring together mayonnaise, ketchup, relish, white wine vinegar, garlic powder, and onion powder in a small bowl." },
+    { "step": 4, "text": "Season dressing with salt and pepper; cover and refrigerate until ready to use." },
+    { "step": 5, "text": "Chop kale and add to a large salad bowl with a pinch of salt." },
+    { "step": 6, "text": "Massage kale with clean hands 10 times until leaves become slightly wet and darker." },
+    { "step": 7, "text": "Shred rotisserie chicken meat, dice cucumber, and chop Gruyère cheese." },
+    { "step": 8, "text": "Add chicken, cucumber, Gruyère, and marinated beans to the massaged kale." },
+    { "step": 9, "text": "Toss all ingredients together." },
+    { "step": 10, "text": "Portion salad and dress with thousand island immediately before serving." }
+  ]
+}

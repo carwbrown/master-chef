@@ -1,0 +1,24 @@
+{
+  "title": "Sheet Pancakes (Sheet Pan Protein Pancakes)",
+  "source_url": "https://naptimekitchen.com/sheet-pancakes/",
+  "servings": null,
+  "prep_time": null,
+  "cook_time": "12 min",
+  "tags": ["breakfast", "baking", "meal-prep"],
+  "ingredients": [
+    { "raw": "3 cups protein pancake mix (or pancake mix of your choice)", "amount": 3, "unit": "cups", "name": "pancake mix" },
+    { "raw": "2 cups milk of choice", "amount": 2, "unit": "cups", "name": "milk" },
+    { "raw": "2 eggs (could add a 3rd egg if you want)", "amount": 2, "unit": null, "name": "eggs" },
+    { "raw": "1 tsp vanilla", "amount": 1, "unit": "tsp", "name": "vanilla" },
+    { "raw": "Optional add-ins: 1/2 frozen blueberries and 1/2 mini chocolate chips", "amount": null, "unit": null, "name": "blueberries and chocolate chips" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 425 degrees." },
+    { "step": 2, "text": "Grab a sheet pan (half sheet size recommended) and line with parchment paper." },
+    { "step": 3, "text": "Pour batter in and spread it, adding any mix-ins." },
+    { "step": 4, "text": "Bake for 12 minutes, adjusting based on your oven until the middle is no longer raw." },
+    { "step": 5, "text": "Let cool then cut with a plastic knife." },
+    { "step": 6, "text": "Store in refrigerator separated by parchment for up to 10 days or freeze (separated with parchment to prevent sticking)." },
+    { "step": 7, "text": "To reheat: microwave a square for 30 seconds (longer if frozen)." }
+  ]
+}

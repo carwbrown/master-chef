@@ -1,0 +1,27 @@
+{
+  "title": "Sheet Pan Parmesan-Dijon Chicken Thigh Dinner",
+  "source_url": "https://www.allrecipes.com/recipe/285712/sheet-pan-parmesan-dijon-chicken-thigh-dinner/",
+  "servings": 4,
+  "prep_time": "15 min",
+  "cook_time": "25 min",
+  "tags": ["dinner", "chicken", "sheet-pan"],
+  "ingredients": [
+    { "raw": "nonstick cooking spray", "amount": null, "unit": null, "name": "nonstick cooking spray" },
+    { "raw": "0.5 cup panko bread crumbs", "amount": 0.5, "unit": "cup", "name": "panko bread crumbs" },
+    { "raw": "0.25 cup freshly grated Parmesan cheese", "amount": 0.25, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "4 (5 ounce) bone-in, skin on chicken thighs", "amount": 4, "unit": null, "name": "chicken thighs" },
+    { "raw": "0.25 cup melted butter", "amount": 0.25, "unit": "cup", "name": "butter" },
+    { "raw": "2 tablespoons Dijon mustard", "amount": 2, "unit": "tablespoons", "name": "dijon mustard" },
+    { "raw": "1.5 pounds tri-color baby potatoes (red, gold, and purple)", "amount": 1.5, "unit": "pounds", "name": "baby potatoes" },
+    { "raw": "1 pound fresh green beans, trimmed", "amount": 1, "unit": "pound", "name": "green beans" },
+    { "raw": "1 teaspoon dried thyme", "amount": 1, "unit": "teaspoon", "name": "dried thyme" },
+    { "raw": "freshly cracked salt and pepper to taste", "amount": null, "unit": null, "name": "salt and pepper" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 425 degrees F (220 degrees C). Line a large sheet pan or jelly roll pan with aluminum foil and coat with nonstick cooking spray." },
+    { "step": 2, "text": "Mix bread crumbs and Parmesan cheese in a small bowl. Set aside." },
+    { "step": 3, "text": "Place chicken thighs on the prepared baking sheet. Stir together butter and Dijon in a large bowl. Brush the tops of the chicken thighs with some of the butter-Dijon mixture." },
+    { "step": 4, "text": "Add potatoes and green beans to the bowl and toss in the remaining butter-Dijon mixture. Spread vegetables around the chicken onto the baking sheet in an even layer. Season everything with thyme, salt, and pepper. Press the bread crumb mixture onto the top of the chicken thighs." },
+    { "step": 5, "text": "Bake in the preheated oven until chicken is no longer pink at the bone and the juices run clear and the potatoes can be pierced easily with a fork, 25 to 30 minutes. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C)." }
+  ]
+}

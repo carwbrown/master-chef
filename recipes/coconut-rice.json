@@ -1,0 +1,16 @@
+{
+  "title": "Coconut Rice",
+  "source_url": null,
+  "servings": null,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["side", "rice", "vegetarian"],
+  "ingredients": [
+    { "raw": "1 (14-ounce) can full-fat unsweetened coconut milk", "amount": 1, "unit": null, "name": "coconut milk" },
+    { "raw": "1 cup uncooked jasmine rice", "amount": 1, "unit": "cup", "name": "jasmine rice" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Combine the coconut milk and 1/2 cup of water in a medium pot and bring to a boil over high heat. Add the rice. Stir to combine, place the lid on the pot, and turn the heat down to the lowest setting possible. Allow the rice to cook 10 minutes on low, then turn the heat off completely. Let the rice sit, covered, 15 minutes more. (Don't peek inside!)" },
+    { "step": 2, "text": "Remove the lid and fluff the rice with a fork." }
+  ]
+}

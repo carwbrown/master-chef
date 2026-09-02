@@ -1,0 +1,42 @@
+{
+  "title": "Mom's Famous Cinnamon Rolls",
+  "source_url": "https://thesaltedsweets.com/moms-famous-cinnamon-rolls/",
+  "servings": 12,
+  "prep_time": "30 min",
+  "cook_time": "15 min",
+  "tags": ["breakfast", "dessert", "baking"],
+  "ingredients": [
+    { "raw": "½ cup (122 g) warm milk", "amount": 0.5, "unit": "cup", "name": "milk" },
+    { "raw": "¼ cup (50 g) granulated sugar", "amount": 0.25, "unit": "cup", "name": "granulated sugar" },
+    { "raw": "1 tablespoon active dry yeast", "amount": 1, "unit": "tablespoon", "name": "active dry yeast" },
+    { "raw": "2 large room temperature eggs", "amount": 2, "unit": null, "name": "eggs" },
+    { "raw": "6 tablespoon softened butter", "amount": 6, "unit": "tablespoon", "name": "butter" },
+    { "raw": "¾ teaspoon salt", "amount": 0.75, "unit": "teaspoon", "name": "salt" },
+    { "raw": "2½-3 cups (343.75 g) bread flour", "amount": 2.5, "unit": "cups", "name": "bread flour" },
+    { "raw": "2-3 tablespoon softened butter", "amount": 2, "unit": "tablespoon", "name": "butter" },
+    { "raw": "½ cup (110 g) light brown sugar", "amount": 0.5, "unit": "cup", "name": "light brown sugar" },
+    { "raw": "1 tablespoon cinnamon", "amount": 1, "unit": "tablespoon", "name": "cinnamon" },
+    { "raw": "4 tablespoon softened butter", "amount": 4, "unit": "tablespoon", "name": "butter" },
+    { "raw": "1 teaspoon vanilla", "amount": 1, "unit": "teaspoon", "name": "vanilla" },
+    { "raw": "1½ cups (180 g) powdered sugar", "amount": 1.5, "unit": "cups", "name": "powdered sugar" },
+    { "raw": "2 tablespoon cream or milk", "amount": 2, "unit": "tablespoon", "name": "cream" },
+    { "raw": "Pinch of salt", "amount": null, "unit": null, "name": "salt" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Combine milk, sugar, and yeast in a large bowl; stir and let sit 10-15 minutes until bubbly." },
+    { "step": 2, "text": "Add butter and eggs; mix well." },
+    { "step": 3, "text": "Add salt and 2 cups flour; mix, then gradually add remaining flour until dough forms a ball." },
+    { "step": 4, "text": "Knead on floured surface 3-5 minutes until soft and slightly tacky." },
+    { "step": 5, "text": "Place in greased bowl, cover, and let rise until doubled (about 1½ hours)." },
+    { "step": 6, "text": "Punch down and roll into a 14x18 inch rectangle." },
+    { "step": 7, "text": "Spread butter evenly, leaving ½ inch at bottom." },
+    { "step": 8, "text": "Sprinkle with brown sugar and cinnamon." },
+    { "step": 9, "text": "Roll tightly from the long end; gently squeeze ends to compact." },
+    { "step": 10, "text": "Cut into 12 equal rolls." },
+    { "step": 11, "text": "Place in greased 9x13 pan; cover and let rise 45-60 minutes until doubled." },
+    { "step": 12, "text": "Preheat oven to 375°F." },
+    { "step": 13, "text": "Bake 14-18 minutes until light golden brown." },
+    { "step": 14, "text": "Mix frosting ingredients until smooth and creamy." },
+    { "step": 15, "text": "Cool rolls slightly before frosting." }
+  ]
+}

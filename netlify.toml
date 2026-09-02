@@ -1,0 +1,13 @@
+# Netlify configuration for Master Chef (static site, no build step).
+# Frontend auto-deploys from GitHub on push to main.
+
+[build]
+  publish = "."
+
+# Basic security headers for all pages.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

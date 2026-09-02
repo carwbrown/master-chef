@@ -1,0 +1,38 @@
+{
+  "title": "Bang Bang Chicken Bowl",
+  "source_url": "https://iamhomesteader.com/bang-bang-chicken-bowl/",
+  "servings": 4,
+  "prep_time": "30 min",
+  "cook_time": "10 min",
+  "tags": ["asian", "dinner", "chicken", "bowl"],
+  "ingredients": [
+    { "raw": "1 ¼ cups (290 g) mayonnaise", "amount": 1.25, "unit": "cups", "name": "mayonnaise" },
+    { "raw": "⅔ cup (177 g) Thai sweet chili sauce", "amount": 0.67, "unit": "cup", "name": "thai sweet chili sauce" },
+    { "raw": "2 tablespoons honey", "amount": 2, "unit": "tablespoons", "name": "honey" },
+    { "raw": "2 teaspoons Sriracha, or more to taste", "amount": 2, "unit": "teaspoons", "name": "sriracha" },
+    { "raw": "2 pounds boneless, skinless chicken breasts, cut into 1-inch cubes", "amount": 2, "unit": "pounds", "name": "chicken breasts" },
+    { "raw": "1 tablespoon vegetable oil", "amount": 1, "unit": "tablespoon", "name": "vegetable oil" },
+    { "raw": "1 teaspoon paprika", "amount": 1, "unit": "teaspoon", "name": "paprika" },
+    { "raw": "1 teaspoon garlic powder", "amount": 1, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1 teaspoon kosher salt", "amount": 1, "unit": "teaspoon", "name": "kosher salt" },
+    { "raw": "½ teaspoon black pepper", "amount": 0.5, "unit": "teaspoon", "name": "black pepper" },
+    { "raw": "4 cups (744 g) prepared white rice, warmed, divided", "amount": 4, "unit": "cups", "name": "white rice" },
+    { "raw": "2 cups (140 g) red cabbage, thinly sliced, divided", "amount": 2, "unit": "cups", "name": "red cabbage" },
+    { "raw": "1 large carrot, julienned, divided", "amount": 1, "unit": null, "name": "carrot" },
+    { "raw": "1 medium cucumber, halved, sliced, divided", "amount": 1, "unit": null, "name": "cucumber" },
+    { "raw": "1 large avocado, thinly sliced, divided", "amount": 1, "unit": null, "name": "avocado" },
+    { "raw": "Fresh cilantro, chopped for garnish", "amount": null, "unit": null, "name": "cilantro" },
+    { "raw": "Sesame seeds, for garnish", "amount": null, "unit": null, "name": "sesame seeds" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Combine mayonnaise, Thai sweet chili sauce, honey, and Sriracha in a medium bowl; set aside." },
+    { "step": 2, "text": "Mix oil, paprika, garlic powder, salt, and pepper in a large bowl." },
+    { "step": 3, "text": "Add chicken cubes and toss to coat." },
+    { "step": 4, "text": "Place chicken in single layer in air fryer basket (work in batches if needed)." },
+    { "step": 5, "text": "Air fry at 400°F for 11-12 minutes, flipping halfway, until internal temperature reaches 165°F." },
+    { "step": 6, "text": "Add cooked chicken to a large bowl with ½ cup bang bang sauce; toss to coat." },
+    { "step": 7, "text": "To each of 4 bowls, add 1 cup rice, ½ cup cabbage, ¼ cup carrots, and ¼ cup cucumbers." },
+    { "step": 8, "text": "Top with equal portions of avocado and bang bang chicken." },
+    { "step": 9, "text": "Garnish each bowl with remaining sauce, cilantro, and sesame seeds; serve immediately." }
+  ]
+}

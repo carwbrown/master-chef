@@ -1,0 +1,30 @@
+{
+  "title": "Asian Chicken Salad",
+  "source_url": "https://helloadamsfamily.com/2025/08/14/asian-chicken-salad-recipe/",
+  "servings": null,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["asian", "salad", "chicken", "lunch"],
+  "ingredients": [
+    { "raw": "Napa cabbage, chopped", "amount": null, "unit": null, "name": "napa cabbage" },
+    { "raw": "Bell peppers, chopped", "amount": null, "unit": null, "name": "bell peppers" },
+    { "raw": "Shredded carrots", "amount": null, "unit": null, "name": "carrots" },
+    { "raw": "Edamame beans", "amount": null, "unit": null, "name": "edamame" },
+    { "raw": "Green onions, sliced", "amount": null, "unit": null, "name": "green onions" },
+    { "raw": "Cilantro, chopped", "amount": null, "unit": null, "name": "cilantro" },
+    { "raw": "Avocado", "amount": null, "unit": null, "name": "avocado" },
+    { "raw": "Ramen noodles (plain)", "amount": null, "unit": null, "name": "ramen noodles" },
+    { "raw": "Black sesame seeds (optional, for garnish)", "amount": null, "unit": null, "name": "black sesame seeds" },
+    { "raw": "Shredded chicken breast (approximately 1 breast per person)", "amount": null, "unit": null, "name": "chicken breast" },
+    { "raw": "1 lime", "amount": 1, "unit": null, "name": "lime" },
+    { "raw": "Sesame or ginger dressing (store-bought recommended)", "amount": null, "unit": null, "name": "sesame ginger dressing" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Chop all vegetables and set aside." },
+    { "step": 2, "text": "Prepare dressing by combining store-bought sesame dressing with lime juice to thin it out; mix and set aside." },
+    { "step": 3, "text": "Toast ramen noodles in a small sauté pan with butter until lightly browned; set aside." },
+    { "step": 4, "text": "In the same pan with additional butter, brown the cooked shredded chicken until slightly browned." },
+    { "step": 5, "text": "Combine chopped vegetables in a bowl." },
+    { "step": 6, "text": "Top with chicken, ramen, dressing, black sesame seeds, and fresh lime juice before serving." }
+  ]
+}

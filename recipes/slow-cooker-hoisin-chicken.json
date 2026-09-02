@@ -1,0 +1,26 @@
+{
+  "title": "Slow Cooker Hoisin Chicken",
+  "source_url": "https://www.jerseygirlcooks.com/slow-cooker-hoisin-chicken/",
+  "servings": 6,
+  "prep_time": "10 min",
+  "cook_time": "4 hours",
+  "tags": ["asian", "chicken", "slow-cooker", "dinner"],
+  "ingredients": [
+    { "raw": "2 pounds boneless skinless chicken breasts about 4 pieces", "amount": 2, "unit": "pounds", "name": "boneless skinless chicken breasts" },
+    { "raw": "1 cup reduced sodium soy sauce", "amount": 1, "unit": "cup", "name": "reduced sodium soy sauce" },
+    { "raw": "½ cup honey", "amount": 0.5, "unit": "cup", "name": "honey" },
+    { "raw": "¼ cup hoisin sauce", "amount": 0.25, "unit": "cup", "name": "hoisin sauce" },
+    { "raw": "1 Tablespoon rice vinegar", "amount": 1, "unit": "tablespoon", "name": "rice vinegar" },
+    { "raw": "1 Tablespoon toasted sesame oil", "amount": 1, "unit": "tablespoon", "name": "toasted sesame oil" },
+    { "raw": "6 cloves cloves of garlic, minced", "amount": 6, "unit": "cloves", "name": "garlic" },
+    { "raw": "2 scallions", "amount": 2, "unit": null, "name": "scallions" },
+    { "raw": "1 teaspoon sesame seeds", "amount": 1, "unit": "teaspoon", "name": "sesame seeds" },
+    { "raw": "salt and pepper to taste", "amount": null, "unit": null, "name": "salt and pepper" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Add the chicken, soy sauce, honey, hoisin sauce, vinegar, sesame oil, and garlic to the slow cooker. Stir until well combined." },
+    { "step": 2, "text": "Cook in the slow cooker for 3-4 hours on high or 6-7 hours on low. Make sure to flip the chicken breast over when cooked halfway." },
+    { "step": 3, "text": "Once fully cooked, shred the chicken. I use a hand mixer for easy shredding. Season with salt and pepper to taste." },
+    { "step": 4, "text": "Remove from slow cooker and top with scallions and sesame seeds. Serve with rice or other side dishes." }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Italian Chop Pasta Salad",
+  "source_url": "https://www.halfbakedharvest.com/italian-chop-pasta-salad/",
+  "servings": 8,
+  "prep_time": "20 min",
+  "cook_time": "10 min",
+  "tags": ["italian", "salad", "pasta", "side"],
+  "ingredients": [
+    { "raw": "½ cup extra virgin olive oil", "amount": 0.5, "unit": "cup", "name": "extra virgin olive oil" },
+    { "raw": "¼ cup balsamic or red wine vinegar", "amount": 0.25, "unit": "cup", "name": "balsamic or red wine vinegar" },
+    { "raw": "2 tablespoons lemon juice", "amount": 2, "unit": "tablespoons", "name": "lemon juice" },
+    { "raw": "2 tablespoons tahini", "amount": 2, "unit": "tablespoons", "name": "tahini" },
+    { "raw": "2 teaspoons honey", "amount": 2, "unit": "teaspoons", "name": "honey" },
+    { "raw": "1 small shallot, finely chopped", "amount": 1, "unit": null, "name": "shallot" },
+    { "raw": "2 cloves garlic, grated", "amount": 2, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 teaspoon dried oregano", "amount": 1, "unit": "teaspoon", "name": "dried oregano" },
+    { "raw": "salt and black pepper", "amount": null, "unit": null, "name": "salt and black pepper" },
+    { "raw": "chili flakes", "amount": null, "unit": null, "name": "chili flakes" },
+    { "raw": "1 pound short-cut pasta", "amount": 1, "unit": "pound", "name": "short-cut pasta" },
+    { "raw": "6 ounces thinly cut salami, sliced", "amount": 6, "unit": "ounces", "name": "salami" },
+    { "raw": "3 ounces pepperoni, chopped", "amount": 3, "unit": "ounces", "name": "pepperoni" },
+    { "raw": "1 cup mini mozzarella cheese balls", "amount": 1, "unit": "cup", "name": "mini mozzarella cheese balls" },
+    { "raw": "1 cup cubed provolone cheese", "amount": 1, "unit": "cup", "name": "provolone cheese" },
+    { "raw": "½ cup shaved parmesan cheese", "amount": 0.5, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "2 cups cherry tomatoes, halved", "amount": 2, "unit": "cups", "name": "cherry tomatoes" },
+    { "raw": "1 cup mixed pitted olives, chopped", "amount": 1, "unit": "cup", "name": "mixed pitted olives" },
+    { "raw": "1 red bell pepper, chopped", "amount": 1, "unit": null, "name": "red bell pepper" },
+    { "raw": "½ cup sliced sun-dried tomatoes", "amount": 0.5, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "½ cup sliced pepperoncini", "amount": 0.5, "unit": "cup", "name": "pepperoncini" },
+    { "raw": "1 cup fresh basil leaves", "amount": 1, "unit": "cup", "name": "fresh basil leaves" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Combine all dressing ingredients in a glass jar and whisk until smooth. Season with salt, pepper, and chiles." },
+    { "step": 2, "text": "Bring a large pot of salted water to a boil. Boil the pasta to al dente, according to package directions. Drain." },
+    { "step": 3, "text": "In a large bowl, toss together the hot pasta and the dressing. Add the salami, pepperoni, cheeses, tomatoes, olives, pepper, sun-dried tomatoes, pepperoncini, and basil. Toss, toss!" },
+    { "step": 4, "text": "Serve warm or cold. Enjoy!" }
+  ]
+}

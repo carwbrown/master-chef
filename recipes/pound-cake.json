@@ -1,0 +1,28 @@
+{
+  "title": "Pound Cake",
+  "source_url": "https://preppykitchen.com/pound-cake/",
+  "servings": 12,
+  "prep_time": "10 min",
+  "cook_time": "40 min",
+  "tags": ["dessert", "cake", "baking", "american"],
+  "ingredients": [
+    { "raw": "1½ cups all-purpose flour (180g)", "amount": 1.5, "unit": "cups", "name": "all-purpose flour" },
+    { "raw": "½ teaspoon salt", "amount": 0.5, "unit": "teaspoon", "name": "salt" },
+    { "raw": "½ teaspoon baking powder", "amount": 0.5, "unit": "teaspoon", "name": "baking powder" },
+    { "raw": "½ cup unsalted butter, room temperature (113g)", "amount": 0.5, "unit": "cup", "name": "unsalted butter" },
+    { "raw": "1½ cups granulated sugar (300g)", "amount": 1.5, "unit": "cups", "name": "granulated sugar" },
+    { "raw": "4 large eggs, room temperature", "amount": 4, "unit": null, "name": "eggs" },
+    { "raw": "½ cup sour cream, room temperature (120g)", "amount": 0.5, "unit": "cup", "name": "sour cream" },
+    { "raw": "2 teaspoons vanilla extract", "amount": 2, "unit": "teaspoons", "name": "vanilla extract" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 350°F. Butter and flour a 9×5-inch loaf pan (or 8½x4½-inch for a taller loaf)." },
+    { "step": 2, "text": "In a medium bowl, whisk together flour, salt, and baking powder; set aside." },
+    { "step": 3, "text": "In a stand mixer with whisk attachment, beat butter on medium speed for 2 minutes until creamy. Add sugar and mix for 2 more minutes. Scrape bowl and beat a few more seconds." },
+    { "step": 4, "text": "While mixing at medium-low speed, add eggs one at a time. Scrape bowl and beat until fully incorporated." },
+    { "step": 5, "text": "Add sour cream and vanilla. Mix until incorporated. Scrape bowl." },
+    { "step": 6, "text": "Add flour mixture and mix on low until combined. Scrape bowl and use spatula to mix in any remaining pockets." },
+    { "step": 7, "text": "Transfer batter to prepared loaf pan and smooth into even layer. Bake for about 65 minutes or until center is set and a skewer comes out clean." },
+    { "step": 8, "text": "Allow to cool in pan for about 10 minutes before transferring to a cooling rack." }
+  ]
+}

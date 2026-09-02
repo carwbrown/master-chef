@@ -1,0 +1,27 @@
+{
+  "title": "Spaghetti & Spinach with Sun-Dried Tomato Cream Sauce",
+  "source_url": "https://www.eatingwell.com/recipe/7919563/spaghetti-spinach-with-sun-dried-tomato-cream-sauce/",
+  "servings": 4,
+  "prep_time": "20 min",
+  "cook_time": "20 min",
+  "tags": ["italian", "pasta", "vegetarian", "quick"],
+  "ingredients": [
+    { "raw": "5 ounces baby spinach, coarsely chopped", "amount": 5, "unit": "ounces", "name": "baby spinach" },
+    { "raw": "8 ounces whole-wheat spaghetti", "amount": 8, "unit": "ounces", "name": "whole-wheat spaghetti" },
+    { "raw": "1 tablespoon oil from sun-dried tomato jar", "amount": 1, "unit": "tablespoon", "name": "sun-dried tomato oil" },
+    { "raw": "½ cup slivered oil-packed sun-dried tomatoes", "amount": 0.5, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "½ cup halved and thinly sliced onion", "amount": 0.5, "unit": "cup", "name": "onion" },
+    { "raw": "3 cloves garlic, minced", "amount": 3, "unit": "cloves", "name": "garlic" },
+    { "raw": "¼ teaspoon crushed red pepper", "amount": 0.25, "unit": "teaspoon", "name": "crushed red pepper" },
+    { "raw": "¼ teaspoon salt", "amount": 0.25, "unit": "teaspoon", "name": "salt" },
+    { "raw": "¼ teaspoon ground pepper", "amount": 0.25, "unit": "teaspoon", "name": "ground pepper" },
+    { "raw": "1 cup low-sodium vegetable or chicken broth", "amount": 1, "unit": "cup", "name": "vegetable or chicken broth" },
+    { "raw": "½ cup sour cream", "amount": 0.5, "unit": "cup", "name": "sour cream" },
+    { "raw": "¼ cup grated Parmesan cheese", "amount": 0.25, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "1 tablespoon unsalted butter", "amount": 1, "unit": "tablespoon", "name": "unsalted butter" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Place 5 ounces spinach in a large colander in the sink. Bring a large saucepan of water to a boil over high heat. Add 8 ounces spaghetti and cook according to package directions. Drain the pasta over the spinach; toss to wilt the spinach." },
+    { "step": 2, "text": "Meanwhile, heat ½ cup sun-dried tomatoes along with 1 tablespoon of the oil in a large skillet over medium heat. Add ½ cup onion and sun-dried tomatoes; cook, stirring, until softened, about 3 minutes. Add garlic, ¼ teaspoon crushed red pepper, ¼ teaspoon salt and ¼ teaspoon pepper; cook, stirring, for 1 minute. Increase heat to medium-high and add 1 cup broth; cook, stirring, until reduced by about half, about 2 minutes. Stir in ½ cup sour cream, ¼ cup Parmesan and 1 tablespoon butter. Add the spaghetti and spinach; toss to coat well." }
+  ]
+}

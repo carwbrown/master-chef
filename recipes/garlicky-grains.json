@@ -1,0 +1,29 @@
+{
+  "title": "Garlicky Grains with Asparagus & Sausage",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["grains", "sausage", "main", "skillet"],
+  "ingredients": [
+    { "raw": "1 bunch asparagus", "amount": 1, "unit": "bunch", "name": "asparagus" },
+    { "raw": "1 pound cooked Italian chicken sausage or kielbasa", "amount": 1, "unit": "pound", "name": "chicken sausage" },
+    { "raw": "6 garlic cloves", "amount": 6, "unit": null, "name": "garlic cloves" },
+    { "raw": "1/2 cup fresh parsley leaves and tender stems", "amount": 0.5, "unit": "cup", "name": "fresh parsley" },
+    { "raw": "2 tablespoons extra-virgin olive oil", "amount": 2, "unit": "tablespoons", "name": "extra-virgin olive oil" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "2 cups cooked grains—barley, farro, brown rice, rice, or quinoa (whatever's on hand!)", "amount": 2, "unit": "cups", "name": "cooked grains" },
+    { "raw": "2 tablespoons balsamic vinegar, plus more as needed", "amount": 2, "unit": "tablespoons", "name": "balsamic vinegar" },
+    { "raw": "3/4 teaspoon dried oregano", "amount": 0.75, "unit": "teaspoon", "name": "dried oregano" },
+    { "raw": "3/4 teaspoon garlic powder", "amount": 0.75, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1/4 teaspoon red pepper flakes", "amount": 0.25, "unit": "teaspoon", "name": "red pepper flakes" },
+    { "raw": "2 ounces goat, Parmesan, or feta cheese", "amount": 2, "unit": "ounces", "name": "goat cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Trim the asparagus and cut it into 1-inch pieces. Halve the sausage lengthwise, then slice it crosswise into half-moons. Thinly slice the garlic. Finely chop the parsley." },
+    { "step": 2, "text": "Warm the olive oil in a large skillet over medium-high heat. When it shimmers, add the asparagus, chicken sausage, and a big pinch of salt and cook, stirring occasionally, until the sausage is browned, 5 to 6 minutes. Add the garlic for the final 30 seconds." },
+    { "step": 3, "text": "Stir in the cooked grains, all but 2 tablespoons of the parsley, the vinegar, the oregano, garlic powder, red pepper flakes, and 3/4 teaspoon salt. Stir until everything is combined well and warmed through, a minute or two." },
+    { "step": 4, "text": "Taste and adjust the seasonings as desired. (Some people [me] like a lot of salt and acid, so I always add more of those.)" },
+    { "step": 5, "text": "Divide among four bowls. Crumble the cheese and sprinkle 1/2 ounce over each bowl. Finish with another sprinkle of parsley before you dig in." }
+  ]
+}

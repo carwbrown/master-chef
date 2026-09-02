@@ -1,0 +1,28 @@
+{
+  "title": "Sausage & Kale Pasta",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": null,
+  "tags": ["italian", "pasta", "sausage", "main"],
+  "ingredients": [
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "1 pound rotini or fusilli pasta", "amount": 1, "unit": "pound", "name": "rotini pasta" },
+    { "raw": "1 pound mild or hot Italian sausage, casings removed", "amount": 1, "unit": "pound", "name": "italian sausage" },
+    { "raw": "1 bunch curly kale", "amount": 1, "unit": "bunch", "name": "curly kale" },
+    { "raw": "1/2 cup sun-dried tomatoes", "amount": 0.5, "unit": "cup", "name": "sun-dried tomatoes" },
+    { "raw": "4 garlic cloves", "amount": 4, "unit": null, "name": "garlic cloves" },
+    { "raw": "1 tablespoon tomato paste", "amount": 1, "unit": "tablespoon", "name": "tomato paste" },
+    { "raw": "1 cup heavy cream", "amount": 1, "unit": "cup", "name": "heavy cream" },
+    { "raw": "1 cup low-sodium chicken stock", "amount": 1, "unit": "cup", "name": "low-sodium chicken stock" },
+    { "raw": "1/2 cup freshly grated Parmesan cheese, plus more for serving", "amount": 0.5, "unit": "cup", "name": "parmesan cheese" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Bring a large pot of salted water to a boil. Cook the pasta to al dente according to the package instructions. Scoop out 1 cup of the pasta cooking water, then drain the pasta and set aside." },
+    { "step": 2, "text": "Warm a large Dutch oven over medium-high heat. Add the sausage and cook, breaking it up with a wooden spoon, until browned, about 8 minutes. Drain off all but a spoonful of grease." },
+    { "step": 3, "text": "Meanwhile, stem the kale. Chop the leaves into small (2-ish-inch) pieces. Thinly slice the sun-dried tomatoes and garlic." },
+    { "step": 4, "text": "Reduce the heat to medium and add the sun-dried tomatoes, garlic, and tomato paste. Cook, stirring frequently, until the tomato paste darkens in color and begins sticking to the pot, about 1 minute. Add the kale and a splash of the reserved pasta cooking water and cook, stirring often, until the kale is tender, 2 to 3 minutes." },
+    { "step": 5, "text": "Stir in the cream, stock, Parm, and 1/2 teaspoon salt. Cook for 3 minutes to allow the sauce to thicken. Add the cooked pasta to the pot with the sauce and cook, stirring, for 2 to 3 minutes, until the sauce is clinging to the pasta and everything is thick and creamy. If it gets too thick, stir in a splash of the reserved pasta cooking water." },
+    { "step": 6, "text": "Serve the pasta in low bowls with more grated Parm over the top." }
+  ]
+}

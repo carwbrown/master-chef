@@ -1,0 +1,33 @@
+{
+  "title": "Chopped Thai Crunch Chicken Salad",
+  "source_url": "https://www.halfbakedharvest.com/thai-crunch-chicken-salad/",
+  "servings": 6,
+  "prep_time": "25 min",
+  "cook_time": null,
+  "tags": ["thai", "salad", "chicken", "no-cook"],
+  "ingredients": [
+    { "raw": "1/2 cup creamy peanut butter", "amount": 0.5, "unit": "cup", "name": "creamy peanut butter" },
+    { "raw": "1/3 cup tamari/soy sauce", "amount": 0.33, "unit": "cup", "name": "tamari/soy sauce" },
+    { "raw": "1/3 cup toasted sesame oil (or olive oil)", "amount": 0.33, "unit": "cup", "name": "toasted sesame oil" },
+    { "raw": "2 tablespoons lime juice", "amount": 2, "unit": "tablespoons", "name": "lime juice" },
+    { "raw": "2 cloves garlic, grated", "amount": 2, "unit": "cloves", "name": "garlic" },
+    { "raw": "1 tablespoon chopped pickled ginger", "amount": 1, "unit": "tablespoon", "name": "pickled ginger" },
+    { "raw": "1 jalapeño or Fresno pepper, chopped (seeded if desired)", "amount": 1, "unit": null, "name": "jalapeño or fresno pepper" },
+    { "raw": "2-3 tablespoons hot sauce", "amount": 2, "unit": "tablespoons", "name": "hot sauce" },
+    { "raw": "1 tablespoon honey", "amount": 1, "unit": "tablespoon", "name": "honey" },
+    { "raw": "4 cups shredded cabbage", "amount": 4, "unit": "cups", "name": "shredded cabbage" },
+    { "raw": "2 cups cooked shredded chicken", "amount": 2, "unit": "cups", "name": "cooked shredded chicken" },
+    { "raw": "1 1/2 cups shredded carrot", "amount": 1.5, "unit": "cups", "name": "shredded carrot" },
+    { "raw": "1 cup chopped cilantro/basil", "amount": 1, "unit": "cup", "name": "cilantro/basil" },
+    { "raw": "1/2 cup chopped or thinly sliced mango", "amount": 0.5, "unit": "cup", "name": "mango" },
+    { "raw": "1/3 cup chopped peanuts", "amount": 0.33, "unit": "cup", "name": "peanuts" },
+    { "raw": "2 tablespoons toasted sesame seeds", "amount": 2, "unit": "tablespoons", "name": "toasted sesame seeds" },
+    { "raw": "1/3 cup chopped green onions", "amount": 0.33, "unit": "cup", "name": "green onions" },
+    { "raw": "Crispy wontons, for serving", "amount": null, "unit": null, "name": "crispy wontons" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "To make the dressing: Combine all ingredients in a food processor. Pulse to combine, thin with water as desired." },
+    { "step": 2, "text": "To make the salad: In a salad bowl, combine the cabbage, chicken, carrots, herbs, mango, and peanuts. Pour over half the dressing, then toss to coat the greens." },
+    { "step": 3, "text": "Add the fried wontons, sesame seeds, green onions, and serve with a squeeze of lime." }
+  ]
+}

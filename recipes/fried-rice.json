@@ -1,0 +1,30 @@
+{
+  "title": "Fried Rice",
+  "source_url": "https://www.gimmesomeoven.com/fried-rice-recipe/",
+  "servings": 4,
+  "prep_time": "5 min",
+  "cook_time": "10 min",
+  "tags": ["asian", "rice", "side", "vegetarian"],
+  "ingredients": [
+    { "raw": "3 tablespoons butter, divided", "amount": 3, "unit": "tablespoons", "name": "butter" },
+    { "raw": "2 large eggs, whisked", "amount": 2, "unit": null, "name": "eggs" },
+    { "raw": "2 medium carrots, peeled and diced", "amount": 2, "unit": null, "name": "carrots" },
+    { "raw": "1 small white onion, diced", "amount": 1, "unit": null, "name": "white onion" },
+    { "raw": "1/2 cup frozen peas", "amount": 0.5, "unit": "cup", "name": "frozen peas" },
+    { "raw": "3 cloves garlic, minced", "amount": 3, "unit": "cloves", "name": "garlic" },
+    { "raw": "Salt and black pepper", "amount": null, "unit": null, "name": "salt and black pepper" },
+    { "raw": "4 cups cooked and chilled rice (short-grain white rice preferred)", "amount": 4, "unit": "cups", "name": "cooked rice" },
+    { "raw": "3 green onions, thinly sliced", "amount": 3, "unit": null, "name": "green onions" },
+    { "raw": "3-4 tablespoons soy sauce, or more to taste", "amount": 3, "unit": "tablespoons", "name": "soy sauce" },
+    { "raw": "2 teaspoons oyster sauce (optional)", "amount": 2, "unit": "teaspoons", "name": "oyster sauce" },
+    { "raw": "1/2 teaspoon toasted sesame oil", "amount": 0.5, "unit": "teaspoon", "name": "toasted sesame oil" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Heat 1/2 tablespoon butter in a large sauté pan over medium-high heat. Add whisked egg and cook until scrambled, stirring occasionally. Transfer to a separate plate." },
+    { "step": 2, "text": "Add 1 tablespoon butter to the pan and heat until melted. Add carrots, onion, peas, and garlic; season with salt and pepper. Sauté for 5 minutes until softened." },
+    { "step": 3, "text": "Increase heat to high, add remaining 1½ tablespoons butter and stir until melted. Immediately add chilled rice, green onions, soy sauce, and oyster sauce; stir to combine." },
+    { "step": 4, "text": "Continue sautéing for 3 minutes, stirring occasionally to fry the rice and develop crispy edges." },
+    { "step": 5, "text": "Remove from heat and stir in scrambled eggs and sesame oil. Taste and adjust seasonings with additional soy sauce if needed." },
+    { "step": 6, "text": "Serve immediately or refrigerate in a sealed container for up to 3 days." }
+  ]
+}

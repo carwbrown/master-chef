@@ -1,0 +1,38 @@
+{
+  "title": "Homemade Cookie Cake",
+  "source_url": "https://www.designeatrepeat.com/cookie-cake-recipe/",
+  "servings": 12,
+  "prep_time": "10 min",
+  "cook_time": "12 min",
+  "tags": ["dessert", "cookies", "baking"],
+  "ingredients": [
+    { "raw": "½ cup unsalted butter (1 stick), melted", "amount": 0.5, "unit": "cup", "name": "unsalted butter" },
+    { "raw": "½ cup light brown sugar, packed", "amount": 0.5, "unit": "cup", "name": "light brown sugar" },
+    { "raw": "¼ cup granulated sugar", "amount": 0.25, "unit": "cup", "name": "granulated sugar" },
+    { "raw": "1 large egg", "amount": 1, "unit": null, "name": "egg" },
+    { "raw": "1 ½ teaspoon vanilla extract", "amount": 1.5, "unit": "teaspoon", "name": "vanilla extract" },
+    { "raw": "½ teaspoon baking soda", "amount": 0.5, "unit": "teaspoon", "name": "baking soda" },
+    { "raw": "¼ teaspoon baking powder", "amount": 0.25, "unit": "teaspoon", "name": "baking powder" },
+    { "raw": "¼ teaspoon salt", "amount": 0.25, "unit": "teaspoon", "name": "salt" },
+    { "raw": "1 ½ cups all-purpose flour", "amount": 1.5, "unit": "cups", "name": "all-purpose flour" },
+    { "raw": "1 cup semi-sweet chocolate chips (½ cup chopped, ½ cup whole)", "amount": 1, "unit": "cup", "name": "semi-sweet chocolate chips" },
+    { "raw": "¼ cup unsalted butter, softened", "amount": 0.25, "unit": "cup", "name": "unsalted butter" },
+    { "raw": "1 ¼ cups powdered sugar", "amount": 1.25, "unit": "cups", "name": "powdered sugar" },
+    { "raw": "¾ teaspoon vanilla extract", "amount": 0.75, "unit": "teaspoon", "name": "vanilla extract" },
+    { "raw": "pinch of salt", "amount": null, "unit": null, "name": "salt" },
+    { "raw": "1-2 tablespoons milk", "amount": 1, "unit": "tablespoons", "name": "milk" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat oven to 350°F." },
+    { "step": 2, "text": "Chop ½ cup chocolate chips into small pieces; set remaining ½ cup whole chips aside." },
+    { "step": 3, "text": "Melt butter in microwave for 20-30 seconds until just melted." },
+    { "step": 4, "text": "Transfer butter to mixing bowl; add sugars and stir with spatula until combined. Mix in egg and vanilla extract." },
+    { "step": 5, "text": "Add baking soda, baking powder, and salt; mix well. Add flour and mix until combined." },
+    { "step": 6, "text": "Add chopped and whole chocolate chips; mix immediately." },
+    { "step": 7, "text": "Grease 11.5\" metal cookie cake pan. Drop dough in chunks, then press into smooth, even layer." },
+    { "step": 8, "text": "Bake at 350°F for 12-14 minutes until slightly brown on top. Cool completely before removing." },
+    { "step": 9, "text": "To remove: run knife around edges, place flat platter on top, flip pan over." },
+    { "step": 10, "text": "Beat softened butter 2 minutes until smooth. Add powdered sugar gradually, then vanilla and salt. Add milk and beat 2-3 minutes until creamy." },
+    { "step": 11, "text": "Pipe frosting border around edges; add sprinkles immediately." }
+  ]
+}
