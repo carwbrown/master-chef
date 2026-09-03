@@ -77,12 +77,13 @@
     import { escapeHTML } from './scripts/utils.js';
     import { mountMenu } from './scripts/nav.js';
 
-    if (requireAuth()) init();
     let all = [];
     const activeTags = new Set();
 
     const domain = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; } };
     const sourceLabel = (r) => r.author || domain(r.source_url) || 'Cookbook';
+
+    if (requireAuth()) init();
 
     async function init() {
       mountMenu(document.getElementById('navMount'), 'recipes');   // header works even if the list fails

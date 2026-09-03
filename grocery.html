@@ -109,8 +109,9 @@
     import { escapeHTML } from './scripts/utils.js';
     import { mountMenu } from './scripts/nav.js';
 
-    if (requireAuth()) init();
     let all = [];
+
+    if (requireAuth()) init();
 
     async function load() {
       try { all = await pb.collection('grocery_items').getFullList({ sort: 'sort' }); }
