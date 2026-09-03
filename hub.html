@@ -174,6 +174,8 @@
     .tl-add-input { flex: 1; padding: .45rem .6rem; font-size: .85rem; }
     .tl-add-recur { flex: none; width: auto; padding: .45rem .4rem; font-size: .8rem; }
     .tl-add-form .btn { padding: .45rem .8rem; font-size: .85rem; }
+    /* Keep chore inputs ≥16px on phones so iOS doesn't zoom the page on focus */
+    @media (max-width: 620px) { .tl-add-input, .tl-add-recur { font-size: 16px; } }
     .tl-add-days { padding-left: 2px; }
     .wd-picker[hidden] { display: none; }  /* class display:flex would otherwise beat [hidden] */
 
@@ -194,9 +196,10 @@
 
     /* Modal */
     .modal { border: none; border-radius: var(--radius-lg); padding: 0; box-shadow: var(--shadow-lg);
-             max-width: 460px; width: 92vw; color: var(--text); background: var(--surface); }
+             max-width: 460px; width: 92vw; max-height: 92vh; max-height: 92dvh; color: var(--text); background: var(--surface); }
     .modal::backdrop { background: rgba(20,40,33,.4); }
-    .modal form { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
+    .modal form { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3);
+                  max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
     .modal h3 { margin: 0 0 var(--sp-1); }
     .modal label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-muted); }
     .modal label > input:not([type=checkbox]):not([type=radio]),

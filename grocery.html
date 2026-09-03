@@ -55,10 +55,10 @@
     .gdel:hover { color: var(--danger); }
     @media (hover: none) { .gdel { opacity: .55; } }
 
-    .gadd { display: flex; gap: 6px; margin-top: var(--sp-3); }
-    .gadd-name { flex: 1; }
-    .gadd-qty { flex: none; width: 92px; }
-    .gadd .btn { flex: none; }
+    .gadd { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--sp-3); }
+    .gadd-name { flex: 1 1 140px; min-width: 0; }
+    .gadd-qty { flex: 0 0 84px; width: 84px; min-width: 0; }
+    .gadd .btn { flex: 0 0 auto; }
     @media (prefers-reduced-motion: reduce) { * { transition-duration: .001ms !important; } }
   </style>
 </head>

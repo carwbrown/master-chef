@@ -104,13 +104,13 @@ a { color: var(--blue-dark); }
   place-items: center; cursor: pointer; color: var(--text-muted); }
 .navmenu-btn::-webkit-details-marker { display: none; }
 .navmenu-btn:hover { background: var(--surface-2); color: var(--text); }
-.navmenu-list { position: absolute; left: 0; top: 100%; margin-top: 6px; z-index: 30; min-width: 200px;
+.navmenu-list { position: absolute; left: 0; top: 100%; margin-top: 6px; z-index: 30; min-width: 240px;
   list-style: none; padding: 6px; background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .navmenu-list li { list-style: none; }
-.navmenu-list a, .navmenu-list button { display: block; width: 100%; text-align: left; padding: 10px 12px;
+.navmenu-list a, .navmenu-list button { display: block; width: 100%; text-align: left; padding: 11px 14px;
   border-radius: var(--radius-sm); color: var(--text); text-decoration: none; background: none; border: none;
-  font: inherit; cursor: pointer; }
+  font: inherit; font-size: 1.05rem; white-space: nowrap; cursor: pointer; }
 .navmenu-list a:hover, .navmenu-list button:hover { background: var(--surface-2); }
 .navmenu-list a[aria-current="page"] { background: var(--green-soft); color: var(--green-dark); font-weight: 700; }
 

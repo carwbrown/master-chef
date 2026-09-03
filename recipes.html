@@ -102,7 +102,15 @@
           new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 12000)),
         ]);
       } catch (e) {
-        showError(e.message === 'timeout' ? 'Recipes took too long to load — tap retry.' : "Couldn't load recipes.");
+        console.error('recipes load failed', e?.status, e?.message, e?.data);
+        if (e?.status === 401 || e?.status === 403) {   // stale/rejected token → re-auth for a fresh one
+          pb.authStore.clear();
+          location.href = '/login.html';
+          return;
+        }
+        showError(e.message === 'timeout'
+          ? 'Recipes took too long to load — tap retry.'
+          : `Couldn't load recipes (${e?.status ?? 'network error'}). Tap retry.`);
         return;
       }
 
