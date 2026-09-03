@@ -13,11 +13,17 @@
     .phead .corner a { text-decoration: none; }
     .phead .corner .cn-btn { background: none; border: none; cursor: pointer; font-size: inherit; padding: 0; line-height: 1; }
     @media (max-width: 620px) {
-      .phead { padding: var(--sp-3) var(--sp-4); }
+      .phead { padding: var(--sp-3) var(--sp-4); gap: var(--sp-2); }
       .phead .corner { position: static; order: -1; width: 100%; left: auto; }
       .phead h1 { font-size: 1.05rem; }
-      .pnav { gap: var(--sp-2); }
-      .today-btn { padding: .45rem .9rem; }
+      .pnav { gap: var(--sp-2); width: 100%; flex-wrap: nowrap; }
+      .navarrow { width: 34px; height: 34px; font-size: 1.3rem; }
+      .today-btn { padding: .4rem .7rem; font-size: .85rem; white-space: nowrap; }
+      #weekLabel { flex: 1; min-width: 0; text-align: center; font-size: .95rem; }
+      /* Modal → bottom sheet on phones so it doesn't fill the screen */
+      .modal { inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 85dvh;
+               border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+      .modal form { padding: var(--sp-4); max-height: 85dvh; }
     }
     .phead h1 { font-size: 1.35rem; margin: 0; font-family: var(--font-heading); }
     .pnav { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; }

@@ -37,13 +37,10 @@
     .rtitle { font-weight: 700; }
     .rtags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
     .rtag { font-size: .7rem; background: var(--surface-2); color: var(--text-muted); padding: 1px 8px; border-radius: 999px; }
-    .rmeta { text-align: right; flex: none; }
-    .rtimes { color: var(--text-muted); font-size: .85rem; white-space: nowrap; }
-    .rsource { color: var(--text-faint); font-size: .8rem; white-space: nowrap; }
+    .rmeta { color: var(--text-muted); font-size: .82rem; margin-top: 4px; }
     /* Edit only makes sense on touch (no hover to reveal, and desktop uses the row → edit page) */
     .redit { flex: none; color: var(--text-faint); text-decoration: none; font-size: 1.1rem; padding: 6px; display: none; }
     @media (hover: none) { .redit { display: inline-block; } }
-    @media (max-width: 560px) { .rsource { display: none; } }
     .empty { text-align: center; color: var(--text-faint); padding: 3rem 0; }
     .skel { background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface) 37%, var(--surface-2) 63%);
             background-size: 400% 100%; animation: skel 1.2s ease infinite; border-radius: var(--radius); }
@@ -51,11 +48,6 @@
     .skel-row { height: 66px; margin-bottom: var(--sp-3); }
     @media (prefers-reduced-motion: reduce) { .skel { animation: none; } }
   </style>
-  <!-- TEMP DEBUG: on-screen console for diagnosing the mobile recipe-list hang.
-       Tap the floating button (bottom-right) on the phone to view errors.
-       REMOVE these two lines once the hang is diagnosed. -->
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-  <script>window.eruda && eruda.init();</script>
 </head>
 <body>
   <header class="rhead">
@@ -184,14 +176,12 @@
       el.innerHTML = list.map(r => {
         const tags = (Array.isArray(r.tags) ? r.tags : []).slice(0, 5);
         const times = [r.prep_time && `Prep ${r.prep_time}`, r.cook_time && `Cook ${r.cook_time}`].filter(Boolean).join(' · ');
+        const metaLine = [times, sourceLabel(r)].filter(Boolean).join('  ·  ');
         return `<div class="rrow" data-id="${r.id}">
             <div class="rmain">
               <div class="rtitle">${escapeHTML(r.title)}</div>
               ${tags.length ? `<div class="rtags">${tags.map(t => `<span class="rtag">${escapeHTML(t)}</span>`).join('')}</div>` : ''}
-            </div>
-            <div class="rmeta">
-              ${times ? `<div class="rtimes">${escapeHTML(times)}</div>` : ''}
-              <div class="rsource">${escapeHTML(sourceLabel(r))}</div>
+              ${metaLine ? `<div class="rmeta">${escapeHTML(metaLine)}</div>` : ''}
             </div>
             <a class="redit" href="recipe-edit.html?id=${r.id}" title="Edit">✎</a>
           </div>`;
