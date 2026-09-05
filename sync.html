@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sync — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.5rem; margin: 0; flex: 1; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
+    .topbar { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); flex-wrap: wrap; }
+    .topbar .sub { color: var(--text-muted); font-size: .85rem; flex: 1; }
+
+    .ev { display: flex; align-items: center; gap: var(--sp-3); padding: 10px 0; border-top: 1px solid var(--surface-2); }
+    .ev:first-child { border-top: none; }
+    .ev-when { flex: 0 0 92px; text-align: right; }
+    .ev-date { font-weight: 700; font-size: .9rem; }
+    .ev-time { color: var(--text-muted); font-size: .78rem; }
+    .ev-main { flex: 1; min-width: 0; }
+    .ev-title { font-weight: 600; }
+    .ev-notes { color: var(--text-muted); font-size: .8rem; }
+    .badge { display: inline-block; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; margin-top: 2px; }
+    .ev-actions { display: flex; gap: 6px; flex: 0 0 auto; }
+    .ev-actions .btn { padding: .35rem .7rem; font-size: .82rem; }
+
+    .empty { color: var(--text-faint); text-align: center; padding: var(--sp-6) 0; }
+    .feed-err { color: var(--danger); font-size: .82rem; margin: var(--sp-2) 0; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); padding: var(--sp-4) var(--sp-5); }
+    @media (prefers-reduced-motion: reduce) { * { transition-duration: .001ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>Sync</h1>
+  </header>
+
+  <div class="wrap">
+    <div class="topbar">
+      <span class="sub" id="sub">Upcoming Google Calendar events you haven’t added yet.</span>
+      <button class="btn" id="refresh">Refresh</button>
+    </div>
+    <div id="errs"></div>
+    <div class="card"><div id="list"><p class="empty">Loading…</p></div></div>
+  </div>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+
+    const GCAL_FN = '/.netlify/functions/gcal-feed';
+    const NEUTRAL = '#dfe7e3';
+    const toPBDate = (d) => `${d} 00:00:00.000Z`;
+
+    let membersById = {}, calendars = [], rows = [];
+    let importedKeys = new Set(), skipKeys = new Set();
+
+    if (requireAuth()) init();
+
+    async function init() {
+      mountMenu(document.getElementById('navMount'), 'sync');
+      document.getElementById('refresh').addEventListener('click', refresh);
+      wireList();
+      await refresh();
+    }
+
+    async function refresh() {
+      document.getElementById('list').innerHTML = '<p class="empty">Loading…</p>';
+      document.getElementById('errs').innerHTML = '';
+
+      const [members, cals, events, skips] = await Promise.all([
+        pb.collection('members').getFullList({ sort: 'sort' }).catch(() => []),
+        pb.collection('calendars').getFullList({ sort: 'sort' }).catch(() => []),
+        pb.collection('events').getFullList({ fields: 'source_uid', filter: 'source_uid != ""' }).catch(() => []),
+        pb.collection('gcal_skips').getFullList({ fields: 'key' }).catch(() => []),
+      ]);
+      membersById = Object.fromEntries(members.map(m => [m.id, m]));
+      calendars = cals.filter(c => c.active);
+      importedKeys = new Set(events.map(e => e.source_uid));
+      skipKeys = new Set(skips.map(s => s.key));
+
+      const errs = [];
+      const perCal = await Promise.all(calendars.map(async (c) => {
+        try {
+          const r = await fetch(GCAL_FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: c.ics_url }) });
+          const d = await r.json();
+          if (!r.ok) { errs.push(`${c.label}: ${d.error || 'failed'}`); return []; }
+          return d.events.map(ev => ({ ...ev, cal: c }));
+        } catch (e) {
+          errs.push(`${c.label}: ${e?.message || e}`);
+          return [];
+        }
+      }));
+
+      rows = perCal.flat()
+        .filter(ev => !importedKeys.has(ev.key) && !skipKeys.has(ev.key))
+        .sort((a, b) => (a.date + a.start_time).localeCompare(b.date + b.start_time));
+
+      document.getElementById('errs').innerHTML = errs.map(e => `<p class="feed-err">⚠ ${escapeHTML(e)}</p>`).join('');
+      if (!calendars.length) {
+        document.getElementById('errs').innerHTML +=
+          '<p class="feed-err">No active calendars. Add one on the <a href="settings.html">Settings</a> page.</p>';
+      }
+      render();
+    }
+
+    const fmtDate = (d) => { const [y, m, day] = d.split('-').map(Number);
+      return new Date(y, m - 1, day).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); };
+    const fmtTime = (t) => { if (!t) return 'All day'; let [h, m] = t.split(':').map(Number);
+      const ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return `${h}${m ? ':' + String(m).padStart(2, '0') : ''}${ap}`; };
+
+    function render() {
+      const list = document.getElementById('list');
+      document.getElementById('sub').textContent =
+        rows.length ? `${rows.length} event(s) to review across ${calendars.length} calendar(s).`
+                    : 'Upcoming Google Calendar events you haven’t added yet.';
+      if (!rows.length) { list.innerHTML = '<p class="empty">Nothing new to import. 🎉</p>'; return; }
+
+      list.innerHTML = rows.map((ev, i) => {
+        const color = (ev.cal.member && membersById[ev.cal.member]?.color) || NEUTRAL;
+        return `<div class="ev" data-i="${i}">
+            <div class="ev-when"><div class="ev-date">${fmtDate(ev.date)}</div><div class="ev-time">${fmtTime(ev.start_time)}</div></div>
+            <div class="ev-main">
+              <div class="ev-title">${escapeHTML(ev.title)}</div>
+              ${ev.notes ? `<div class="ev-notes">${escapeHTML(ev.notes)}</div>` : ''}
+              <span class="badge" style="background:${color}">${escapeHTML(ev.cal.label)}</span>
+            </div>
+            <div class="ev-actions">
+              <button class="btn btn-primary" data-add>Add</button>
+              <button class="btn" data-skip>Skip</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function wireList() {
+      document.getElementById('list').addEventListener('click', async (e) => {
+        const el = e.target.closest('[data-i]');
+        if (!el) return;
+        const ev = rows[+el.dataset.i];
+        if (!ev) return;
+
+        if (e.target.closest('[data-add]')) {
+          e.target.disabled = true;
+          try {
+            await pb.collection('events').create({
+              title: ev.title, notes: ev.notes || '',
+              date: toPBDate(ev.date), all_day: !!ev.all_day,
+              start_time: ev.all_day ? '' : ev.start_time, end_time: ev.all_day ? '' : ev.end_time,
+              member: ev.cal.member || null,
+              recur_type: 'none', recur_config: {}, recur_until: '',
+              source_uid: ev.key,
+            });
+            removeRow(el);
+          } catch (err) { e.target.disabled = false; alert('Could not add: ' + (err?.message || err)); }
+        } else if (e.target.closest('[data-skip]')) {
+          e.target.disabled = true;
+          try {
+            await pb.collection('gcal_skips').create({ key: ev.key, summary: ev.title });
+            removeRow(el);
+          } catch (err) { e.target.disabled = false; alert('Could not skip: ' + (err?.message || err)); }
+        }
+      });
+    }
+
+    function removeRow(el) {
+      const i = +el.dataset.i;
+      rows.splice(i, 1);
+      render();
+    }
+  </script>
+</body>
+</html>

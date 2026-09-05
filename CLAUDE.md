@@ -3,6 +3,9 @@
 ## Code Review Requirement
 **All code changes must be shown to the user and approved before writing files.**
 
+## Package Manager
+**This project uses `npm`, not pnpm.** Run scripts with `npm run <script>` (e.g. `npm run deploy:schema`, `npm run import:prod`, `npm run import-events:prod`).
+
 ## Design Philosophy
 - Follow plainvanillaweb.com principles
 - Simplicity is paramount - no unnecessary complexity

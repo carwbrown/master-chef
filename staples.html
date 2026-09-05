@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staples — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="grocery.css">
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>Staples</h1>
+  </header>
+
+  <div class="wrap">
+    <!-- Weekly staples -->
+    <section class="gsection">
+      <div class="ghead">
+        <h2>Weekly staples</h2>
+        <div class="gactions">
+          <button class="btn" id="selectAll" type="button">Select all</button>
+          <button class="btn" id="clearStaples" type="button">Clear</button>
+        </div>
+      </div>
+      <div class="gsub" id="staplesCount"></div>
+      <ul class="glist staples" id="staplesList"></ul>
+      <form class="gadd" id="staplesForm">
+        <input class="input gadd-name" type="text" placeholder="Add a staple…" required>
+        <input class="input gadd-qty" type="text" placeholder="Qty">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module">
+    import { requireAuth } from './scripts/auth.js';
+    import { mountMenu } from './scripts/nav.js';
+    import { initGroceryList } from './scripts/grocery.js';
+
+    if (requireAuth()) init();
+
+    function init() {
+      mountMenu(document.getElementById('navMount'), 'staples');
+      const count = document.getElementById('staplesCount');
+      const list = initGroceryList({
+        list: 'staples',
+        listEl: document.getElementById('staplesList'),
+        formEl: document.getElementById('staplesForm'),
+        emptyText: 'No staples yet. Add the things you buy every week.',
+        sinkChecked: false,
+        onRender: (items) => {
+          const sel = items.filter(i => i.checked).length;
+          count.textContent = items.length ? `${sel} of ${items.length} going to Instacart` : '';
+        },
+      });
+      document.getElementById('selectAll').addEventListener('click', () => list.setAll(true));
+      document.getElementById('clearStaples').addEventListener('click', () => list.setAll(false));
+      list.refresh();
+    }
+  </script>
+</body>
+</html>

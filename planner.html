@@ -62,7 +62,7 @@
                   max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
     .modal h3 { margin: 0 0 var(--sp-1); }
     .modal label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-muted); }
-    .modal label > select, .modal label > textarea { margin-top: 4px; }
+    .modal label > input, .modal label > select, .modal label > textarea { margin-top: 4px; }
     .modal-actions { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-3); }
     .btn.danger { color: var(--danger); border-color: var(--danger-soft); }
     .combo { position: relative; }
@@ -95,7 +95,8 @@
       <input type="hidden" name="id">
       <input type="hidden" name="date">
       <input type="hidden" name="slot">
-      <label>Recipe
+      <label>Meal <input type="text" name="title" placeholder="e.g. Carbonara, salmon, tacos"></label>
+      <label>Or pick a saved recipe
         <div class="combo" id="recipeCombo">
           <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
           <input type="hidden" name="recipe">
@@ -179,8 +180,8 @@
             <div class="lbl">${label}</div><div class="add">＋ Add</div></div>`;
       }
       const recipe = m.expand && m.expand.recipe;
-      const name = recipe ? recipe.title : (m.notes || '—');
-      const sides = recipe ? (m.notes || '') : '';
+      const name = recipe ? recipe.title : (m.title || m.notes || '—');
+      const sides = (recipe || m.title) ? (m.notes || '') : '';
       return `<div class="slot ${slot}" data-date="${key}" data-slot="${slot}" data-id="${m.id}">
           <div class="lbl">${label}</div>
           <div class="name">${escapeHTML(name)}</div>
@@ -197,7 +198,7 @@
       form.date.value = date; form.slot.value = slot; form.id.value = id || '';
       const m = id ? mealsById[id] : null;
       recipeCombo.set(m ? m.recipe : '');
-      if (m) form.notes.value = m.notes || '';
+      if (m) { form.title.value = m.title || ''; form.notes.value = m.notes || ''; }
       document.getElementById('mealDelete').hidden = !id;
       dlg.showModal();
     }
@@ -205,7 +206,9 @@
     async function onSave(e) {
       e.preventDefault();
       const data = { date: toPBDate(form.date.value), slot: form.slot.value,
-                     recipe: form.recipe.value || null, notes: form.notes.value.trim() };
+                     recipe: form.recipe.value || null,
+                     title: form.recipe.value ? '' : form.title.value.trim(),
+                     notes: form.notes.value.trim() };
       try {
         if (form.id.value) await pb.collection('meals').update(form.id.value, data);
         else await pb.collection('meals').create(data);

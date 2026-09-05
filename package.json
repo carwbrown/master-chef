@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "description": "Family hub — calendar, chores, and recipes (vanilla HTML/CSS/JS + PocketBase).",
+  "dependencies": {
+    "node-ical": "0.20.1"
+  },
   "scripts": {
     "import:dev": "node scripts/import-recipes.mjs dev",
     "import:prod": "node scripts/import-recipes.mjs prod",
+    "import-events:dev": "node scripts/import-events.mjs dev",
+    "import-events:prod": "node scripts/import-events.mjs prod",
     "deploy:schema": "./deploy-migrations.sh"
   }
 }

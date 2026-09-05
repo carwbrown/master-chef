@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Master Chef — Hub</title>
   <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="event-modal.css">
   <style>
     body { background: var(--bg); }
     .hub-header {
@@ -78,8 +79,6 @@
                    font-size: .7rem; padding: 0 10px; }
     .ag-gap::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed var(--border); }
     .ag-empty { text-align: center; color: var(--text-faint); padding: var(--sp-5) 0; font-size: .9rem; }
-    .pd-row { display: flex; gap: var(--sp-3); }
-    .pd-row label { flex: 1; }
     /* Searchable recipe combobox */
     .combo { position: relative; }
     .combo-list { position: absolute; left: 0; right: 0; top: 100%; z-index: 10; margin-top: 4px;
@@ -177,7 +176,6 @@
     /* Keep chore inputs ≥16px on phones so iOS doesn't zoom the page on focus */
     @media (max-width: 620px) { .tl-add-input, .tl-add-recur { font-size: 16px; } }
     .tl-add-days { padding-left: 2px; }
-    .wd-picker[hidden] { display: none; }  /* class display:flex would otherwise beat [hidden] */
 
     /* Confetti */
     .confetti-piece { position: fixed; width: 9px; height: 9px; border-radius: 2px;
@@ -194,35 +192,8 @@
 
     .add-event { width: 100%; justify-content: center; margin-top: var(--sp-3); }
 
-    /* Modal */
-    .modal { border: none; border-radius: var(--radius-lg); padding: 0; box-shadow: var(--shadow-lg);
-             max-width: 460px; width: 92vw; max-height: 92vh; max-height: 92dvh; color: var(--text); background: var(--surface); }
-    .modal::backdrop { background: rgba(20,40,33,.4); }
-    .modal form { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3);
-                  max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
-    .modal h3 { margin: 0 0 var(--sp-1); }
-    .modal label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-muted); }
-    .modal label > input:not([type=checkbox]):not([type=radio]),
-    .modal label > select, .modal label > textarea { margin-top: 4px; }
-    .modal label.row { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--text); }
-    .times { display: flex; gap: var(--sp-3); }
-    .times label { flex: 1; }
-    .wd-picker { display: flex; gap: 6px; flex-wrap: wrap; }
-    .wd-picker label { display: inline-flex; align-items: center; justify-content: center; width: 40px;
-                       padding: 6px 0; border: 1px solid var(--border); border-radius: 8px; cursor: pointer;
-                       font-size: .78rem; font-weight: 600; color: var(--text); }
-    .wd-picker input { display: none; }
-    .wd-picker input:checked + span { color: var(--green-dark); }
-    .wd-picker label:has(input:checked) { background: var(--green-soft); border-color: var(--green); }
-    .modal-actions { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-3); }
-    .btn.danger { color: var(--danger); border-color: var(--danger-soft); }
+    /* Event/meal modal styles are shared via event-modal.css */
     .field-note { font-size: .75rem; color: var(--text-faint); }
-    /* Modal → bottom sheet on phones so it doesn't take over the screen */
-    @media (max-width: 620px) {
-      .modal { inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 85dvh;
-               border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-      .modal form { padding: var(--sp-4); max-height: 85dvh; }
-    }
   </style>
 </head>
 <body>
@@ -252,48 +223,7 @@
     </aside>
   </main>
 
-  <!-- Add/Edit event modal -->
-  <dialog class="modal" id="eventDialog">
-    <form id="eventForm">
-      <h3 id="dlgTitle">New event</h3>
-      <input type="hidden" name="id">
-      <label>Title <input type="text" name="title" required placeholder="e.g. Soccer practice"></label>
-      <label>Who
-        <select name="member" id="memberSelect"><option value="">Everyone</option></select>
-      </label>
-      <div class="pd-row">
-        <label>Pickup <select name="pickup" id="pickupSelect"><option value="">—</option></select></label>
-        <label>Drop-off <select name="dropoff" id="dropoffSelect"><option value="">—</option></select></label>
-      </div>
-      <label>Date <input type="date" name="date" id="dateField" required></label>
-      <label class="row"><input type="checkbox" name="all_day" id="allDayField"> All day</label>
-      <div class="times" id="timeFields">
-        <label>Start <input type="time" name="start_time"></label>
-        <label>End <input type="time" name="end_time"></label>
-      </div>
-      <label>Repeat
-        <select name="recur_type" id="recurType">
-          <option value="none">Does not repeat</option>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-        </select>
-      </label>
-      <div class="wd-picker" id="weeklyDays" hidden></div>
-      <div id="monthlyOpts" hidden>
-        <label class="row"><input type="radio" name="monthly_kind" value="day_of_month" checked> <span id="domLabel"></span></label>
-        <label class="row"><input type="radio" name="monthly_kind" value="nth_weekday"> <span id="nthLabel"></span></label>
-      </div>
-      <label id="untilWrap" hidden>Ends (optional) <input type="date" name="recur_until"></label>
-      <label>Notes <textarea name="notes" rows="2" placeholder="optional"></textarea></label>
-      <div class="modal-actions">
-        <button type="button" class="btn danger" id="deleteBtn" hidden>Delete</button>
-        <span style="flex:1"></span>
-        <button type="button" class="btn" id="cancelBtn">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </form>
-  </dialog>
+  <!-- Add/Edit event modal is injected by scripts/event-modal.js -->
 
   <!-- Assign meal modal -->
   <dialog class="modal" id="mealDialog">
@@ -301,7 +231,8 @@
       <h3 id="mealDlgTitle">Lunch</h3>
       <input type="hidden" name="id">
       <input type="hidden" name="slot">
-      <label>Recipe
+      <label>Meal <input type="text" name="title" placeholder="e.g. Carbonara, salmon, tacos"></label>
+      <label>Or pick a saved recipe
         <div class="combo" id="recipeCombo">
           <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
           <input type="hidden" name="recipe">
@@ -324,6 +255,7 @@
     import { escapeHTML } from './scripts/utils.js';
     import { initRecipeCombo } from './scripts/recipe-combo.js';
     import { mountMenu } from './scripts/nav.js';
+    import { createEventModal } from './scripts/event-modal.js';
 
     if (!requireAuth()) { /* redirected to login */ }
 
@@ -333,6 +265,7 @@
     let membersById = {};
     let recipes = [];
     let mealsById = {};
+    let eventModal;
     let prevPct = {}, prevDone = {}, animateOnRender = false;
     const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const NEUTRAL = '#dfe7e3';
@@ -354,7 +287,7 @@
       try { members = await pb.collection('members').getFullList({ sort: 'sort' }); } catch (e) { members = []; }
       try { recipes = await pb.collection('recipes').getFullList({ sort: 'title', fields: 'id,title,author,source_url,tags' }); } catch (e) { recipes = []; }
       membersById = Object.fromEntries(members.map(m => [m.id, m]));
-      buildForm();
+      eventModal = createEventModal({ members, onChange: renderDay, getDefaultDate: () => currentDate });
       buildMealForm();
       wireControls();
       wireTasks();
@@ -387,6 +320,7 @@
         const p = expName(ev, 'pickup'), o = expName(ev, 'dropoff');
         if (p) d.push(`🚗 Pickup: ${escapeHTML(p)}`);
         if (o) d.push(`🏁 Drop-off: ${escapeHTML(o)}`);
+        if (ev.caregiver) d.push(`👤 Watching: ${escapeHTML(ev.caregiver)}`);
         return d.length ? `<div class="ag-details">${d.join(' · ')}</div>` : '';
       };
       const whoHTML = (ev) => { const w = expName(ev, 'member'); return w ? ` <span class="ag-who">· ${escapeHTML(w)}</span>` : ''; };
@@ -422,7 +356,7 @@
       // tap to edit
       document.querySelectorAll('[data-id]').forEach(el => {
         if (el.closest('.timeline') || el.closest('.allday'))
-          el.addEventListener('click', () => openEdit(all.find(x => x.id === el.dataset.id)));
+          el.addEventListener('click', () => eventModal.openEdit(all.find(x => x.id === el.dataset.id)));
       });
     }
 
@@ -432,7 +366,7 @@
       document.getElementById('prev').onclick   = () => go(-1);
       document.getElementById('next').onclick   = () => go(1);
       document.getElementById('todayBtn').onclick = () => { currentDate = new Date(); refresh(); };
-      document.getElementById('addEvent').onclick = () => openNew();
+      document.getElementById('addEvent').onclick = () => eventModal.openNew();
       mountMenu(document.getElementById('navMount'), 'hub');
 
       // Swipe left/right to change the day (touch)
@@ -448,130 +382,9 @@
       }, { passive: true });
     }
 
-    // ---------- event modal ----------
-    const dlg = document.getElementById('eventDialog');
-    const form = document.getElementById('eventForm');
-
-    function buildForm() {
-      const memberOpts = members.map(m => `<option value="${m.id}">${escapeHTML(m.name)}</option>`).join('');
-      document.getElementById('memberSelect').innerHTML = `<option value="">Everyone</option>` + memberOpts;
-      document.getElementById('pickupSelect').innerHTML = `<option value="">—</option>` + memberOpts;
-      document.getElementById('dropoffSelect').innerHTML = `<option value="">—</option>` + memberOpts;
-      document.getElementById('weeklyDays').innerHTML = WD.map(d =>
-        `<label><input type="checkbox" name="wd" value="${d}"><span>${WD_LABEL[d]}</span></label>`).join('');
-
-      document.getElementById('allDayField').addEventListener('change', syncConditionals);
-      document.getElementById('recurType').addEventListener('change', syncConditionals);
-      document.getElementById('dateField').addEventListener('change', updateMonthlyLabels);
-      document.getElementById('cancelBtn').onclick = () => dlg.close();
-      document.getElementById('deleteBtn').onclick = onDelete;
-      form.addEventListener('submit', onSave);
-    }
-
-    function syncConditionals() {
-      const type = document.getElementById('recurType').value;
-      document.getElementById('timeFields').style.display = document.getElementById('allDayField').checked ? 'none' : 'flex';
-      document.getElementById('weeklyDays').hidden = type !== 'weekly';
-      document.getElementById('monthlyOpts').hidden = type !== 'monthly';
-      document.getElementById('untilWrap').hidden = type === 'none';
-      if (type === 'monthly') updateMonthlyLabels();
-    }
-
-    function updateMonthlyLabels() {
-      const v = document.getElementById('dateField').value;
-      if (!v) return;
-      const d = ymd(v);
-      document.getElementById('domLabel').textContent = `On the ${ordinal(d.getDate())}`;
-      const nth = Math.ceil(d.getDate() / 7);
-      document.getElementById('nthLabel').textContent = `On the ${ordinal(nth)} ${WD_FULL[WD[d.getDay()]]}`;
-    }
-
-    function openNew() {
-      form.reset();
-      form.id.value = '';
-      document.getElementById('dlgTitle').textContent = 'New event';
-      document.getElementById('deleteBtn').hidden = true;
-      document.getElementById('dateField').value = dateInput(currentDate);
-      document.getElementById('recurType').value = 'none';
-      syncConditionals();
-      dlg.showModal();
-    }
-
-    function openEdit(ev) {
-      if (!ev) return;
-      form.reset();
-      form.id.value = ev.id;
-      document.getElementById('dlgTitle').textContent = 'Edit event';
-      document.getElementById('deleteBtn').hidden = false;
-      form.title.value = ev.title || '';
-      form.member.value = ev.member || '';
-      form.pickup.value = ev.pickup || '';
-      form.dropoff.value = ev.dropoff || '';
-      form.notes.value = ev.notes || '';
-      document.getElementById('dateField').value = ev.date ? ev.date.slice(0, 10) : dateInput(currentDate);
-      document.getElementById('allDayField').checked = !!ev.all_day;
-      form.start_time.value = ev.start_time || '';
-      form.end_time.value = ev.end_time || '';
-      document.getElementById('recurType').value = ev.recur_type || 'none';
-      form.recur_until.value = ev.recur_until ? ev.recur_until.slice(0, 10) : '';
-      const cfg = ev.recur_config || {};
-      (cfg.days || []).forEach(d => { const b = form.querySelector(`input[name="wd"][value="${d}"]`); if (b) b.checked = true; });
-      if (cfg.monthly && cfg.monthly.kind)
-        form.querySelector(`input[name="monthly_kind"][value="${cfg.monthly.kind}"]`).checked = true;
-      syncConditionals();
-      dlg.showModal();
-    }
-
-    function buildRecurConfig(type) {
-      if (type === 'weekly') {
-        const days = [...form.querySelectorAll('input[name="wd"]:checked')].map(c => c.value);
-        return { days };
-      }
-      if (type === 'monthly') {
-        const d = ymd(document.getElementById('dateField').value);
-        const kind = form.monthly_kind.value;
-        return kind === 'nth_weekday'
-          ? { monthly: { kind, nth: Math.ceil(d.getDate() / 7), weekday: WD[d.getDay()] } }
-          : { monthly: { kind: 'day_of_month', day: d.getDate() } };
-      }
-      return {};
-    }
-
-    async function onSave(e) {
-      e.preventDefault();
-      const type = document.getElementById('recurType').value;
-      const allDay = document.getElementById('allDayField').checked;
-      const data = {
-        title: form.title.value.trim(),
-        member: form.member.value || null,
-        pickup: form.pickup.value || null,
-        dropoff: form.dropoff.value || null,
-        notes: form.notes.value.trim(),
-        date: toPBDate(document.getElementById('dateField').value),
-        all_day: allDay,
-        start_time: allDay ? '' : form.start_time.value,
-        end_time: allDay ? '' : form.end_time.value,
-        recur_type: type,
-        recur_config: buildRecurConfig(type),
-        recur_until: type !== 'none' ? toPBDate(form.recur_until.value) : '',
-      };
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      try {
-        if (form.id.value) await pb.collection('events').update(form.id.value, data);
-        else await pb.collection('events').create(data);
-        dlg.close();
-        await renderDay();
-      } catch (err) {
-        alert('Could not save: ' + (err?.message || err));
-      } finally { btn.disabled = false; }
-    }
-
-    async function onDelete() {
-      if (!form.id.value || !confirm('Delete this event?')) return;
-      try { await pb.collection('events').delete(form.id.value); dlg.close(); await renderDay(); }
-      catch (err) { alert('Could not delete: ' + (err?.message || err)); }
-    }
+    // ---------- event modal (shared) ----------
+    // The add/edit event dialog + its logic live in scripts/event-modal.js.
+    // `eventModal` (openNew / openEdit) is created in init() once members load.
 
     // ---------- meals (live PocketBase) ----------
     async function renderMeals() {
@@ -591,8 +404,8 @@
             </div>`;
         }
         const recipe = m.expand && m.expand.recipe;
-        const name = recipe ? recipe.title : (m.notes || '—');
-        const sides = recipe ? (m.notes || '') : '';
+        const name = recipe ? recipe.title : (m.title || m.notes || '—');
+        const sides = (recipe || m.title) ? (m.notes || '') : '';
         return `<div class="meal-card ${slot}" data-slot="${slot}" data-id="${m.id}"${recipe ? ` data-recipe="${recipe.id}"` : ''}>
             <button class="meal-edit" title="Change">✎</button>
             <div class="meal-slot">${label}</div>
@@ -628,7 +441,7 @@
       mealForm.id.value = id || '';
       const m = id ? mealsById[id] : null;
       recipeCombo.set(m ? m.recipe : '');
-      if (m) mealForm.notes.value = m.notes || '';
+      if (m) { mealForm.title.value = m.title || ''; mealForm.notes.value = m.notes || ''; }
       document.getElementById('mealDelete').hidden = !id;
       mealDlg.showModal();
     }
@@ -639,6 +452,7 @@
         date: toPBDate(dateInput(currentDate)),
         slot: mealForm.slot.value,
         recipe: mealForm.recipe.value || null,
+        title: mealForm.recipe.value ? '' : mealForm.title.value.trim(),
         notes: mealForm.notes.value.trim(),
       };
       try {

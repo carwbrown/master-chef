@@ -25,6 +25,8 @@
     .sec .chev { font-size: .85rem; color: var(--text-faint); transition: transform .2s; }
     .csec.collapsed .sec .chev { transform: rotate(-90deg); }
     .csec.collapsed .sec-body { display: none; }
+    .sec-right { display: flex; align-items: center; gap: var(--sp-2); }
+    .ingclear { font-size: .72rem; padding: .2rem .55rem; font-weight: 600; }
 
     .ing-list, .step-list { list-style: none; margin: 0; padding: 0; }
     .ing-list { columns: 2; column-gap: var(--sp-6); }
@@ -142,7 +144,13 @@
         </div>
         <div class="cook-grid">
           <section class="csec" id="ingSec">
-            <h2 class="sec">Ingredients <span class="chev">▾</span></h2>
+            <h2 class="sec">
+              <span>Ingredients</span>
+              <span class="sec-right">
+                ${ings.length ? `<button class="btn ingclear" id="clearIngs" type="button">Clear checks</button>` : ''}
+                <span class="chev">▾</span>
+              </span>
+            </h2>
             <div class="sec-body"><ul class="ing-list">
               ${ings.length ? ings.map((i, idx) =>
                 `<li class="ing${state.ings.includes(idx) ? ' checked' : ''}" data-i="${idx}">
@@ -161,6 +169,15 @@
             </ol></div>
           </section>
         </div>`;
+
+      // clear all ingredient checks (button lives in the section header)
+      const clearIngs = document.getElementById('clearIngs');
+      if (clearIngs) clearIngs.addEventListener('click', (e) => {
+        e.stopPropagation();  // don't collapse the section
+        el.querySelectorAll('.ing.checked').forEach(li => li.classList.remove('checked'));
+        state.ings = [];
+        save();
+      });
 
       // toggle ingredient checked
       el.querySelectorAll('.ing').forEach(li => li.addEventListener('click', () => {

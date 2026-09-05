@@ -1,0 +1,39 @@
+/* Styles for the shared add/edit event modal (scripts/event-modal.js).
+   Linked by any page that uses the modal (hub.html, week.html). Also covers the
+   modal classes the Hub's meal dialog reuses (.modal, .modal-actions, .btn.danger). */
+
+.modal { border: none; border-radius: var(--radius-lg); padding: 0; box-shadow: var(--shadow-lg);
+         max-width: 460px; width: 92vw; max-height: 92vh; max-height: 92dvh; color: var(--text); background: var(--surface); }
+.modal::backdrop { background: rgba(20,40,33,.4); }
+.modal form { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3);
+              max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
+.modal h3 { margin: 0 0 var(--sp-1); }
+.modal label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-muted); }
+.modal label > input:not([type=checkbox]):not([type=radio]),
+.modal label > select, .modal label > textarea { margin-top: 4px; }
+.modal label.row { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--text); }
+
+.pd-row { display: flex; gap: var(--sp-3); }
+.pd-row label { flex: 1; }
+
+.times { display: flex; gap: var(--sp-3); }
+.times label { flex: 1; }
+
+.wd-picker { display: flex; gap: 6px; flex-wrap: wrap; }
+.wd-picker[hidden] { display: none; }  /* class display:flex would otherwise beat [hidden] */
+.wd-picker label { display: inline-flex; align-items: center; justify-content: center; width: 40px;
+                   padding: 6px 0; border: 1px solid var(--border); border-radius: 8px; cursor: pointer;
+                   font-size: .78rem; font-weight: 600; color: var(--text); }
+.wd-picker input { display: none; }
+.wd-picker input:checked + span { color: var(--green-dark); }
+.wd-picker label:has(input:checked) { background: var(--green-soft); border-color: var(--green); }
+
+.modal-actions { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-3); }
+.btn.danger { color: var(--danger); border-color: var(--danger-soft); }
+
+/* Modal → bottom sheet on phones so it doesn't take over the screen */
+@media (max-width: 620px) {
+  .modal { inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 85dvh;
+           border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .modal form { padding: var(--sp-4); max-height: 85dvh; }
+}

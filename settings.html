@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.5rem; margin: 0; flex: 1; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-5); }
+    .card h2 { margin: 0 0 var(--sp-2); font-size: 1.15rem; }
+    .hint { color: var(--text-muted); font-size: .82rem; margin: 0 0 var(--sp-3); }
+    .hint code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+
+    .row { display: flex; gap: var(--sp-2); align-items: center; padding: 8px 0; border-top: 1px solid var(--surface-2); flex-wrap: wrap; }
+    .row:first-of-type { border-top: none; }
+    .row input[type="text"], .row input[type="url"], .row select { padding: .45rem .6rem; border: 1px solid var(--border);
+        border-radius: var(--radius-sm); font: inherit; }
+    .grow { flex: 1 1 160px; min-width: 0; }
+    .row input[type="color"] { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; padding: 0; background: none; }
+    .lbl-inline { font-size: .8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px; }
+    .del { border: none; background: none; color: var(--text-faint); cursor: pointer; font-size: 1rem; padding: 2px 6px; }
+    .del:hover { color: var(--danger); }
+    .addrow { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-3); }
+    .warn { color: var(--danger); font-size: .78rem; flex-basis: 100%; }
+    .ok { color: var(--green-dark); font-size: .78rem; flex-basis: 100%; }
+    .cal-url { flex: 1 1 100%; }
+    @media (prefers-reduced-motion: reduce) { * { transition-duration: .001ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>Settings</h1>
+  </header>
+
+  <div class="wrap">
+    <!-- People -->
+    <section class="card">
+      <h2>People</h2>
+      <p class="hint">Family members used for color-coding and assigning events, chores, pickups.</p>
+      <div id="peopleList"></div>
+      <form class="addrow" id="addPerson">
+        <input class="grow" type="text" name="name" placeholder="Name" required>
+        <input type="color" name="color" value="#CFE6F2" title="Color">
+        <label class="lbl-inline"><input type="checkbox" name="is_parent"> Parent</label>
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </section>
+
+    <!-- Google Calendars -->
+    <section class="card">
+      <h2>Google Calendars</h2>
+      <p class="hint">
+        Add one row per calendar. <strong>Use the private “Secret address in iCal format”</strong> —
+        in Google Calendar go to <em>Settings and sharing → Integrate calendar → Secret address in iCal
+        format</em>. It looks like <code>…/calendar/ical/…/private-…/basic.ics</code>.
+        Don’t use the public address (it only shows events you’ve made public). The secret URL is a
+        password — anyone with it can read that calendar.
+      </p>
+      <div id="calList"></div>
+      <form class="addrow" id="addCal">
+        <input class="grow" type="text" name="label" placeholder="Label (e.g. Carson, Fisher school)" required>
+        <select name="member"><option value="">Assign to… (optional)</option></select>
+        <label class="lbl-inline"><input type="checkbox" name="active" checked> Active</label>
+        <input class="cal-url" type="url" name="ics_url" placeholder="https://calendar.google.com/calendar/ical/…/private-…/basic.ics" required>
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </section>
+
+    <p class="hint">Import upcoming events on the <a href="sync.html">Sync</a> page.</p>
+  </div>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+
+    const GCAL_FN = '/.netlify/functions/gcal-feed';
+    let members = [], calendars = [];
+
+    if (requireAuth()) init();
+
+    async function init() {
+      mountMenu(document.getElementById('navMount'), 'settings');
+      await load();
+      renderPeople();
+      renderCals();
+      wire();
+    }
+
+    async function load() {
+      members = await pb.collection('members').getFullList({ sort: 'sort' }).catch(() => []);
+      calendars = await pb.collection('calendars').getFullList({ sort: 'sort' }).catch(() => []);
+    }
+
+    const memberOptions = (sel) => `<option value="">—</option>` +
+      members.map(m => `<option value="${m.id}"${m.id === sel ? ' selected' : ''}>${escapeHTML(m.name)}</option>`).join('');
+
+    function renderPeople() {
+      document.getElementById('peopleList').innerHTML = members.map(m => `
+        <div class="row" data-id="${m.id}">
+          <input type="color" data-field="color" value="${m.color || '#CFE6F2'}" title="Color">
+          <input class="grow" type="text" data-field="name" value="${escapeHTML(m.name)}">
+          <label class="lbl-inline"><input type="checkbox" data-field="is_parent"${m.is_parent ? ' checked' : ''}> Parent</label>
+          <button class="del" data-del="member" title="Remove">✕</button>
+        </div>`).join('') || '<p class="hint">No people yet.</p>';
+    }
+
+    const isPublic = (url) => /\/public\/basic\.ics/i.test(url || '');
+
+    function renderCals() {
+      // keep the "add" select in sync with members
+      document.querySelector('#addCal select[name="member"]').innerHTML =
+        `<option value="">Assign to… (optional)</option>` +
+        members.map(m => `<option value="${m.id}">${escapeHTML(m.name)}</option>`).join('');
+
+      document.getElementById('calList').innerHTML = calendars.map(c => `
+        <div class="row" data-id="${c.id}">
+          <input class="grow" type="text" data-field="label" value="${escapeHTML(c.label)}">
+          <select data-field="member">${memberOptions(c.member)}</select>
+          <label class="lbl-inline"><input type="checkbox" data-field="active"${c.active ? ' checked' : ''}> Active</label>
+          <button class="btn" data-test title="Test feed">Test</button>
+          <button class="del" data-del="calendar" title="Remove">✕</button>
+          <input class="cal-url" type="url" data-field="ics_url" value="${escapeHTML(c.ics_url)}">
+          ${isPublic(c.ics_url) ? '<span class="warn">⚠ This looks like a public URL — use the private “Secret address in iCal format”.</span>' : ''}
+        </div>`).join('') || '<p class="hint">No calendars yet.</p>';
+    }
+
+    function wire() {
+      // People add
+      document.getElementById('addPerson').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.currentTarget;
+        try {
+          const rec = await pb.collection('members').create({
+            name: f.name.value.trim(), color: f.color.value, is_parent: f.is_parent.checked,
+            sort: members.length,
+          });
+          members.push(rec); f.reset(); f.color.value = '#CFE6F2';
+          renderPeople(); renderCals();
+        } catch (err) { alert('Could not add: ' + (err?.message || err)); }
+      });
+
+      // Calendar add
+      document.getElementById('addCal').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.currentTarget;
+        try {
+          const rec = await pb.collection('calendars').create({
+            label: f.label.value.trim(), ics_url: f.ics_url.value.trim(),
+            member: f.member.value || null, active: f.active.checked, sort: calendars.length,
+          });
+          calendars.push(rec); f.reset(); f.active.checked = true;
+          renderCals();
+        } catch (err) { alert('Could not add: ' + (err?.message || err)); }
+      });
+
+      // Inline edits (change) for both lists
+      document.querySelector('.wrap').addEventListener('change', async (e) => {
+        const field = e.target.dataset.field;
+        const row = e.target.closest('.row[data-id]');
+        if (!field || !row) return;
+        const col = row.closest('#peopleList') ? 'members' : 'calendars';
+        const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        try {
+          await pb.collection(col).update(row.dataset.id, { [field]: (field === 'member' ? (val || null) : val) });
+          if (col === 'members') { await load(); renderCals(); }        // reflect name/color in calendar selects
+          if (field === 'ics_url') renderCals();                        // refresh public-URL warning
+        } catch (err) { alert('Could not save: ' + (err?.message || err)); }
+      });
+
+      // Deletes + Test (click)
+      document.querySelector('.wrap').addEventListener('click', async (e) => {
+        const test = e.target.closest('[data-test]');
+        if (test) {
+          e.preventDefault();
+          const row = test.closest('.row[data-id]');
+          const url = row.querySelector('[data-field="ics_url"]').value.trim();
+          test.disabled = true; test.textContent = 'Testing…';
+          try {
+            const r = await fetch(GCAL_FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) });
+            const d = await r.json();
+            alert(r.ok ? `✓ Feed OK — ${d.events.length} upcoming event(s) found.` : `✗ ${d.error || 'Failed'}`);
+          } catch (err) { alert('✗ ' + (err?.message || err) + '\n(Functions only run on the deployed Netlify site.)'); }
+          finally { test.disabled = false; test.textContent = 'Test'; }
+          return;
+        }
+        const del = e.target.closest('[data-del]');
+        if (!del) return;
+        const row = del.closest('.row[data-id]');
+        const kind = del.dataset.del;
+        const msg = kind === 'member'
+          ? 'Remove this person? Their chores are deleted too.'
+          : 'Remove this calendar?';
+        if (!confirm(msg)) return;
+        try {
+          await pb.collection(kind === 'member' ? 'members' : 'calendars').delete(row.dataset.id);
+          if (kind === 'member') { members = members.filter(m => m.id !== row.dataset.id); renderPeople(); renderCals(); }
+          else { calendars = calendars.filter(c => c.id !== row.dataset.id); renderCals(); }
+        } catch (err) { alert('Could not remove: ' + (err?.message || err)); }
+      });
+    }
+  </script>
+</body>
+</html>

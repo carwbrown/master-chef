@@ -34,6 +34,28 @@ python3 -m http.server 8000
 # 3. Open http://localhost:8000
 ```
 
+> **Note:** `python3 -m http.server` serves static files only — it **cannot run the
+> Netlify Functions** (e.g. `gcal-feed`, used by Settings → Test and the Sync page).
+> Those requests to `/.netlify/functions/*` will 404 under the Python server.
+
+### Running with functions (Google Calendar sync)
+
+To exercise the serverless functions locally, use the Netlify CLI instead of the
+Python server — it serves the static site **and** the functions together:
+
+```bash
+# Terminal 1: PocketBase (as above)
+pocketbase serve
+
+# Terminal 2: Netlify dev (serves site + functions, usually on :8888)
+npx netlify dev
+```
+
+Open the port it prints (usually `http://localhost:8888`). The `gcal-feed`
+function (`netlify/functions/gcal-feed.mjs`) fetches and parses a Google Calendar
+secret `.ics` feed; it needs `node-ical` (run `npm install` once). On the deployed
+Netlify site the functions run automatically — no CLI needed.
+
 ### First Time PocketBase Setup
 
 1. Open Admin UI at `http://127.0.0.1:8090/_/`

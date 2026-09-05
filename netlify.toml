@@ -1,8 +1,14 @@
-# Netlify configuration for Master Chef (static site, no build step).
+# Netlify configuration for Master Chef (static site + serverless functions).
 # Frontend auto-deploys from GitHub on push to main.
 
 [build]
   publish = "."
+
+# Serverless functions (e.g. gcal-feed: fetch + parse a Google Calendar .ics).
+# The frontend stays dependency-free; the deps in package.json are used only here.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 # Basic security headers for all pages.
 [[headers]]

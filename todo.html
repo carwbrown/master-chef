@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-do — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="grocery.css">
+  <style>
+    .tabs { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-4); }
+    .tab { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-sm);
+           padding: .4rem .9rem; font: inherit; font-weight: 600; color: var(--text-muted); cursor: pointer; }
+    .tab.on { background: var(--green-soft); border-color: var(--green); color: var(--green-dark); }
+    .tab .badge { color: var(--text-faint); font-weight: 500; margin-left: 4px; }
+    /* Done items keep the checked strike-through look from grocery.css (.glist.trip .on). */
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>To-do</h1>
+  </header>
+
+  <div class="wrap">
+    <section class="gsection">
+      <div class="tabs">
+        <button class="tab on" id="tabActive" type="button">To-do</button>
+        <button class="tab" id="tabDone" type="button">Done <span class="badge" id="doneBadge"></span></button>
+      </div>
+
+      <!-- Active: unchecked on top, recently-checked (< 3 days) sink to the bottom -->
+      <div id="activePane">
+        <ul class="glist trip" id="activeList"></ul>
+        <form class="gadd" id="addForm">
+          <input class="input gadd-name" type="text" placeholder="Add a to-do…" required>
+          <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+      </div>
+
+      <!-- Done: items checked more than 3 days ago -->
+      <ul class="glist trip" id="doneList" hidden></ul>
+    </section>
+  </div>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+
+    const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
+    let all = [];
+    let tab = 'active';
+
+    if (requireAuth()) init();
+
+    function init() {
+      mountMenu(document.getElementById('navMount'), 'todo');
+      wire();
+      refresh();
+    }
+
+    async function load() {
+      try { all = await pb.collection('adult_tasks').getFullList({ sort: 'sort' }); }
+      catch { all = []; }
+    }
+    async function refresh() { await load(); render(); }
+
+    // Checked more than 3 days ago -> archived to the Done tab.
+    const doneMs = (it) => (it.done && it.done_at) ? Date.parse(it.done_at) : NaN;
+    const isArchived = (it) => it.done && it.done_at && (Date.now() - doneMs(it) >= THREE_DAYS);
+
+    function itemHTML(it) {
+      return `<li class="gitem ${it.done ? 'on' : ''}">
+          <input type="checkbox" data-id="${it.id}" ${it.done ? 'checked' : ''}>
+          <span class="gname">${escapeHTML(it.title)}</span>
+          <button class="gdel" data-id="${it.id}" title="Remove" aria-label="Remove">✕</button>
+        </li>`;
+    }
+
+    function render() {
+      const archived = all.filter(isArchived);
+      const active = all.filter(it => !isArchived(it));
+      // Active: unchecked first (saved order), then recently-done at the bottom.
+      active.sort((a, b) => (Number(!!a.done) - Number(!!b.done)) || ((a.sort || 0) - (b.sort || 0)));
+      // Done: most recently completed first.
+      archived.sort((a, b) => doneMs(b) - doneMs(a));
+
+      document.getElementById('activeList').innerHTML = active.length
+        ? active.map(itemHTML).join('')
+        : '<li class="gempty">Nothing to do. Add something below.</li>';
+      document.getElementById('doneList').innerHTML = archived.length
+        ? archived.map(itemHTML).join('')
+        : '<li class="gempty">Nothing archived yet.</li>';
+
+      document.getElementById('doneBadge').textContent = archived.length ? `(${archived.length})` : '';
+      document.getElementById('tabActive').classList.toggle('on', tab === 'active');
+      document.getElementById('tabDone').classList.toggle('on', tab === 'done');
+      document.getElementById('activePane').hidden = tab !== 'active';
+      document.getElementById('doneList').hidden = tab !== 'done';
+    }
+
+    function wire() {
+      document.getElementById('tabActive').addEventListener('click', () => { tab = 'active'; render(); });
+      document.getElementById('tabDone').addEventListener('click', () => { tab = 'done'; render(); });
+
+      document.getElementById('addForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nameEl = e.currentTarget.querySelector('.gadd-name');
+        const title = nameEl.value.trim();
+        if (!title) return;
+        const btn = e.currentTarget.querySelector('button');
+        btn.disabled = true;
+        try {
+          const rec = await pb.collection('adult_tasks').create({
+            title, done: false, done_at: '', sort: Date.now() % 100000000,
+          });
+          all.push(rec);
+          render();
+          nameEl.value = ''; nameEl.focus();
+        } catch (err) { alert('Could not add: ' + (err?.message || err)); }
+        finally { btn.disabled = false; }
+      });
+
+      document.querySelector('.wrap').addEventListener('change', async (e) => {
+        const cb = e.target.closest('input[type="checkbox"][data-id]');
+        if (!cb) return;
+        const it = all.find(i => i.id === cb.dataset.id);
+        if (!it) return;
+        it.done = cb.checked;
+        it.done_at = cb.checked ? new Date().toISOString() : '';
+        render();
+        try { await pb.collection('adult_tasks').update(it.id, { done: it.done, done_at: it.done_at }); }
+        catch (err) { alert('Could not update: ' + (err?.message || err)); refresh(); }
+      });
+
+      document.querySelector('.wrap').addEventListener('click', async (e) => {
+        const del = e.target.closest('.gdel');
+        if (!del) return;
+        try {
+          await pb.collection('adult_tasks').delete(del.dataset.id);
+          all = all.filter(i => i.id !== del.dataset.id);
+          render();
+        } catch (err) { alert('Could not remove: ' + (err?.message || err)); }
+      });
+    }
+  </script>
+</body>
+</html>

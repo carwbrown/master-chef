@@ -28,11 +28,32 @@ Turn the app from a single-family hub into a product multiple families can use.
 - Requires: per-family subscription state, a billing integration (e.g. Stripe), and gating access when unpaid.
 - Depends on multi-tenant being in place first.
 
-## Instacart "Shop the recipe" (deferred)
-Add a button on the cook view that pushes the ingredient list to an Instacart cart (like Half Baked Harvest).
-- Needs **Instacart Developer Platform** access + an API key, plus a small serverless function to turn the
-  ingredients into an Instacart shopping list / recipe link.
-- Feasible if Instacart approves developer access; the integration itself is modest.
+## Instacart "Shop the recipe" — researched Sep 2026, PARKED (no viable free path for our workflow)
+Goal: a "Shop ingredients" / "Send grocery list to cart" button (like Half Baked Harvest's).
+
+**How HBH actually does it:** its button hits **Jupiter** (`jupiter.recipes`), which mints an Instacart
+**shopping-list page** — the redirect chain is `…jupiter.recipes/checkout/<uuid>/instacart` →
+`instacart.com/store/shopping_lists/<id>`. That page is the output of Instacart's Developer Platform (IDP)
+`products_link` / `recipe` endpoints. **Key limit of the whole model:** you can only generate a *hosted
+Instacart page the user opens themselves* — there is **no API to push items into an active/existing cart.**
+
+**Why we can't use it (our workflow = Instacart → Food Lion pickup, for free pickup + no % markup):**
+- **Instacart IDP** (`POST /idp/v1/products/products_link` or `/recipe`, Bearer API key, base
+  `connect.instacart.com`): the right product and *self-serve keys exist in the dashboard* — BUT **new
+  Developer Platform applications are currently CLOSED, with no waitlist** (`company.instacart.com/business/developers`).
+  Not an email issue; a business email doesn't change it. Revisit only if applications reopen — it would then
+  support Food Lion pickup exactly.
+- **Food Lion / Ahold Delhaize** add-to-cart exists only via **SmartCommerce (Click2Cart) / Pear Commerce /
+  Chicory** — all brand/publisher, contact-sales, not self-serve, not for a private app.
+- **Jupiter** = free but a *creator-website* product (publish recipes on their monetizable site); no embeddable
+  API for a private app. **Chicory** (`chicory.co`) = free "Recipe Activation" tier but publisher-only,
+  manual approval. Neither fits a private family hub.
+- **Kroger API** is the *only* free, self-serve, real add-to-cart (`cart.basic:write`, OAuth2; adds to the
+  user's cart, can't remove on the free tier) and it **covers Harris Teeter** (a Kroger banner) — but we avoid
+  Harris Teeter for cost, so it doesn't match our shopping.
+
+**Conclusion:** keep grocery/staples as a checklist. Cheap conveniences if wanted: a "Copy list" button, or a
+deep link to the Food Lion storefront. Reassess if Instacart reopens IDP.
 
 ## PWA (installable / offline) — deferred, but assessed
 **How hard: the "installable" version is easy; full offline is hard.**

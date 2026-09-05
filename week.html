@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="event-modal.css">
+  <style>
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.25rem; margin: 0; flex: 1; min-width: 160px; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .weekctrls { display: flex; gap: var(--sp-2); align-items: center; }
+    .weekctrls .btn { padding: .35rem .7rem; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
+
+    .wday { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-3); }
+    .wday.today { border-color: var(--green); }
+    .wday-head { display: flex; align-items: baseline; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+    .wday-name { font-weight: 700; }
+    .wday-date { color: var(--text-faint); font-size: .85rem; }
+    .wday-add { margin-left: auto; border: none; background: none; color: var(--green-dark);
+                font-size: 1.25rem; line-height: 1; cursor: pointer; padding: 0 .3rem; }
+    .wday-add:hover { color: var(--green); }
+    .wev { display: block; border-radius: var(--radius-sm); padding: 6px 10px; margin-top: 6px; cursor: pointer; }
+    .wev-time { font-size: .8rem; color: var(--text-muted); }
+    .wev-title { font-weight: 600; }
+    .wev-who { color: var(--text-muted); font-weight: 400; }
+    .wev-details { font-size: .8rem; color: var(--text-muted); margin-top: 2px; }
+    .wempty { color: var(--text-faint); font-size: .85rem; padding: 2px 0; }
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1 id="weekLabel">Week</h1>
+    <div class="weekctrls">
+      <button class="btn" id="prev" aria-label="Previous week">‹</button>
+      <button class="btn" id="todayBtn">This week</button>
+      <button class="btn" id="next" aria-label="Next week">›</button>
+    </div>
+  </header>
+
+  <div class="wrap" id="week"></div>
+
+  <script type="module">
+    import { pb, requireAuth } from './scripts/auth.js';
+    import { occursOn, ymd } from './scripts/recurrence.js';
+    import { escapeHTML } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+    import { createEventModal } from './scripts/event-modal.js';
+
+    const NEUTRAL = '#dfe7e3';
+    const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let anchor = new Date();        // any day inside the shown week
+    let members = [];
+    let eventModal;
+
+    const pad = (n) => String(n).padStart(2, '0');
+    const dateInput = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+    const fmt = (t) => { let [h, m] = t.split(':').map(Number); const ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return `${h}${m ? ':' + pad(m) : ''}${ap}`; };
+    const memberColor = (ev) => (ev.expand && ev.expand.member && ev.expand.member.color) || NEUTRAL;
+    const expName = (ev, k) => (ev.expand && ev.expand[k]) ? ev.expand[k].name : '';
+
+    // Sunday that starts the week containing `anchor`.
+    function weekStart() {
+      const d = ymd(anchor);
+      d.setDate(d.getDate() - d.getDay());
+      return d;
+    }
+
+    if (requireAuth()) init();
+
+    async function init() {
+      mountMenu(document.getElementById('navMount'), 'week');
+      try { members = await pb.collection('members').getFullList({ sort: 'sort' }); } catch { members = []; }
+      eventModal = createEventModal({ members, onChange: render, getDefaultDate: () => new Date() });
+      document.getElementById('prev').onclick = () => { anchor.setDate(anchor.getDate() - 7); render(); };
+      document.getElementById('next').onclick = () => { anchor.setDate(anchor.getDate() + 7); render(); };
+      document.getElementById('todayBtn').onclick = () => { anchor = new Date(); render(); };
+      render();
+    }
+
+    function detailsHTML(ev) {
+      const d = [];
+      if (ev.notes) d.push(escapeHTML(ev.notes));
+      const p = expName(ev, 'pickup'), o = expName(ev, 'dropoff');
+      if (p) d.push(`🚗 ${escapeHTML(p)}`);
+      if (o) d.push(`🏁 ${escapeHTML(o)}`);
+      if (ev.caregiver) d.push(`👤 ${escapeHTML(ev.caregiver)}`);
+      return d.length ? `<div class="wev-details">${d.join(' · ')}</div>` : '';
+    }
+
+    async function render() {
+      const start = weekStart();
+      const end = new Date(start); end.setDate(end.getDate() + 6);
+      const rng = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      document.getElementById('weekLabel').textContent = `${rng(start)} – ${rng(end)}`;
+
+      let all = [];
+      try { all = await pb.collection('events').getFullList({ expand: 'member,pickup,dropoff' }); }
+      catch { all = []; }
+
+      const todayStr = dateInput(ymd(new Date()));
+      let html = '';
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(start); day.setDate(start.getDate() + i);
+        const dayEvents = all.filter(ev => occursOn(ev, day));
+        const allDay = dayEvents.filter(ev => ev.all_day || !ev.start_time);
+        const timed = dayEvents.filter(ev => !ev.all_day && ev.start_time).sort((a, b) => toMin(a.start_time) - toMin(b.start_time));
+        const ordered = [...allDay, ...timed];
+
+        const rows = ordered.length ? ordered.map(ev => {
+          const time = (ev.all_day || !ev.start_time) ? 'All day'
+            : `${fmt(ev.start_time)}${ev.end_time ? '–' + fmt(ev.end_time) : ''}`;
+          const who = expName(ev, 'member');
+          return `<div class="wev" data-id="${ev.id}" style="background:${memberColor(ev)}">
+              <div class="wev-time">${time}</div>
+              <div class="wev-title">${escapeHTML(ev.title)}${who ? ` <span class="wev-who">· ${escapeHTML(who)}</span>` : ''}</div>
+              ${detailsHTML(ev)}
+            </div>`;
+        }).join('') : '<div class="wempty">Nothing scheduled</div>';
+
+        html += `<section class="wday${dateInput(day) === todayStr ? ' today' : ''}">
+            <div class="wday-head">
+              <span class="wday-name">${DAY_NAMES[day.getDay()]}</span>
+              <span class="wday-date">${day.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+              <button class="wday-add" data-add="${dateInput(day)}" aria-label="Add event">＋</button>
+            </div>
+            ${rows}
+          </section>`;
+      }
+      const el = document.getElementById('week');
+      el.innerHTML = html;
+
+      el.querySelectorAll('.wday-add').forEach(b => b.addEventListener('click', () => {
+        const [y, m, d] = b.dataset.add.split('-').map(Number);
+        eventModal.openNew(new Date(y, m - 1, d));
+      }));
+      el.querySelectorAll('.wev').forEach(elc => elc.addEventListener('click', () =>
+        eventModal.openEdit(all.find(x => x.id === elc.dataset.id))));
+    }
+  </script>
+</body>
+</html>
