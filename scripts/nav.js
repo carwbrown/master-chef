@@ -1,6 +1,6 @@
 /**
  * Shared hamburger menu for the app header. Call mountMenu(el, current)
- * where `current` is 'hub' | 'recipes' | 'planner' | 'grocery' | 'staples' to mark the active page.
+ * where `current` is 'hub' | 'recipes' | 'planner' | 'grocery' to mark the active page.
  */
 import { logout } from './auth.js';
 
@@ -13,7 +13,6 @@ const LINKS = [
   { href: 'planner.html', label: '📅  Meal planner', key: 'planner' },
   { href: 'todo.html', label: '📝  To-do', key: 'todo' },
   { href: 'grocery.html', label: '🛒  Grocery', key: 'grocery' },
-  { href: 'staples.html', label: '🧺  Staples', key: 'staples' },
   { href: 'sync.html', label: '🔄  Sync', key: 'sync' },
   { href: 'settings.html', label: '⚙️  Settings', key: 'settings' },
 ];

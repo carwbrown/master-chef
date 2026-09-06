@@ -104,6 +104,11 @@ a { color: var(--blue-dark); }
   place-items: center; cursor: pointer; color: var(--text-muted); }
 .navmenu-btn::-webkit-details-marker { display: none; }
 .navmenu-btn:hover { background: var(--surface-2); color: var(--text); }
+/* Smaller menu button on phones so it doesn't crowd the header */
+@media (max-width: 620px) {
+  .navmenu-btn { width: 34px; height: 34px; }
+  .navmenu-btn svg { width: 18px; height: 18px; }
+}
 .navmenu-list { position: absolute; left: 0; top: 100%; margin-top: 6px; z-index: 30; min-width: 240px;
   list-style: none; padding: 6px; background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); box-shadow: var(--shadow-lg); }

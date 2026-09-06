@@ -17,10 +17,11 @@
       .phead .corner { position: static; width: auto; left: auto; }
       .phead h1 { font-size: 1.05rem; }
       .pnav { gap: var(--sp-1); flex: 1; min-width: 0; flex-wrap: nowrap; justify-content: flex-end; }
-      .navarrow { width: 32px; height: 32px; font-size: 1.25rem; }
-      .today-btn { padding: .35rem .6rem; font-size: .8rem; white-space: nowrap; }
-      #weekLabel { flex: 1; min-width: 0; text-align: center; font-size: .9rem;
-                   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .navarrow { width: 30px; height: 30px; font-size: 1.2rem; }
+      .today-btn { padding: .35rem .55rem; font-size: .8rem; white-space: nowrap; }
+      .today-btn .tw-full { display: none; }
+      .today-btn .tw-mini { display: inline; }
+      #weekLabel { flex: 0 1 auto; text-align: center; font-size: .95rem; white-space: nowrap; }
       /* Modal → bottom sheet on phones so it doesn't fill the screen */
       .modal { inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 85dvh;
                border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
@@ -32,6 +33,7 @@
                 display: grid; place-items: center; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
     .navarrow:hover { background: var(--surface-2); color: var(--text); }
     .today-btn { border-radius: 999px; padding: .5rem 1.1rem; font-weight: 600; }
+    .tw-mini { display: none; }  /* mobile-only compact label for the This week button */
 
     .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--sp-3);
             max-width: 1400px; margin: 0 auto; padding: var(--sp-5); align-items: start; }
@@ -80,7 +82,7 @@
     <div class="corner" id="navMount"></div>
     <div class="pnav">
       <button class="navarrow" id="prev" aria-label="Previous week">‹</button>
-      <button class="btn today-btn" id="thisWeek">This week</button>
+      <button class="btn today-btn" id="thisWeek"><span class="tw-full">This week</span><span class="tw-mini">Now</span></button>
       <h1 id="weekLabel">—</h1>
       <button class="navarrow" id="next" aria-label="Next week">›</button>
     </div>

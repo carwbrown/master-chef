@@ -1,0 +1,32 @@
+{
+  "title": "Sheet Pan Kielbasa and Okra with Cheesy Grits",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": "30 min",
+  "tags": ["sausage", "cajun", "dinner", "sheet-pan", "grits"],
+  "ingredients": [
+    { "raw": "1 (12-ounce) beef kielbasa or pork kielbasa", "amount": 1, "unit": null, "name": "kielbasa" },
+    { "raw": "1 red, yellow, or orange bell pepper", "amount": 1, "unit": null, "name": "bell pepper" },
+    { "raw": "1 medium red or white onion", "amount": 1, "unit": null, "name": "onion" },
+    { "raw": "12 ounces fresh or thawed frozen whole okra pods (ideally smaller ones, around 2 inches long)", "amount": 12, "unit": "ounce", "name": "okra" },
+    { "raw": "1 pint cherry tomatoes", "amount": 1, "unit": "pint", "name": "cherry tomatoes" },
+    { "raw": "3 tablespoons extra-virgin olive oil", "amount": 3, "unit": "tablespoon", "name": "olive oil" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "1/2 teaspoon dried thyme", "amount": 0.5, "unit": "teaspoon", "name": "dried thyme" },
+    { "raw": "1/2 teaspoon sweet paprika", "amount": 0.5, "unit": "teaspoon", "name": "sweet paprika" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1 cup quick-cooking grits or polenta", "amount": 1, "unit": "cup", "name": "quick-cooking grits" },
+    { "raw": "4 ounces shredded sharp cheddar cheese (1 cup)", "amount": 4, "unit": "ounce", "name": "sharp cheddar cheese" },
+    { "raw": "1 tablespoon unsalted butter", "amount": 1, "unit": "tablespoon", "name": "butter" },
+    { "raw": "Soft green herbs, such as fresh parsley or basil, for serving", "amount": null, "unit": null, "name": "parsley or basil" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Position a rack about 4 inches from the broiler heat element and turn the broiler to high." },
+    { "step": 2, "text": "Cut the kielbasa on the diagonal into 1/2-inch-thick slices and place it on your largest rimmed baking sheet. Thinly slice the bell pepper and onion and add them to the pan with the kielbasa, along with the okra pods and tomatoes. Add the olive oil, 1 1/2 teaspoons salt, the thyme, paprika, and garlic powder and toss to coat evenly." },
+    { "step": 3, "text": "Broil for 12 to 15 minutes, until the kielbasa and vegetables are roasty and browned in parts. Give things a stir every couple of minutes and check to make sure nothing's burning (really check—all broilers are different!). If anything starts to burn, move the baking sheet down a rack or two to give it distance from the heat." },
+    { "step": 4, "text": "Meanwhile, in a large saucepan, combine 3 cups water and 1 teaspoon salt and bring to a boil over high heat. Whisk in the grits and turn down the heat to low. Cook, whisking occasionally, until thickened, about 5 minutes (or according to the package directions). Stir in the cheese and butter. If the grits get too thick, stir in another splash of water." },
+    { "step": 5, "text": "Divide the grits among shallow bowls, top with the kielbasa and veggies, and garnish with fresh herbs. Enjoy!" },
+    { "step": 6, "text": "Swap: use 1 pound peeled and deveined jumbo (16/20) shrimp in place of the kielbasa — add them to the sheet after the vegetables have broiled 5 to 10 minutes, then broil until pink and opaque, 4 to 6 minutes, flipping halfway. Riff: skip the grits and make a comeback sauce to drizzle — 1/2 cup mayonnaise, 2 tablespoons chili sauce, 1 tablespoon finely chopped onion, 1 tablespoon fresh lemon juice, and 1/2 teaspoon garlic powder." }
+  ]
+}

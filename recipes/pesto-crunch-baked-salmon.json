@@ -1,0 +1,34 @@
+{
+  "title": "Pesto Crunch Baked Salmon",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": "30 min",
+  "tags": ["salmon", "seafood", "dinner", "sheet-pan", "30-minute"],
+  "ingredients": [
+    { "raw": "2 medium sweet potatoes (about 1 pound)", "amount": 2, "unit": null, "name": "sweet potatoes" },
+    { "raw": "1/2 teaspoon sweet paprika", "amount": 0.5, "unit": "teaspoon", "name": "sweet paprika" },
+    { "raw": "1/2 teaspoon onion powder", "amount": 0.5, "unit": "teaspoon", "name": "onion powder" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Extra-virgin olive oil", "amount": null, "unit": null, "name": "olive oil" },
+    { "raw": "1 large bunch lacinato kale (about 12 ounces)", "amount": 1, "unit": "bunch", "name": "lacinato kale" },
+    { "raw": "5 tablespoons freshly grated Parmesan cheese (1 1/3 ounces)", "amount": 5, "unit": "tablespoon", "name": "parmesan cheese" },
+    { "raw": "1/2 cup pesto", "amount": 0.5, "unit": "cup", "name": "pesto" },
+    { "raw": "1/2 cup panko breadcrumbs", "amount": 0.5, "unit": "cup", "name": "panko breadcrumbs" },
+    { "raw": "4 (6-ounce) salmon fillets (skin on or off)", "amount": 4, "unit": null, "name": "salmon fillets" },
+    { "raw": "Freshly ground black pepper", "amount": null, "unit": null, "name": "black pepper" },
+    { "raw": "1 lemon", "amount": 1, "unit": null, "name": "lemon" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 400°F. Line a rimmed baking sheet with parchment paper." },
+    { "step": 2, "text": "Dice the sweet potatoes and place them in a large bowl. Add the paprika, onion powder, garlic powder, 1 teaspoon salt, and 1 tablespoon olive oil. Toss to coat. Spread the potatoes in an even layer on the prepared baking sheet and roast for 10 minutes." },
+    { "step": 3, "text": "Meanwhile, stem the kale leaves and slice them crosswise into thick ribbons. Place them in the same bowl you used for the sweet potato and add 1 tablespoon olive oil, 3 tablespoons of the Parm, and 1/4 teaspoon salt. Massage the oil and seasonings into the kale." },
+    { "step": 4, "text": "Remove the baking sheet from the oven and push the sweet potatoes to one side. Scatter the kale on the other side of the pan and return to the oven for 5 minutes." },
+    { "step": 5, "text": "Meanwhile, in a small bowl, stir together the pesto, panko, 1 tablespoon olive oil, and the remaining 2 tablespoons Parm until well combined." },
+    { "step": 6, "text": "Remove the baking sheet from the oven and push the kale to the side opposite the potatoes. Add the salmon (skin side down, if it has skin) and season it with 1 teaspoon salt and some pepper. Spread the pesto-panko mixture evenly over the salmon, pressing to adhere. Return the baking sheet to the oven and bake for about 15 minutes more, until the sweet potatoes are soft when pierced with the tip of a sharp knife, the kale is crispy, and the salmon is opaque and flakes easily with a fork." },
+    { "step": 7, "text": "Meanwhile, cut the lemon into 8 wedges." },
+    { "step": 8, "text": "Divide the kale, sweet potatoes, and salmon among plates. Serve with the lemon wedges for squeezing." },
+    { "step": 9, "text": "Tip: For an even crunchier topping, put the pan under the broiler for 1 to 2 minutes at the end. Swap: Crushed crackers or finely chopped nuts (like almonds or pistachios) work beautifully in place of the panko." }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Sticky Orange Chicky and Brussels",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": "30 min",
+  "tags": ["asian", "chicken", "dinner", "sheet-pan", "brussels-sprouts"],
+  "ingredients": [
+    { "raw": "Neutral oil", "amount": null, "unit": null, "name": "neutral oil" },
+    { "raw": "2 pounds boneless, skinless chicken thighs", "amount": 2, "unit": "pound", "name": "chicken thighs" },
+    { "raw": "1 pound Brussels sprouts", "amount": 1, "unit": "pound", "name": "brussels sprouts" },
+    { "raw": "3 tablespoons cornstarch", "amount": 3, "unit": "tablespoon", "name": "cornstarch" },
+    { "raw": "1/2 teaspoon kosher salt", "amount": 0.5, "unit": "teaspoon", "name": "kosher salt" },
+    { "raw": "3/4 cup fresh orange juice", "amount": 0.75, "unit": "cup", "name": "orange juice" },
+    { "raw": "1 to 2 tablespoons sambal oelek", "amount": null, "unit": "tablespoon", "name": "sambal oelek" },
+    { "raw": "3 tablespoons low-sodium soy sauce", "amount": 3, "unit": "tablespoon", "name": "soy sauce" },
+    { "raw": "2 tablespoons rice vinegar", "amount": 2, "unit": "tablespoon", "name": "rice vinegar" },
+    { "raw": "1 tablespoon fish sauce", "amount": 1, "unit": "tablespoon", "name": "fish sauce" },
+    { "raw": "2 scallions", "amount": 2, "unit": null, "name": "scallions" },
+    { "raw": "Toasted sesame seeds, for serving", "amount": null, "unit": null, "name": "sesame seeds" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 450°F." },
+    { "step": 2, "text": "Drizzle a little bit of oil on a baking sheet. Trim any white fat off the chicken thighs and cut them into 1-inch cubes. Cut the Brussels sprouts in half, or in quarters if they're large. Combine the chicken and Brussels sprouts on the baking sheet and toss with 2 tablespoons of the oil, cornstarch, and salt to coat. Spread out into an even layer and roast for about 25 minutes, until the chicken is cooked through and the sprouts are dark brown and crispy, opening the oven to carefully stir once or twice." },
+    { "step": 3, "text": "Meanwhile, in a small skillet, combine the orange juice, 1 tablespoon of the sambal oelek, the soy sauce, vinegar, and fish sauce. Bring to a boil over high heat, then turn down the heat to medium and cook until the sauce is thickened and reduced to about 1/3 cup, 10 to 15 minutes. Keep a close eye on it—if you reduce it too far, it will burn! Taste and add the remaining tablespoon of sambal if you want it spicier." },
+    { "step": 4, "text": "Meanwhile, thinly slice the scallions." },
+    { "step": 5, "text": "Drizzle the sauce all over the roasted chicken and Brussels and toss to coat. Divide among plates and top with the scallions and some sesame seeds before serving." },
+    { "step": 6, "text": "Bulk it up: serve over white rice, brown rice, or quinoa. Swap: try zucchini, yellow squash, green beans, broccoli, or cauliflower in place of (or with) the Brussels; sriracha or gochujang work for the sambal, or omit the hot sauce for a sweeter orange-chicken vibe." }
+  ]
+}

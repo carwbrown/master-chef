@@ -14,6 +14,15 @@
     .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
     .weekctrls { display: flex; gap: var(--sp-2); align-items: center; }
     .weekctrls .btn { padding: .35rem .7rem; }
+    .tw-mini { display: none; }  /* mobile-only compact label for This week */
+    @media (max-width: 620px) {
+      .rhead { flex-wrap: nowrap; gap: var(--sp-2); padding: var(--sp-3) var(--sp-4); }
+      .rhead h1 { font-size: 1rem; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .weekctrls { gap: 4px; flex: 0 0 auto; }
+      .weekctrls .btn { padding: .3rem .5rem; font-size: .8rem; }
+      #todayBtn .tw-full { display: none; }
+      #todayBtn .tw-mini { display: inline; }
+    }
     .wrap { max-width: 900px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
 
     .wday { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -39,7 +48,7 @@
     <h1 id="weekLabel">Week</h1>
     <div class="weekctrls">
       <button class="btn" id="prev" aria-label="Previous week">‹</button>
-      <button class="btn" id="todayBtn">This week</button>
+      <button class="btn" id="todayBtn"><span class="tw-full">This week</span><span class="tw-mini">Now</span></button>
       <button class="btn" id="next" aria-label="Next week">›</button>
     </div>
   </header>
