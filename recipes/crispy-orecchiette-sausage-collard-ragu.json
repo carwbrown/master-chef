@@ -1,0 +1,28 @@
+{
+  "title": "Crispy Orecchiette with Spicy Sausage & Collard Ragù",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": "30 min",
+  "tags": ["pasta", "sausage", "italian", "dinner"],
+  "ingredients": [
+    { "raw": "3 large shallots (about 6 ounces)", "amount": 3, "unit": null, "name": "shallots" },
+    { "raw": "1 bunch collard greens (about 8 ounces)", "amount": 1, "unit": "bunch", "name": "collard greens" },
+    { "raw": "1 lemon", "amount": 1, "unit": null, "name": "lemon" },
+    { "raw": "2 ounces grated Parmigiano Reggiano (about 1/2 cup), plus more for serving", "amount": 2, "unit": "ounce", "name": "parmigiano reggiano" },
+    { "raw": "5 ounces burrata cheese (optional)", "amount": 5, "unit": "ounce", "name": "burrata cheese" },
+    { "raw": "1 pound sweet Italian sausage, casings removed", "amount": 1, "unit": "pound", "name": "sweet italian sausage" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "8 ounces orecchiette", "amount": 8, "unit": "ounce", "name": "orecchiette" },
+    { "raw": "6 tablespoons extra-virgin olive oil, plus more for drizzling", "amount": 6, "unit": "tablespoon", "name": "olive oil" },
+    { "raw": "1/4 cup tomato paste", "amount": 0.25, "unit": "cup", "name": "tomato paste" },
+    { "raw": "3 to 4 tablespoons chopped jarred Calabrian chiles", "amount": null, "unit": "tablespoon", "name": "calabrian chiles" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Prep: Bring a large pot of heavily salted water to a boil. Thinly slice the shallots. Strip the leaves off the collard greens and slice crosswise into 1-inch-wide strips; discard the stems." },
+    { "step": 2, "text": "Cook the pasta: Drop the orecchiette into the boiling water, stir, and cook until al dente according to the package directions. Scoop out a few cups of pasta water before draining (you'll need quite a bit to help cook down the greens). Drizzle the drained pasta lightly with olive oil so it doesn't clump." },
+    { "step": 3, "text": "Start the ragù: In a large Dutch oven, heat several tablespoons olive oil over medium-high heat. When very hot, add the sausage, breaking it into golf ball-size chunks. Cook undisturbed until well browned, 3 to 4 minutes; flip and brown the second side, 1 to 2 minutes; transfer to a plate (it will still be slightly undercooked — it finishes later). Reduce the heat to medium-low, add the shallots and a big pinch of salt, and cook, stirring often, until jammy and cooked down, 4 minutes. Stir in the tomato paste and Calabrian chiles (hold some back if spice-averse) and cook, stirring, until the tomato paste begins to stick to the pot, 4 to 5 minutes. Add the collard greens and a few big splashes of the reserved pasta water, stir well, cover, and cook until the greens are tender, 4 to 5 minutes, adding more pasta water if the pot gets dry. The ragù should be nice and saucy. Remove from heat and keep covered." },
+    { "step": 4, "text": "Crisp the pasta: In a large nonstick skillet, heat 2 tablespoons olive oil over medium-high heat. Add about half the cooked pasta and cook undisturbed until the bottom is golden brown and crisp at the edges, 3 to 4 minutes. Add to the pot of ragù and repeat with the remaining pasta." },
+    { "step": 5, "text": "Finish: Return the pot to medium heat. Add the sausage back in, breaking it into smaller pieces, along with a big splash of reserved pasta water and a few big handfuls of grated Parm. Cook, stirring vigorously, until a thick sauce coats the pasta, 30 seconds. Squeeze in the juice of 1 lemon and stir to combine. Divide among bowls, tear the burrata (if using) into small pieces over the top, drizzle with more olive oil, sprinkle with more Parm, and serve." }
+  ]
+}

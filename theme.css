@@ -83,6 +83,17 @@ a { color: var(--blue-dark); }
   outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft);
 }
 
+/* Modal mobile fixes (apply to every .modal dialog app-wide):
+   1) 16px form controls so iOS Safari doesn't zoom the page on focus.
+   2) Sticky action bar so Save/Cancel stay visible when the sheet scrolls or the
+      keyboard is up, with safe-area clearance for the home indicator. */
+.modal input, .modal select, .modal textarea { font-size: 16px; }
+.modal-actions {
+  position: sticky; bottom: 0; z-index: 2; background: var(--surface);
+  padding-top: var(--sp-2); padding-bottom: max(var(--sp-1), env(safe-area-inset-bottom));
+  border-top: 1px solid var(--surface-2);
+}
+
 /* Member chip + avatar */
 .chip {
   display: inline-flex; align-items: center; gap: var(--sp-2);
