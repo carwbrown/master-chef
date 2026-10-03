@@ -40,6 +40,7 @@ export async function login(identity, password) {
 }
 
 export function logout() {
-  pb.authStore.clear();
+  pb.authStore.clear();                               // clears the PocketBase auth key
+  try { localStorage.clear(); sessionStorage.clear(); } catch {}  // wipe any other app state (shared devices)
   window.location.href = '/login.html';
 }
