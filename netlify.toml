@@ -4,6 +4,13 @@
 [build]
   publish = "."
 
+[build.environment]
+  # PB_EMAIL is the super-admin's email — it must appear in a migration (to flag
+  # the super-admin) and in docs, and an email isn't a sensitive secret, so exclude
+  # it from Netlify's secret scanner. PB_PASSWORD (the real secret) is NOT in the
+  # repo and stays scanned.
+  SECRETS_SCAN_OMIT_KEYS = "PB_EMAIL"
+
 # Serverless functions (e.g. gcal-feed: fetch + parse a Google Calendar .ics).
 # The frontend stays dependency-free; the deps in package.json are used only here.
 [functions]
