@@ -15,6 +15,13 @@ export function getCurrentUser() {
   return pb.authStore.record;   // .model was removed in newer SDKs
 }
 
+/** The logged-in user's family id — stamp this on every per-family record. */
+export const familyId = () => pb.authStore.record?.family || null;
+/** The logged-in user's own id (e.g. recipe owner). */
+export const userId = () => pb.authStore.record?.id || null;
+/** Whether the logged-in user is the super-admin (gates the family console). */
+export const isSuperadmin = () => !!pb.authStore.record?.is_superadmin;
+
 export function requireAuth() {
   if (!isAuthenticated()) {
     window.location.href = '/login.html';

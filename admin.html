@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Families — Master Chef</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .rhead { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+             padding: var(--sp-4) var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 5; }
+    .rhead h1 { font-size: 1.5rem; margin: 0; flex: 1; }
+    .rnav { display: flex; gap: var(--sp-3); font-size: 1.4rem; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: var(--sp-4) var(--sp-5) var(--sp-6); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-5); }
+    .card h2 { margin: 0 0 var(--sp-2); font-size: 1.1rem; }
+    .muted { color: var(--text-muted); font-size: .85rem; }
+
+    .fam { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--sp-3); margin-bottom: var(--sp-3); }
+    .fam-head { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+    .fam-head strong { flex: 1; }
+    .urow { display: flex; align-items: center; gap: var(--sp-2); padding: 6px 0; border-top: 1px solid var(--surface-2); flex-wrap: wrap; }
+    .uemail { flex: 1 1 180px; min-width: 0; }
+    .badge { font-size: .68rem; font-weight: 700; background: var(--green-soft); color: var(--green-dark); padding: 1px 7px; border-radius: 999px; }
+    .btn.sm { padding: .3rem .6rem; font-size: .8rem; }
+    select, input { padding: .45rem .6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font: inherit; }
+    .addrow { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-3); }
+    .grow { flex: 1 1 160px; min-width: 0; }
+    .lbl-inline { font-size: .8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px; }
+
+    .pwbox { background: var(--green-soft); border: 1px solid var(--green); border-radius: var(--radius-sm);
+             padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
+    .pwbox code { font-size: 1.05rem; font-weight: 700; background: #fff; padding: 2px 8px; border-radius: 6px; }
+    .pwbox .note { color: var(--green-dark); font-size: .8rem; margin-top: 4px; }
+    .err { color: var(--danger); font-size: .85rem; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="rhead">
+    <div class="rnav" id="navMount"></div>
+    <h1>Families</h1>
+  </header>
+
+  <div class="wrap" id="wrap">
+    <p class="muted" id="status">Loading…</p>
+
+    <div id="console" hidden>
+      <div class="pwbox" id="pwbox" hidden></div>
+
+      <section class="card">
+        <h2>Families &amp; logins</h2>
+        <div id="families"></div>
+      </section>
+
+      <section class="card">
+        <h2>Add a family</h2>
+        <form class="addrow" id="addFamily">
+          <input class="grow" type="text" name="name" placeholder="Family name (e.g. Smith Family - 12 Oak)" required>
+          <button class="btn btn-primary" type="submit">Create</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Add a login</h2>
+        <p class="muted">Creates an account with a generated password, shown once. Share it with that person.</p>
+        <form class="addrow" id="addUser">
+          <input class="grow" type="email" name="email" placeholder="email@example.com" required>
+          <select name="family" id="newUserFamily"></select>
+          <label class="lbl-inline"><input type="checkbox" name="superadmin"> Super-admin</label>
+          <button class="btn btn-primary" type="submit">Create login</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script type="module">
+    import { pb, requireAuth, isSuperadmin } from './scripts/auth.js';
+    import { escapeHTML as esc } from './scripts/utils.js';
+    import { mountMenu } from './scripts/nav.js';
+
+    const FN = '/.netlify/functions/admin-families';
+    let families = [], users = [];
+
+    if (requireAuth()) start();
+
+    function start() {
+      mountMenu(document.getElementById('navMount'), 'admin');
+      if (!isSuperadmin()) {
+        document.getElementById('status').innerHTML = '<span class="err">Not authorized — this page is for the super-admin only.</span>';
+        return;
+      }
+      document.getElementById('status').hidden = true;
+      document.getElementById('console').hidden = false;
+      wire();
+      load();
+    }
+
+    async function api(action, params = {}) {
+      const r = await fetch(FN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: pb.authStore.token },
+        body: JSON.stringify({ action, ...params }),
+      });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error || 'Request failed');
+      return d;
+    }
+
+    async function load() {
+      try { ({ families, users } = await api('list')); render(); }
+      catch (e) { document.getElementById('families').innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    }
+
+    const famOptions = (sel) => `<option value="">— no family —</option>` +
+      families.map(f => `<option value="${f.id}"${f.id === sel ? ' selected' : ''}>${esc(f.name)}</option>`).join('');
+
+    const userRow = (u) => `
+      <div class="urow" data-uid="${u.id}">
+        <span class="uemail">${esc(u.email)}${u.is_superadmin ? ' <span class="badge">admin</span>' : ''}</span>
+        <select data-movefam>${famOptions(u.family)}</select>
+        <button class="btn sm" data-reset>Reset password</button>
+      </div>`;
+
+    function render() {
+      const grouped = families.map(f => {
+        const us = users.filter(u => u.family === f.id);
+        return `<div class="fam" data-id="${f.id}">
+            <div class="fam-head"><strong>${esc(f.name)}</strong>
+              <button class="btn danger sm" data-delfam>Delete family</button></div>
+            ${us.length ? us.map(userRow).join('') : '<div class="muted">No logins yet.</div>'}
+          </div>`;
+      }).join('');
+      const orphans = users.filter(u => !u.family);
+      const orphanHtml = orphans.length
+        ? `<div class="fam"><div class="fam-head"><strong class="muted">No family</strong></div>${orphans.map(userRow).join('')}</div>`
+        : '';
+      document.getElementById('families').innerHTML = (grouped + orphanHtml) || '<p class="muted">No families yet.</p>';
+      document.getElementById('newUserFamily').innerHTML = famOptions('');
+    }
+
+    function showPassword(email, password) {
+      const box = document.getElementById('pwbox');
+      box.hidden = false;
+      box.innerHTML = `Password for <strong>${esc(email)}</strong>: <code>${esc(password)}</code>
+        <button class="btn sm" id="copyPw" type="button">Copy</button>
+        <div class="note">Shown once — copy it now and share it securely.</div>`;
+      document.getElementById('copyPw').onclick = () => navigator.clipboard?.writeText(password);
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function wire() {
+      document.getElementById('addFamily').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try { await api('createFamily', { name: e.target.name.value.trim() }); e.target.reset(); await load(); }
+        catch (err) { alert('Could not create family: ' + err.message); }
+      });
+
+      document.getElementById('addUser').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.target;
+        try {
+          const { user, password } = await api('createUser', {
+            email: f.email.value.trim(), familyId: f.family.value || null, isSuperadmin: f.superadmin.checked,
+          });
+          showPassword(user.email, password);
+          f.reset();
+          await load();
+        } catch (err) { alert('Could not create login: ' + err.message); }
+      });
+
+      document.getElementById('console').addEventListener('click', async (e) => {
+        const del = e.target.closest('[data-delfam]');
+        if (del) {
+          const fam = del.closest('.fam');
+          const name = fam.querySelector('strong').textContent;
+          if (!confirm(`Delete "${name}" and ALL its data (events, chores, meals, grocery, calendars)? Logins are kept but detached. This cannot be undone.`)) return;
+          try { const r = await api('deleteFamily', { familyId: fam.dataset.id }); alert(`Deleted ${r.deleted} records; detached ${r.detachedUsers} login(s).`); await load(); }
+          catch (err) { alert('Could not delete: ' + err.message); }
+          return;
+        }
+        const reset = e.target.closest('[data-reset]');
+        if (reset) {
+          const row = reset.closest('.urow');
+          const email = row.querySelector('.uemail').textContent.replace('admin', '').trim();
+          if (!confirm(`Reset password for ${email}?`)) return;
+          try { const { password } = await api('resetPassword', { userId: row.dataset.uid }); showPassword(email, password); }
+          catch (err) { alert('Could not reset: ' + err.message); }
+        }
+      });
+
+      document.getElementById('console').addEventListener('change', async (e) => {
+        const sel = e.target.closest('[data-movefam]');
+        if (!sel) return;
+        const row = sel.closest('.urow');
+        try { await api('setUserFamily', { userId: row.dataset.uid, familyId: sel.value || null }); await load(); }
+        catch (err) { alert('Could not move: ' + err.message); await load(); }
+      });
+    }
+  </script>
+</body>
+</html>

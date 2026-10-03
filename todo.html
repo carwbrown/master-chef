@@ -43,7 +43,7 @@
   </div>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, familyId } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { mountMenu } from './scripts/nav.js';
 
@@ -112,7 +112,7 @@
         btn.disabled = true;
         try {
           const rec = await pb.collection('adult_tasks').create({
-            title, done: false, done_at: '', sort: Date.now() % 100000000,
+            title, done: false, done_at: '', sort: Date.now() % 100000000, family: familyId(),
           });
           all.push(rec);
           render();

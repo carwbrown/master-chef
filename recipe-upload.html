@@ -311,7 +311,7 @@
   </main>
 
   <script type="module">
-    import { requireAuth, getCurrentUser, pb } from './scripts/auth.js';
+    import { requireAuth, getCurrentUser, pb, userId } from './scripts/auth.js';
 
     // Check auth
     if (!requireAuth()) return;
@@ -413,7 +413,7 @@
       message.innerHTML = '';
 
       try {
-        await pb.collection('recipes').create(recipeData);
+        await pb.collection('recipes').create({ ...recipeData, owner: userId() });
         message.innerHTML = '<p class="success">Recipe saved!</p>';
 
         // Redirect after short delay

@@ -4,7 +4,7 @@
  * add / toggle / delete. Page-specific controls (select-all, clear purchased,
  * counts) stay on the page and drive the returned handle.
  */
-import { pb } from './auth.js';
+import { pb, familyId } from './auth.js';
 import { escapeHTML } from './utils.js';
 
 export function itemHTML(it) {
@@ -66,7 +66,7 @@ export function initGroceryList({ list, listEl, formEl, emptyText, sinkChecked =
     btn.disabled = true;
     try {
       const rec = await pb.collection('grocery_items').create({
-        list, name, qty: qtyEl.value.trim(), checked: false, sort: Date.now() % 100000000,
+        list, name, qty: qtyEl.value.trim(), checked: false, sort: Date.now() % 100000000, family: familyId(),
       });
       items.push(rec);
       render();

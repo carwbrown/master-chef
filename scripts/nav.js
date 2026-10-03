@@ -2,7 +2,7 @@
  * Shared hamburger menu for the app header. Call mountMenu(el, current)
  * where `current` is 'hub' | 'recipes' | 'planner' | 'grocery' to mark the active page.
  */
-import { logout } from './auth.js';
+import { logout, isSuperadmin } from './auth.js';
 
 const HAMBURGER = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>`;
 
@@ -18,11 +18,15 @@ const LINKS = [
 ];
 
 export function mountMenu(el, current) {
+  // The Families admin link is only shown to the super-admin.
+  const links = isSuperadmin()
+    ? [...LINKS, { href: 'admin.html', label: '👪  Families', key: 'admin' }]
+    : LINKS;
   el.innerHTML = `
     <details class="navmenu">
       <summary class="navmenu-btn" aria-label="Menu">${HAMBURGER}</summary>
       <ul class="navmenu-list">
-        ${LINKS.map(l => `<li><a href="${l.href}"${l.key === current ? ' aria-current="page"' : ''}>${l.label}</a></li>`).join('')}
+        ${links.map(l => `<li><a href="${l.href}"${l.key === current ? ' aria-current="page"' : ''}>${l.label}</a></li>`).join('')}
         <li><button type="button" class="navmenu-logout">🚪  Sign out</button></li>
       </ul>
     </details>`;

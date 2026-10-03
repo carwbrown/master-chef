@@ -133,7 +133,7 @@
   </dialog>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, familyId } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { ymd } from './scripts/recurrence.js';
     import { initRecipeCombo } from './scripts/recipe-combo.js';
@@ -241,7 +241,8 @@
 
     async function onSave(e) {
       e.preventDefault();
-      const base = { recipe: form.recipe.value || null,
+      const base = { family: familyId(),
+                     recipe: form.recipe.value || null,
                      title: form.recipe.value ? '' : form.title.value.trim(),
                      notes: form.notes.value.trim() };
       const data = { ...base, date: toPBDate(form.date.value), slot: form.slot.value };

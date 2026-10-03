@@ -50,7 +50,7 @@
   </div>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, familyId } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { mountMenu } from './scripts/nav.js';
 
@@ -155,14 +155,14 @@
               start_time: ev.all_day ? '' : ev.start_time, end_time: ev.all_day ? '' : ev.end_time,
               member: ev.cal.member || null,
               recur_type: 'none', recur_config: {}, recur_until: '',
-              source_uid: ev.key,
+              source_uid: ev.key, family: familyId(),
             });
             removeRow(el);
           } catch (err) { e.target.disabled = false; alert('Could not add: ' + (err?.message || err)); }
         } else if (e.target.closest('[data-skip]')) {
           e.target.disabled = true;
           try {
-            await pb.collection('gcal_skips').create({ key: ev.key, summary: ev.title });
+            await pb.collection('gcal_skips').create({ key: ev.key, summary: ev.title, family: familyId() });
             removeRow(el);
           } catch (err) { e.target.disabled = false; alert('Could not skip: ' + (err?.message || err)); }
         }

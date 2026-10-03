@@ -79,7 +79,7 @@
   </div>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, familyId } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
     import { mountMenu } from './scripts/nav.js';
 
@@ -142,7 +142,7 @@
         try {
           const rec = await pb.collection('members').create({
             name: f.name.value.trim(), color: f.color.value, is_parent: f.is_parent.checked,
-            sort: members.length,
+            sort: members.length, family: familyId(),
           });
           members.push(rec); f.reset(); f.color.value = '#CFE6F2';
           renderPeople(); renderCals();
@@ -156,7 +156,7 @@
         try {
           const rec = await pb.collection('calendars').create({
             label: f.label.value.trim(), ics_url: f.ics_url.value.trim(),
-            member: f.member.value || null, active: f.active.checked, sort: calendars.length,
+            member: f.member.value || null, active: f.active.checked, sort: calendars.length, family: familyId(),
           });
           calendars.push(rec); f.reset(); f.active.checked = true;
           renderCals();

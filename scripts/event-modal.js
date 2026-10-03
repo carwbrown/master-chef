@@ -8,7 +8,7 @@
  *   eventModal.openNew(date);  // for a specific day (week view)
  *   eventModal.openEdit(ev);
  */
-import { pb } from './auth.js';
+import { pb, familyId } from './auth.js';
 import { escapeHTML } from './utils.js';
 import { ymd, WD } from './recurrence.js';
 
@@ -156,6 +156,7 @@ export function createEventModal({ members = [], onChange, getDefaultDate } = {}
     const type = $('recurType').value;
     const allDay = $('allDayField').checked;
     const data = {
+      family: familyId(),
       title: form.title.value.trim(),
       member: form.member.value || null,
       pickup: form.pickup.value || null,

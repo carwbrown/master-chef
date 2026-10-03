@@ -73,7 +73,7 @@
   </div>
 
   <script type="module">
-    import { pb, requireAuth } from './scripts/auth.js';
+    import { pb, requireAuth, userId } from './scripts/auth.js';
     import { parseIngredient } from './scripts/ingredient-parser.js';
     if (!requireAuth()) { /* redirected */ }
 
@@ -166,7 +166,7 @@
       btn.disabled = true;
       try {
         const saved = id ? await pb.collection('recipes').update(id, payload)
-                         : await pb.collection('recipes').create(payload);
+                         : await pb.collection('recipes').create({ ...payload, owner: userId() });
         location.href = `recipe-view.html?id=${saved.id}`;
       } catch (err) { alert('Could not save: ' + (err?.message || err)); btn.disabled = false; }
     });
