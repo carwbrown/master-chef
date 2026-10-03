@@ -1,0 +1,35 @@
+{
+  "title": "Chicken Parm Meatballs with Broccoli Butter Noodles",
+  "source_url": null,
+  "servings": 4,
+  "prep_time": null,
+  "cook_time": "35 min",
+  "tags": ["italian", "chicken", "pasta", "meatballs", "dinner"],
+  "ingredients": [
+    { "raw": "Nonstick cooking spray", "amount": null, "unit": null, "name": "nonstick cooking spray" },
+    { "raw": "Kosher salt", "amount": null, "unit": null, "name": "kosher salt" },
+    { "raw": "Leaves from 1/2 bunch basil", "amount": null, "unit": null, "name": "basil" },
+    { "raw": "1 pound ground chicken", "amount": 1, "unit": "pound", "name": "ground chicken" },
+    { "raw": "2/3 cup panko breadcrumbs, plus more if needed", "amount": 0.667, "unit": "cup", "name": "panko breadcrumbs" },
+    { "raw": "1 cup freshly grated Parmesan cheese (4 ounces), plus more for serving", "amount": 1, "unit": "cup", "name": "parmesan cheese" },
+    { "raw": "1 tablespoon Italian seasoning, store-bought or homemade", "amount": 1, "unit": "tablespoon", "name": "italian seasoning" },
+    { "raw": "1/2 teaspoon garlic powder", "amount": 0.5, "unit": "teaspoon", "name": "garlic powder" },
+    { "raw": "1 large egg", "amount": 1, "unit": null, "name": "egg" },
+    { "raw": "1 (24-ounce) jar marinara sauce (I like Rao's)", "amount": 1, "unit": "jar", "name": "marinara sauce" },
+    { "raw": "8 ounces shredded mozzarella cheese (2 cups)", "amount": 8, "unit": "ounce", "name": "shredded mozzarella cheese" },
+    { "raw": "8 ounces spaghetti", "amount": 8, "unit": "ounce", "name": "spaghetti" },
+    { "raw": "12 ounces broccoli florets", "amount": 12, "unit": "ounce", "name": "broccoli florets" },
+    { "raw": "3 tablespoons unsalted butter", "amount": 3, "unit": "tablespoon", "name": "butter" },
+    { "raw": "Red pepper flakes (optional)", "amount": null, "unit": null, "name": "red pepper flakes" }
+  ],
+  "instructions": [
+    { "step": 1, "text": "Preheat the oven to 425°F. Coat a 10-inch ovenproof skillet with cooking spray. Bring a large pot of salted water to a boil." },
+    { "step": 2, "text": "Finely chop the basil leaves." },
+    { "step": 3, "text": "In a large bowl, combine the ground chicken, 1/3 cup of the panko, 1/2 cup of the Parm, 1/4 cup of the chopped basil, the Italian seasoning, 1 teaspoon salt, the garlic powder, and the egg. Use your hands to mix well, then scoop out and roll 12 even-size meatballs." },
+    { "step": 4, "text": "Pour the remaining 1/3 cup panko into a shallow bowl or plate. Roll each meatball through the panko, pressing to adhere (add more breadcrumbs to the bowl if needed to coat them all), and place them in the prepared skillet. Coat the meatballs with cooking spray." },
+    { "step": 5, "text": "Bake the meatballs for 12 minutes. Remove the skillet from the oven and pour in the marinara so the meatballs are nestled in the sauce (be careful — the sauce might splatter since the skillet is super-hot). Sprinkle the mozzarella over everything, then return the skillet to the oven and bake for 10 minutes more, until the cheese is melty." },
+    { "step": 6, "text": "While the meatballs are cooking, add the pasta and broccoli to the boiling water (break any large florets into smaller ones as you drop them in) and cook until the pasta is al dente, according to the package directions. Scoop out 1/2 cup of the pasta cooking water, then drain the pasta and broccoli and return them to the empty pot. Add the butter, 1/4 cup of the reserved pasta cooking water, the remaining 1/2 cup Parm, a nice handful of the chopped basil, and 3/4 teaspoon salt. Use tongs to toss until the broccoli breaks down into tiny bits and combines with the pasta and Parm into a silky sauce. Add more pasta water if you want things saucier and a pinch of red pepper flakes if you like." },
+    { "step": 7, "text": "Scatter more fresh basil and Parm over the meatballs and serve immediately, over or alongside the broccoli noodles." },
+    { "step": 8, "text": "Riff: make it a meatloaf. Swap: ditch the meatballs and serve grilled shrimp or chicken over the noodles instead; or keep the meatballs, ditch the noodles, and serve with sourdough bread to sop up the sauce." }
+  ]
+}

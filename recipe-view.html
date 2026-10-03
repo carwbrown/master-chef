@@ -26,7 +26,8 @@
     .csec.collapsed .sec .chev { transform: rotate(-90deg); }
     .csec.collapsed .sec-body { display: none; }
     .sec-right { display: flex; align-items: center; gap: var(--sp-2); }
-    .ingclear { font-size: .72rem; padding: .2rem .55rem; font-weight: 600; }
+    .ingclear, .ingx2 { font-size: .72rem; padding: .2rem .55rem; font-weight: 600; }
+    .ingx2.on { background: var(--green); border-color: var(--green); color: #fff; }
 
     .ing-list, .step-list { list-style: none; margin: 0; padding: 0; }
     .ing-list { columns: 2; column-gap: var(--sp-6); }
@@ -61,33 +62,26 @@
   <script type="module">
     import { pb, requireAuth } from './scripts/auth.js';
     import { escapeHTML } from './scripts/utils.js';
+    import { decToFrac, scaleQty, scaleMeasures } from './scripts/scale.js';
 
     if (requireAuth()) init();
 
     // ---- amount formatting / injection ----
     const UNIT_ABBR = { tablespoons: 'tbsp', tablespoon: 'tbsp', teaspoons: 'tsp', teaspoon: 'tsp',
                         ounces: 'oz', ounce: 'oz', pounds: 'lb', pound: 'lb' };
-    const FRAC = { 0.25: '1/4', 0.33: '1/3', 0.34: '1/3', 0.5: '1/2', 0.66: '2/3', 0.67: '2/3',
-                   0.75: '3/4', 0.2: '1/5', 0.13: '1/8', 0.38: '3/8', 0.63: '5/8', 0.88: '7/8' };
-    function decToFrac(n) {
-      if (n == null) return '';
-      const whole = Math.floor(n), frac = +(n - whole).toFixed(2), f = FRAC[frac];
-      if (frac === 0) return String(whole);
-      if (f) return whole === 0 ? f : `${whole} ${f}`;
-      return String(n);
-    }
-    function fmtAmt(ing) {
-      return [decToFrac(ing.amount), ing.unit ? (UNIT_ABBR[ing.unit.toLowerCase()] || ing.unit) : '']
+    function fmtAmt(ing, factor = 1) {
+      return [decToFrac(ing.amount == null ? null : ing.amount * factor), ing.unit ? (UNIT_ABBR[ing.unit.toLowerCase()] || ing.unit) : '']
         .filter(Boolean).join(' ').trim();
     }
-    // Insert "(amount)" in italics after the first mention of each ingredient in a step.
-    function injectAmounts(stepText, ings) {
-      let text = escapeHTML(stepText);
+    // Scale inline measurements in the step, then insert "(amount)" after the
+    // first mention of each ingredient (also scaled).
+    function injectAmounts(stepText, ings, factor = 1) {
+      let text = escapeHTML(scaleMeasures(stepText, factor));
       const withAmt = ings.filter(i => i.name && (i.amount != null || i.unit))
         .sort((a, b) => b.name.length - a.name.length);
       const used = new Set();
       for (const ing of withAmt) {
-        const amt = fmtAmt(ing);
+        const amt = fmtAmt(ing, factor);
         if (!amt || used.has(ing.name)) continue;
         const esc = ing.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const re = new RegExp(`\\b(${esc})\\b`, 'i');
@@ -131,6 +125,19 @@
       const BACK = { hub: 'hub.html', planner: 'planner.html', recipes: 'recipes.html' };
       const from = new URLSearchParams(location.search).get('from');
       const backHref = BACK[from] || (document.referrer.includes('hub.html') ? 'hub.html' : 'recipes.html');
+
+      // Ingredient list is re-rendered when the ×2 toggle or Clear is used.
+      let factor = 1;
+      const ingLi = (i, idx) =>
+        `<li class="ing${state.ings.includes(idx) ? ' checked' : ''}" data-i="${idx}">
+           <span class="box"></span><span class="txt">${boldAmount(escapeHTML(scaleQty(i.raw || i.name || '', factor)))}</span></li>`;
+      const ingListHTML = () => ings.length ? ings.map(ingLi).join('') : '<li class="empty">No ingredients listed</li>';
+      const stepLi = (s, idx) =>
+        `<li class="step${state.steps.includes(idx) ? ' done' : ''}" data-i="${idx}">
+           <span class="num">${s.step || idx + 1}</span>
+           <div class="txt">${injectAmounts(s.text || '', ings, factor)}</div></li>`;
+      const stepListHTML = () => steps.length ? steps.map(stepLi).join('') : '<li class="empty">No steps listed</li>';
+
       el.innerHTML = `
         <div class="cook-top">
           <a class="iconbtn" href="${backHref}" aria-label="Back">‹</a>
@@ -147,52 +154,58 @@
             <h2 class="sec">
               <span>Ingredients</span>
               <span class="sec-right">
+                ${ings.length ? `<button class="btn ingx2" id="doubleBtn" type="button" aria-pressed="false" title="Double the amounts">×2</button>` : ''}
                 ${ings.length ? `<button class="btn ingclear" id="clearIngs" type="button">Clear checks</button>` : ''}
                 <span class="chev">▾</span>
               </span>
             </h2>
-            <div class="sec-body"><ul class="ing-list">
-              ${ings.length ? ings.map((i, idx) =>
-                `<li class="ing${state.ings.includes(idx) ? ' checked' : ''}" data-i="${idx}">
-                   <span class="box"></span><span class="txt">${boldAmount(escapeHTML(i.raw || i.name || ''))}</span></li>`).join('')
-                : '<li class="empty">No ingredients listed</li>'}
-            </ul></div>
+            <div class="sec-body"><ul class="ing-list" id="ingList">${ingListHTML()}</ul></div>
           </section>
           <section class="csec" id="stepSec">
             <h2 class="sec">Steps <span class="chev">▾</span></h2>
-            <div class="sec-body"><ol class="step-list">
-              ${steps.length ? steps.map((s, idx) =>
-                `<li class="step${state.steps.includes(idx) ? ' done' : ''}" data-i="${idx}">
-                   <span class="num">${s.step || idx + 1}</span>
-                   <div class="txt">${injectAmounts(s.text || '', ings)}</div></li>`).join('')
-                : '<li class="empty">No steps listed</li>'}
-            </ol></div>
+            <div class="sec-body"><ol class="step-list" id="stepList">${stepListHTML()}</ol></div>
           </section>
         </div>`;
 
-      // clear all ingredient checks (button lives in the section header)
+      // Ingredient + step lists (delegated so interactions survive a re-render).
+      const ingList = document.getElementById('ingList');
+      const stepList = document.getElementById('stepList');
+      const renderIngs = () => { if (ingList) ingList.innerHTML = ingListHTML(); };
+      const renderSteps = () => { if (stepList) stepList.innerHTML = stepListHTML(); };
+
+      // ×2 / ×1 toggle — scales ingredient amounts and step amounts (display only).
+      const doubleBtn = document.getElementById('doubleBtn');
+      if (doubleBtn) doubleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();  // don't collapse the section
+        factor = factor === 1 ? 2 : 1;
+        doubleBtn.classList.toggle('on', factor === 2);
+        doubleBtn.setAttribute('aria-pressed', String(factor === 2));
+        renderIngs(); renderSteps();
+      });
+
+      // clear all ingredient checks
       const clearIngs = document.getElementById('clearIngs');
       if (clearIngs) clearIngs.addEventListener('click', (e) => {
         e.stopPropagation();  // don't collapse the section
-        el.querySelectorAll('.ing.checked').forEach(li => li.classList.remove('checked'));
-        state.ings = [];
-        save();
+        state.ings = []; save(); renderIngs();
       });
 
-      // toggle ingredient checked
-      el.querySelectorAll('.ing').forEach(li => li.addEventListener('click', () => {
+      // toggle an ingredient checked
+      if (ingList) ingList.addEventListener('click', (e) => {
+        const li = e.target.closest('.ing'); if (!li) return;
         const i = +li.dataset.i;
         li.classList.toggle('checked');
         state.ings = li.classList.contains('checked') ? [...state.ings, i] : state.ings.filter(x => x !== i);
         save();
-      }));
-      // toggle step done (collapses)
-      el.querySelectorAll('.step').forEach(li => li.addEventListener('click', () => {
+      });
+      // toggle step done (collapses) — delegated so it survives a re-render
+      if (stepList) stepList.addEventListener('click', (e) => {
+        const li = e.target.closest('.step'); if (!li) return;
         const i = +li.dataset.i;
         li.classList.toggle('done');
         state.steps = li.classList.contains('done') ? [...state.steps, i] : state.steps.filter(x => x !== i);
         save();
-      }));
+      });
       // collapse sections (single-column only; header is only clickable there)
       el.querySelectorAll('.sec').forEach(h =>
         h.addEventListener('click', () => h.closest('.csec').classList.toggle('collapsed')));
